@@ -4,14 +4,21 @@ extends Resource
 
 @export var max_health: int
 
-var current_health: int
-
+signal health_changed(health: int)
 signal death()
+var current_health: int :
+	set(value):
+		current_health = value
+		health_changed.emit(current_health)
+		
+		if current_health <= 0:
+			death.emit()
+
 
 
 func reset():
 	current_health = max_health
-
+	health_changed.emit(current_health)
 
 func take_damage(damage: int):
 	assert(damage >= 0)

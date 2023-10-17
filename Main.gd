@@ -7,6 +7,7 @@ var enemy_scene := preload("res://enemy/Enemy.tscn")
 func _ready():
 	start_game()
 	
+	$Player.health.health_changed.connect($HUD.display_health)
 	$Player.health.death.connect(game_over)
 
 
