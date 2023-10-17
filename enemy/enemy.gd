@@ -11,7 +11,16 @@ var target: Node2D
 
 func _ready():
 	assert(target, "Enemy node requires a target")
+	
+	$HealthBar.max_value = health.max_health
+	
+	health.health_changed.connect(display_health)
+	health.death.connect(queue_free)
 	health.reset()
+
+
+func display_health(health):
+	$HealthBar.value = health
 
 
 func _process(delta):
