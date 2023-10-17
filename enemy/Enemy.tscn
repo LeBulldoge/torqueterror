@@ -1,15 +1,16 @@
-[gd_scene load_steps=5 format=3 uid="uid://cvcqrhnsop3m7"]
+[gd_scene load_steps=6 format=3 uid="uid://cvcqrhnsop3m7"]
 
 [ext_resource type="Script" path="res://enemy/enemy.gd" id="1_onqrk"]
 [ext_resource type="Texture2D" uid="uid://bqs2kod2xac7k" path="res://icon.svg" id="2_3pnbj"]
 [ext_resource type="Resource" uid="uid://ng1j5fewnk7l" path="res://ai/attacker.tres" id="2_fh1ns"]
+[ext_resource type="Resource" uid="uid://cfnhel1doy1vg" path="res://ai/dasher.tres" id="3_ecmg2"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_qy78n"]
 radius = 14.0357
 
 [node name="Enemy" type="CharacterBody2D" groups=["enemies"]]
 script = ExtResource("1_onqrk")
-ai_modules = Array[Resource("res://ai/ai_module.gd")]([ExtResource("2_fh1ns")])
+ai_modules = Array[Resource("res://ai/ai_module.gd")]([ExtResource("3_ecmg2"), ExtResource("2_fh1ns")])
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 rotation = -1.5708

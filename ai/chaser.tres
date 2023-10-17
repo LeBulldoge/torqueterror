@@ -1,0 +1,6 @@
+[gd_resource type="Resource" script_class="Chaser" load_steps=2 format=3 uid="uid://cgdjf571wdqxq"]
+
+[ext_resource type="Script" path="res://ai/chaser.gd" id="1_snn7m"]
+
+[resource]
+script = ExtResource("1_snn7m")

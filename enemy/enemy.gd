@@ -29,7 +29,7 @@ func display_health(health):
 
 func _process(delta):
 	for module in ai_modules:
-		await module.perform(self)
+		module.perform(self)
 
 
 #func _physics_process(delta):
