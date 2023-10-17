@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://ctymthqvaphp4"]
+
+[ext_resource type="Script" path="res://vehicle/Vehicle.gd" id="1_5sv7b"]
+
+[node name="Vehicle" type="RigidBody2D"]
+script = ExtResource("1_5sv7b")
