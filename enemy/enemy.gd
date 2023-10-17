@@ -36,8 +36,9 @@ func _physics_process(delta):
 	
 	var collision = move_and_collide(velocity)
 	if collision:
-		if "health" in collision.get_collider():
-			var h = collision.get_collider().health as Health
+		var obj = collision.get_collider()
+		if not obj.is_in_group("enemies") and "health" in obj:
+			var h = obj.health as Health
 			h.take_damage(damage)
 			
 			var bounce_ratio = (h.max_health / health.max_health) * 0.2

@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://mn5kouylgoij"]
+[gd_scene load_steps=8 format=3 uid="uid://mn5kouylgoij"]
 
 [ext_resource type="PackedScene" uid="uid://coe45xtjvuehr" path="res://vehicle/Player.tscn" id="1_3yag5"]
 [ext_resource type="Script" path="res://Main.gd" id="1_urkel"]
@@ -6,9 +6,15 @@
 [ext_resource type="Script" path="res://resources/health.gd" id="4_ilx3t"]
 [ext_resource type="Script" path="res://hud.gd" id="5_6w88e"]
 
-[sub_resource type="Resource" id="Resource_tub73"]
+[sub_resource type="Resource" id="Resource_tswo0"]
 script = ExtResource("4_ilx3t")
 max_health = 100
+
+[sub_resource type="Curve2D" id="Curve2D_2f5cj"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, -576, -320, 0, 0, 0, 0, 576, -320, 0, 0, 0, 0, 576, 328, 0, 0, 0, 0, -576, 328, 0, 0, 0, 0, -576, -320)
+}
+point_count = 5
 
 [node name="Main" type="Node"]
 script = ExtResource("1_urkel")
@@ -19,10 +25,15 @@ scale = Vector2(56.0313, 60.5938)
 texture = ExtResource("2_d3qhu")
 
 [node name="Player" parent="." instance=ExtResource("1_3yag5")]
-position = Vector2(612, 404)
-health = SubResource("Resource_tub73")
+health = SubResource("Resource_tswo0")
 
 [node name="SpawnTimer" type="Timer" parent="."]
+
+[node name="SpawnPath" type="Path2D" parent="."]
+curve = SubResource("Curve2D_2f5cj")
+
+[node name="SpawnPoint" type="PathFollow2D" parent="SpawnPath"]
+position = Vector2(-576, -320)
 
 [node name="HUD" type="CanvasLayer" parent="."]
 script = ExtResource("5_6w88e")
