@@ -1,8 +1,13 @@
-[gd_scene load_steps=4 format=3 uid="uid://mn5kouylgoij"]
+[gd_scene load_steps=6 format=3 uid="uid://mn5kouylgoij"]
 
 [ext_resource type="PackedScene" uid="uid://coe45xtjvuehr" path="res://vehicle/Player.tscn" id="1_3yag5"]
 [ext_resource type="Script" path="res://Main.gd" id="1_urkel"]
 [ext_resource type="Texture2D" uid="uid://bqs2kod2xac7k" path="res://icon.svg" id="2_d3qhu"]
+[ext_resource type="Script" path="res://resources/health.gd" id="4_ilx3t"]
+
+[sub_resource type="Resource" id="Resource_tub73"]
+script = ExtResource("4_ilx3t")
+max_health = 100
 
 [node name="Main" type="Node"]
 script = ExtResource("1_urkel")
@@ -14,8 +19,8 @@ texture = ExtResource("2_d3qhu")
 
 [node name="Player" parent="." instance=ExtResource("1_3yag5")]
 position = Vector2(612, 404)
+health = SubResource("Resource_tub73")
 
 [node name="SpawnTimer" type="Timer" parent="."]
-autostart = true
 
 [connection signal="timeout" from="SpawnTimer" to="." method="_on_spawn_timer_timeout"]

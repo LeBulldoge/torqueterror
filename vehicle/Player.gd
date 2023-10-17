@@ -5,6 +5,7 @@ extends Vehicle
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	health.reset()
 	health.death.connect(queue_free)
 
 func _input(event):
@@ -13,7 +14,7 @@ func _input(event):
 
 
 func hit(damage):
-	health.hit(null, damage)
+	health.take_damage(damage)
 
 
 func _physics_process(delta):

@@ -1,19 +1,24 @@
 class_name Health
 extends Resource
 
-@export var health := 0
 
+@export var max_health: int
+
+var current_health: int
 
 signal death()
 
 
-func hit(body, damage: int):
+func reset():
+	current_health = max_health
+
+
+func take_damage(damage: int):
 	assert(damage >= 0)
-	health -= damage
-	if health <= 0:
+	current_health -= damage
+	if current_health <= 0:
 		death.emit()
-	
 
 func heal(amount: int):
 	assert(amount <= 0)
-	health += amount
+	current_health += amount

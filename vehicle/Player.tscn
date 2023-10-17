@@ -1,19 +1,13 @@
-[gd_scene load_steps=6 format=3 uid="uid://coe45xtjvuehr"]
+[gd_scene load_steps=4 format=3 uid="uid://coe45xtjvuehr"]
 
 [ext_resource type="Script" path="res://vehicle/Player.gd" id="1_28sia"]
 [ext_resource type="Texture2D" uid="uid://bqs2kod2xac7k" path="res://icon.svg" id="1_v2j0e"]
-[ext_resource type="Script" path="res://resources/health.gd" id="2_evxbt"]
-
-[sub_resource type="Resource" id="Resource_cgsv2"]
-script = ExtResource("2_evxbt")
-health = 100
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_yyb6l"]
 size = Vector2(62, 126)
 
 [node name="Player" type="RigidBody2D"]
 script = ExtResource("1_28sia")
-health = SubResource("Resource_cgsv2")
 speed = 500
 torque = 500
 
