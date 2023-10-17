@@ -21,8 +21,6 @@ func game_over():
 
 
 func get_point_outside_viewport() -> Vector2:
-	var result := Vector2.ZERO
-
 	$SpawnPath.position = $Player.position
 	$SpawnPath/SpawnPoint.progress_ratio = randf()
 
@@ -34,7 +32,8 @@ func _on_spawn_timer_timeout():
 
 	enemy.target = $Player
 	enemy.speed = 200
-	enemy.damage = 1
+
+	enemy.weapon = Weapon.new(1, randi_range(0, Weapon.WeaponType.size() - 1))
 	enemy.health = Health.new(25)
 
 	enemy.global_position = get_point_outside_viewport()

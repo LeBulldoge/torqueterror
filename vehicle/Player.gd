@@ -5,7 +5,6 @@ extends Vehicle
 
 func _ready():
 	health.reset()
-	health.death.connect(queue_free)
 
 
 func _input(event):
