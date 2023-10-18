@@ -13,7 +13,7 @@ var attack_timer = Timer.new()
 func _init(new_damage: int = 0, new_type: WeaponType = WeaponType.Melee):
 	damage = new_damage
 	type = new_type
-	
+
 	match type:
 		WeaponType.Melee: range = 50
 		WeaponType.Ranged: range = 200
@@ -24,7 +24,7 @@ func _init(new_damage: int = 0, new_type: WeaponType = WeaponType.Melee):
 func attack(health: Health):
 	attack_timer.start()
 	health.take_damage(damage)
-	
+
 	return attack_timer.timeout
 
 func is_attack_on_cooldown():

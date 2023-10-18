@@ -10,7 +10,7 @@ var current_health: int :
 	set(value):
 		current_health = value
 		health_changed.emit(current_health)
-		
+
 		if current_health <= 0:
 			death.emit()
 

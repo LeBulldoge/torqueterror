@@ -9,7 +9,7 @@ func perform(enemy: Enemy):
 
 func walk(enemy: Enemy):
 	enemy.move_and_slide()
-	
+
 	var delta = enemy.get_process_delta_time()
 	enemy.velocity = enemy.transform.x * enemy.speed * 50 * delta
 

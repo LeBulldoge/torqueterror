@@ -13,8 +13,8 @@ func move_vehicle(delta):
 	var right = transform.x
 
 	apply_central_force(drive_dir * forward * speed)
-	
+
 	var lateral_velocity = right.dot(linear_velocity) * right
 	apply_central_force(-lateral_velocity)
-	
+
 	apply_torque(steer_dir * torque * sqrt(linear_velocity.length()))
