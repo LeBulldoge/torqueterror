@@ -1,6 +1,6 @@
-[gd_resource type="Resource" script_class="Ranged" load_steps=2 format=3 uid="uid://ng1j5fewnk7l"]
+[gd_resource type="Resource" script_class="Attacker" load_steps=2 format=3 uid="uid://ng1j5fewnk7l"]
 
-[ext_resource type="Script" path="res://ai/attacker.gd" id="1_a81wu"]
+[ext_resource type="Script" path="res://ai/attacker.gd" id="1_i27ca"]
 
 [resource]
-script = ExtResource("1_a81wu")
+script = ExtResource("1_i27ca")

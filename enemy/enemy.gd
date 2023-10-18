@@ -6,7 +6,6 @@ extends CharacterBody2D
 @export var weapon: Weapon
 
 @export var ai_modules: Array[AIModule]
-
 @export var speed := 0
 
 var target: Node2D

@@ -26,7 +26,6 @@ scale = Vector2(56.0313, 60.5938)
 texture = ExtResource("2_d3qhu")
 
 [node name="SpawnTimer" type="Timer" parent="."]
-one_shot = true
 
 [node name="SpawnPath" type="Path2D" parent="."]
 curve = SubResource("Curve2D_2f5cj")

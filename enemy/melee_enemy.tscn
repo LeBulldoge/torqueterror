@@ -1,0 +1,47 @@
+[gd_scene load_steps=8 format=3 uid="uid://c0qyhk0615wpr"]
+
+[ext_resource type="Script" path="res://enemy/enemy.gd" id="1_tj1hn"]
+[ext_resource type="Texture2D" uid="uid://bqs2kod2xac7k" path="res://icon.svg" id="2_nj8b1"]
+[ext_resource type="Script" path="res://resources/health.gd" id="2_tofkq"]
+[ext_resource type="Script" path="res://resources/weapon.gd" id="3_frbuk"]
+
+[sub_resource type="Resource" id="Resource_43c8l"]
+resource_local_to_scene = true
+script = ExtResource("2_tofkq")
+max_health = 25
+
+[sub_resource type="Resource" id="Resource_0vkyt"]
+resource_local_to_scene = true
+script = ExtResource("3_frbuk")
+damage = 1
+type = 0
+range = 50
+attack_cooldown = 1
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_qy78n"]
+radius = 14.0357
+
+[node name="Enemy" type="CharacterBody2D" groups=["enemies"]]
+script = ExtResource("1_tj1hn")
+health = SubResource("Resource_43c8l")
+weapon = SubResource("Resource_0vkyt")
+speed = 300
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+rotation = -1.5708
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("2_nj8b1")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_qy78n")
+
+[node name="HealthBar" type="ProgressBar" parent="."]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -13.0
+offset_top = -21.0
+offset_right = 117.0
+offset_bottom = 6.0
+grow_horizontal = 2
+scale = Vector2(0.2, 0.2)

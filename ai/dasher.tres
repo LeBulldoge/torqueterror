@@ -3,4 +3,6 @@
 [ext_resource type="Script" path="res://ai/dasher.gd" id="1_56ca7"]
 
 [resource]
+resource_local_to_scene = true
 script = ExtResource("1_56ca7")
+dash_time = 1.0

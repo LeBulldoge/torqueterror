@@ -1,7 +1,8 @@
 extends Node
 
 
-var enemy_scene := preload("res://enemy/Enemy.tscn")
+var ranged_enemy_scene = preload("res://enemy/ranged_enemy.tscn")
+var melee_enemy_scene = preload("res://enemy/melee_enemy.tscn")
 
 
 func _ready():
@@ -26,15 +27,24 @@ func get_point_outside_viewport() -> Vector2:
     return $SpawnPath/SpawnPoint.global_position
 
 
+func setup_ranged_enemy() -> Enemy:
+    var enemy = ranged_enemy_scene.instantiate()
+    enemy.ai_modules.append(Attacker.new())
+    enemy.ai_modules.append(Dasher.new())
+    return enemy
+
+
+func setup_melee_enemy() -> Enemy:
+    var enemy = melee_enemy_scene.instantiate()
+    enemy.ai_modules.append(Attacker.new())
+    enemy.ai_modules.append(Chaser.new())
+    return enemy
+
+
 func _on_spawn_timer_timeout():
-    var enemy := enemy_scene.instantiate() as Enemy
+    var enemy = setup_ranged_enemy() if randi_range(0, 1) == 0 else setup_melee_enemy()
 
     enemy.target = $Map/Player
-    enemy.speed = 200
-
-    enemy.weapon = Weapon.new(1, randi_range(0, Weapon.WeaponType.size() - 1))
-    enemy.health = Health.new(25)
-
     enemy.global_position = get_point_outside_viewport()
 
     $Map.add_child(enemy)

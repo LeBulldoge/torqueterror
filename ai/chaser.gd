@@ -1,6 +1,7 @@
 class_name Chaser
 extends AIModule
 
+
 func perform(enemy: Enemy):
     enemy.look_at(enemy.target.position)
 
@@ -12,4 +13,3 @@ func walk(enemy: Enemy):
 
     var delta = enemy.get_process_delta_time()
     enemy.velocity = enemy.transform.x * enemy.speed * 50 * delta
-
