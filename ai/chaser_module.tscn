@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://ddmqjpbhmikah"]
 
-[ext_resource type="Script" path="res://ai/chaser.gd" id="1_jc4nw"]
+[ext_resource type="Script" path="res://ai/chaser.gd" id="1_ome0v"]
 
 [node name="ChaserModule" type="Node"]
-script = ExtResource("1_jc4nw")
+script = ExtResource("1_ome0v")

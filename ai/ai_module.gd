@@ -2,5 +2,5 @@ class_name AIModule
 extends Node
 
 
-func perform(enemy: Enemy):
+func perform(_enemy: Enemy):
     pass

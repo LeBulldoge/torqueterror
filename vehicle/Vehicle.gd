@@ -11,7 +11,7 @@ extends RigidBody2D
 var drive_dir := 0.0
 var steer_dir := 0.0
 
-func move_vehicle(delta):
+func move_vehicle(_delta):
     var forward = transform.y
     var right = transform.x
 

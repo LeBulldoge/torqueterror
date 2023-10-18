@@ -24,11 +24,11 @@ func _ready():
         module.add_to_group(ai_module_group)
 
 
-func display_health(health):
-    $HealthBar.value = health
+func display_health(value):
+    $HealthBar.value = value
 
 
-func _process(delta):
+func _process(_delta):
     get_tree().call_group(ai_module_group, "perform", self)
 
 

@@ -3,7 +3,7 @@ extends AIModule
 
 
 func perform(enemy: Enemy):
-    if enemy.position.distance_to(enemy.target.position) < enemy.weapon.range:
+    if enemy.position.distance_to(enemy.target.position) < enemy.weapon.attack_range:
         shoot(enemy)
 
 

@@ -5,8 +5,8 @@
 [ext_resource type="Script" path="res://resources/health.gd" id="2_5rgqe"]
 [ext_resource type="Texture2D" uid="uid://bqs2kod2xac7k" path="res://icon.svg" id="2_f0tpk"]
 [ext_resource type="Script" path="res://resources/weapon.gd" id="3_wu3xp"]
-[ext_resource type="PackedScene" uid="uid://cxspkpo4cxc45" path="res://ai/AttackerModule.tscn" id="4_fv072"]
-[ext_resource type="PackedScene" uid="uid://s8fkxbacqm7m" path="res://ai/DasherModule.tscn" id="5_yhjw5"]
+[ext_resource type="PackedScene" uid="uid://cxspkpo4cxc45" path="res://ai/attacker_module.tscn" id="4_fv072"]
+[ext_resource type="PackedScene" uid="uid://s8fkxbacqm7m" path="res://ai/dasher_module.tscn" id="5_yhjw5"]
 [ext_resource type="Script" path="res://ai/dasher.gd" id="6_fpky0"]
 
 [sub_resource type="Resource" id="Resource_evbdx"]

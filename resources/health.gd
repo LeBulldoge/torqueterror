@@ -15,8 +15,8 @@ var current_health: int :
             death.emit()
 
 
-func _init(max: int = 0):
-    max_health = max
+func _init(value: int = 0):
+    max_health = value
 
 
 func reset():
