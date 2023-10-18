@@ -29,15 +29,11 @@ func get_point_outside_viewport() -> Vector2:
 
 func setup_ranged_enemy() -> Enemy:
     var enemy = ranged_enemy_scene.instantiate()
-    enemy.ai_modules.append(Attacker.new())
-    enemy.ai_modules.append(Dasher.new())
     return enemy
 
 
 func setup_melee_enemy() -> Enemy:
     var enemy = melee_enemy_scene.instantiate()
-    enemy.ai_modules.append(Attacker.new())
-    enemy.ai_modules.append(Chaser.new())
     return enemy
 
 

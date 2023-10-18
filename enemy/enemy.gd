@@ -4,12 +4,11 @@ extends CharacterBody2D
 
 @export var health: Health
 @export var weapon: Weapon
-
-@export var ai_modules: Array[AIModule]
 @export var speed := 0
 
 var target: Node2D
 
+@onready var ai_module_group = str(get_instance_id()) + "_ai_modules"
 
 func _ready():
     assert(target, "Enemy node requires a target")
@@ -21,14 +20,16 @@ func _ready():
 
     add_child(weapon.attack_timer)
 
+    for module in $AIModules.get_children():
+        module.add_to_group(ai_module_group)
+
 
 func display_health(health):
     $HealthBar.value = health
 
 
 func _process(delta):
-    for module in ai_modules:
-        module.perform(self)
+    get_tree().call_group(ai_module_group, "perform", self)
 
 
 #func _physics_process(delta):

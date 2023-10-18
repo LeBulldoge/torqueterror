@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://s8fkxbacqm7m"]
+
+[ext_resource type="Script" path="res://ai/attacker.gd" id="1_xvjxt"]
+
+[node name="DasherModule" type="Node"]
+script = ExtResource("1_xvjxt")

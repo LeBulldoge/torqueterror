@@ -1,8 +1,0 @@
-[gd_resource type="Resource" script_class="Dasher" load_steps=2 format=3 uid="uid://cfnhel1doy1vg"]
-
-[ext_resource type="Script" path="res://ai/dasher.gd" id="1_56ca7"]
-
-[resource]
-resource_local_to_scene = true
-script = ExtResource("1_56ca7")
-dash_time = 1.0

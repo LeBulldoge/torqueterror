@@ -1,5 +1,5 @@
 class_name AIModule
-extends Resource
+extends Node
 
 
 func perform(enemy: Enemy):
