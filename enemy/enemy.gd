@@ -13,23 +13,23 @@ var target: Node2D
 
 
 func _ready():
-	assert(target, "Enemy node requires a target")
+    assert(target, "Enemy node requires a target")
 
-	$HealthBar.max_value = health.max_health
-	health.health_changed.connect(display_health)
-	health.death.connect(queue_free)
-	health.reset()
+    $HealthBar.max_value = health.max_health
+    health.health_changed.connect(display_health)
+    health.death.connect(queue_free)
+    health.reset()
 
-	add_child(weapon.attack_timer)
+    add_child(weapon.attack_timer)
 
 
 func display_health(health):
-	$HealthBar.value = health
+    $HealthBar.value = health
 
 
 func _process(delta):
-	for module in ai_modules:
-		module.perform(self)
+    for module in ai_modules:
+        module.perform(self)
 
 
 #func _physics_process(delta):
