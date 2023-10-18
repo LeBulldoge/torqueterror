@@ -19,7 +19,7 @@ resource_local_to_scene = true
 script = ExtResource("3_wu3xp")
 damage = 1
 type = 1
-range = 200
+attack_range = 200
 attack_cooldown = 1
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_23dfk"]
