@@ -7,9 +7,8 @@ var enemy_scene := preload("res://enemy/Enemy.tscn")
 func _ready():
 	start_game()
 
-	$Player.health.health_changed.connect($HUD.display_health)
-	$Player.health.death.connect(game_over)
-
+	$Map/Player.health.health_changed.connect($HUD.display_health)
+	$Map/Player.health.death.connect(game_over)
 
 
 func start_game():
@@ -21,7 +20,7 @@ func game_over():
 
 
 func get_point_outside_viewport() -> Vector2:
-	$SpawnPath.position = $Player.position
+	$SpawnPath.position = $Map/Player.position
 	$SpawnPath/SpawnPoint.progress_ratio = randf()
 
 	return $SpawnPath/SpawnPoint.global_position
@@ -30,7 +29,7 @@ func get_point_outside_viewport() -> Vector2:
 func _on_spawn_timer_timeout():
 	var enemy := enemy_scene.instantiate() as Enemy
 
-	enemy.target = $Player
+	enemy.target = $Map/Player
 	enemy.speed = 200
 
 	enemy.weapon = Weapon.new(1, randi_range(0, Weapon.WeaponType.size() - 1))
@@ -38,4 +37,4 @@ func _on_spawn_timer_timeout():
 
 	enemy.global_position = get_point_outside_viewport()
 
-	add_child(enemy)
+	$Map.add_child(enemy)
