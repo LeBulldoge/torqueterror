@@ -18,7 +18,7 @@ func start_game():
 
 func game_over():
     $SpawnTimer.stop()
-
+    get_tree().call_group("enemies", "queue_free")
 
 func get_point_outside_viewport() -> Vector2:
     $SpawnPath.position = $Map/Player.position

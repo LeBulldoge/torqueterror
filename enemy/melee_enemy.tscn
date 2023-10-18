@@ -1,9 +1,10 @@
-[gd_scene load_steps=8 format=3 uid="uid://c0qyhk0615wpr"]
+[gd_scene load_steps=10 format=3 uid="uid://c0qyhk0615wpr"]
 
 [ext_resource type="Script" path="res://enemy/enemy.gd" id="1_tj1hn"]
 [ext_resource type="Texture2D" uid="uid://bqs2kod2xac7k" path="res://icon.svg" id="2_nj8b1"]
 [ext_resource type="Script" path="res://resources/health.gd" id="2_tofkq"]
 [ext_resource type="Script" path="res://resources/weapon.gd" id="3_frbuk"]
+[ext_resource type="Shader" path="res://enemy/melee_enemy.gdshader" id="4_2uae1"]
 
 [sub_resource type="Resource" id="Resource_43c8l"]
 resource_local_to_scene = true
@@ -18,6 +19,10 @@ type = 0
 range = 50
 attack_cooldown = 1
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_m4cgq"]
+resource_local_to_scene = true
+shader = ExtResource("4_2uae1")
+
 [sub_resource type="CircleShape2D" id="CircleShape2D_qy78n"]
 radius = 14.0357
 
@@ -28,6 +33,7 @@ weapon = SubResource("Resource_0vkyt")
 speed = 300
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_m4cgq")
 rotation = -1.5708
 scale = Vector2(0.2, 0.2)
 texture = ExtResource("2_nj8b1")

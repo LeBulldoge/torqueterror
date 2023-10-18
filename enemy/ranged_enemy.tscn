@@ -1,5 +1,6 @@
-[gd_scene load_steps=8 format=3 uid="uid://ct586xmf8u3f0"]
+[gd_scene load_steps=10 format=3 uid="uid://ct586xmf8u3f0"]
 
+[ext_resource type="Shader" path="res://enemy/ranged_enemy.gdshader" id="1_8wnw2"]
 [ext_resource type="Script" path="res://enemy/enemy.gd" id="1_ce1f0"]
 [ext_resource type="Script" path="res://resources/health.gd" id="2_5rgqe"]
 [ext_resource type="Texture2D" uid="uid://bqs2kod2xac7k" path="res://icon.svg" id="2_f0tpk"]
@@ -18,6 +19,9 @@ type = 1
 range = 200
 attack_cooldown = 1
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_23dfk"]
+shader = ExtResource("1_8wnw2")
+
 [sub_resource type="CircleShape2D" id="CircleShape2D_qy78n"]
 radius = 14.0357
 
@@ -28,6 +32,7 @@ weapon = SubResource("Resource_isno2")
 speed = 200
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_23dfk")
 rotation = -1.5708
 scale = Vector2(0.2, 0.2)
 texture = ExtResource("2_f0tpk")
