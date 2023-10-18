@@ -5,7 +5,10 @@ extends AIModule
 func perform(enemy: Enemy):
     enemy.look_at(enemy.target.position)
 
-    if enemy.position.distance_to(enemy.target.position) > enemy.weapon.attack_range:
+    if enemy.state == Enemy.State.Free:
+        enemy.set_state(Enemy.State.Moving)
+
+    if enemy.state == Enemy.State.Moving:
         walk(enemy)
 
 func walk(enemy: Enemy):

@@ -5,17 +5,12 @@
 [ext_resource type="PackedScene" uid="uid://ddmqjpbhmikah" path="res://ai/chaser_module.tscn" id="2_6aj25"]
 [ext_resource type="Texture2D" uid="uid://bqs2kod2xac7k" path="res://icon.svg" id="2_f0tpk"]
 [ext_resource type="PackedScene" uid="uid://bqs5ceshq8c43" path="res://scenes/components/health_component.tscn" id="3_k6xi5"]
-[ext_resource type="Script" path="res://resources/weapon.gd" id="3_wu3xp"]
 [ext_resource type="PackedScene" uid="uid://cxspkpo4cxc45" path="res://ai/attacker_module.tscn" id="4_fv072"]
 [ext_resource type="PackedScene" uid="uid://cpq8qcn88e664" path="res://scenes/components/hitbox_component.tscn" id="4_gjpqc"]
+[ext_resource type="PackedScene" uid="uid://8ho5oq2a58id" path="res://resources/weapon_component.tscn" id="5_4foag"]
 
-[sub_resource type="Resource" id="Resource_1ehxc"]
-resource_local_to_scene = true
-script = ExtResource("3_wu3xp")
-damage = 1
-type = 1
-attack_range = 200
-attack_cooldown = 1
+[sub_resource type="CircleShape2D" id="CircleShape2D_unedk"]
+radius = 200.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_5vcjn"]
 radius = 18.0278
@@ -28,7 +23,6 @@ radius = 14.0357
 
 [node name="RangedEnemy" type="CharacterBody2D"]
 script = ExtResource("1_ce1f0")
-weapon = SubResource("Resource_1ehxc")
 speed = 200
 
 [node name="AIModules" type="Node" parent="."]
@@ -39,7 +33,17 @@ speed = 200
 
 [node name="HealthComponent" parent="." instance=ExtResource("3_k6xi5")]
 
+[node name="WeaponComponent" parent="." instance=ExtResource("5_4foag")]
+damage = 1
+type = 1
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="WeaponComponent"]
+shape = SubResource("CircleShape2D_unedk")
+debug_color = Color(0.964706, 0, 0.501961, 0.419608)
+
 [node name="HitBoxComponent" parent="." instance=ExtResource("4_gjpqc")]
+collision_layer = 4
+collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HitBoxComponent"]
 shape = SubResource("CircleShape2D_5vcjn")

@@ -9,12 +9,12 @@ signal death()
 
 
 func _ready():
-	health = MAX_HEALTH
+    health = MAX_HEALTH
 
 
 func damage(value: float):
-	health -= value
-	health_changed.emit(health)
+    health -= value
+    health_changed.emit(health)
 
-	if health <= 0:
-		death.emit()
+    if health <= 0:
+        death.emit()

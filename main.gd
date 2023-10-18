@@ -44,3 +44,7 @@ func _on_spawn_timer_timeout():
     enemy.global_position = get_point_outside_viewport()
 
     $Map.add_child(enemy)
+    enemy.weapon.shoot_projectile.connect(_on_spawn_projectile)
+
+func _on_spawn_projectile(projectile: Projectile):
+    $Map.call_deferred("add_child", projectile)

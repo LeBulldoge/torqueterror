@@ -2,13 +2,20 @@ class_name Attacker
 extends AIModule
 
 
-func perform(enemy: Enemy):
-    if enemy.position.distance_to(enemy.target.position) < enemy.weapon.attack_range:
-        shoot(enemy)
+func setup(enemy: Enemy):
+    enemy.weapon.area_entered.connect(_on_weapon_area_entered.bind(enemy))
+    enemy.weapon.area_exited.connect(_on_weapon_area_exited.bind(enemy))
 
 
-func shoot(enemy: Enemy):
-    if enemy.weapon.is_attack_on_cooldown():
+func _on_weapon_area_entered(body: Area2D, enemy: Enemy) -> void:
+    if not body is HitBoxComponent:
+        print("Detected wrong body type " + body.to_string())
         return
 
-    enemy.weapon.attack(enemy.target.get_node("HealthComponent"))
+    enemy.set_state(Enemy.State.Attacking)
+    enemy.weapon.start_attack(body)
+
+
+func _on_weapon_area_exited(body: Area2D, enemy: Enemy) -> void:
+    enemy.set_state(Enemy.State.Free)
+    enemy.weapon.stop_attack()
