@@ -8,8 +8,8 @@ var melee_enemy_scene = preload("res://enemy/melee_enemy.tscn")
 func _ready():
     start_game()
 
-    $Map/Player.health.health_changed.connect($HUD.display_health)
-    $Map/Player.health.death.connect(game_over)
+    $Map/Player/HealthComponent.health_changed.connect($HUD.display_health)
+    $Map/Player/HealthComponent.death.connect(game_over)
 
 
 func start_game():

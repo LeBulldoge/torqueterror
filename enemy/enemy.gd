@@ -1,8 +1,6 @@
 class_name Enemy
 extends CharacterBody2D
 
-
-@export var health: Health
 @export var weapon: Weapon
 @export var speed := 0
 
@@ -12,11 +10,12 @@ var target: Node2D
 
 func _ready():
     assert(target, "Enemy node requires a target")
-
-    $HealthBar.max_value = health.max_health
-    health.health_changed.connect(display_health)
-    health.death.connect(queue_free)
-    health.reset()
+    
+    add_to_group("enemies")
+    
+    $HealthBar.max_value = $HealthComponent.MAX_HEALTH
+    $HealthComponent.health_changed.connect(display_health)
+    $HealthComponent.death.connect(queue_free)
 
     add_child(weapon.attack_timer)
 

@@ -1,21 +1,16 @@
-[gd_scene load_steps=9 format=3 uid="uid://mn5kouylgoij"]
+[gd_scene load_steps=7 format=3 uid="uid://mn5kouylgoij"]
 
 [ext_resource type="Script" path="res://main.gd" id="1_mpdvn"]
 [ext_resource type="Script" path="res://hud.gd" id="3_6474f"]
 [ext_resource type="Texture2D" uid="uid://cby16p73b56ck" path="res://sprites/map.png" id="3_jkukl"]
 [ext_resource type="PackedScene" uid="uid://b1bqbrxqh68jc" path="res://scenes/tree.tscn" id="4_j4jkh"]
 [ext_resource type="PackedScene" uid="uid://coe45xtjvuehr" path="res://vehicle/player.tscn" id="5_gcot7"]
-[ext_resource type="Script" path="res://resources/health.gd" id="6_rgwm8"]
 
 [sub_resource type="Curve2D" id="Curve2D_2f5cj"]
 _data = {
 "points": PackedVector2Array(0, 0, 0, 0, -576, -320, 0, 0, 0, 0, 576, -320, 0, 0, 0, 0, 576, 328, 0, 0, 0, 0, -576, 328, 0, 0, 0, 0, -576, -320)
 }
 point_count = 5
-
-[sub_resource type="Resource" id="Resource_tswo0"]
-script = ExtResource("6_rgwm8")
-max_health = 100
 
 [node name="Main" type="Node"]
 script = ExtResource("1_mpdvn")
@@ -56,6 +51,5 @@ position = Vector2(355, 49)
 
 [node name="Player" parent="Map" instance=ExtResource("5_gcot7")]
 position = Vector2(339, -283)
-health = SubResource("Resource_tswo0")
 
 [connection signal="timeout" from="SpawnTimer" to="." method="_on_spawn_timer_timeout"]

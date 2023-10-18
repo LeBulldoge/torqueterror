@@ -1,38 +1,37 @@
-[gd_scene load_steps=12 format=3 uid="uid://c0qyhk0615wpr"]
+[gd_scene load_steps=13 format=3 uid="uid://chnlkisvev6n1"]
 
+[ext_resource type="PackedScene" uid="uid://bqs5ceshq8c43" path="res://scenes/components/health_component.tscn" id="1_2ytxk"]
 [ext_resource type="Script" path="res://enemy/enemy.gd" id="1_tj1hn"]
 [ext_resource type="Texture2D" uid="uid://bqs2kod2xac7k" path="res://icon.svg" id="2_nj8b1"]
-[ext_resource type="Script" path="res://resources/health.gd" id="2_tofkq"]
+[ext_resource type="PackedScene" uid="uid://cpq8qcn88e664" path="res://scenes/components/hitbox_component.tscn" id="2_nt5q1"]
 [ext_resource type="Script" path="res://resources/weapon.gd" id="3_frbuk"]
 [ext_resource type="Shader" path="res://enemy/melee_enemy.gdshader" id="4_2uae1"]
 [ext_resource type="PackedScene" uid="uid://cxspkpo4cxc45" path="res://ai/attacker_module.tscn" id="4_ieso8"]
 [ext_resource type="PackedScene" uid="uid://ddmqjpbhmikah" path="res://ai/chaser_module.tscn" id="5_2ce88"]
 
-[sub_resource type="Resource" id="Resource_43c8l"]
-resource_local_to_scene = true
-script = ExtResource("2_tofkq")
-max_health = 25
-
-[sub_resource type="Resource" id="Resource_0vkyt"]
+[sub_resource type="Resource" id="Resource_x43cx"]
 resource_local_to_scene = true
 script = ExtResource("3_frbuk")
 damage = 1
 type = 0
-range = 50
+attack_range = 0
 attack_cooldown = 1
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_m4cgq"]
+[sub_resource type="CircleShape2D" id="CircleShape2D_lxxqs"]
+radius = 17.0294
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_7a5sf"]
 resource_local_to_scene = true
 shader = ExtResource("4_2uae1")
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_qy78n"]
+[sub_resource type="CircleShape2D" id="CircleShape2D_pqh3w"]
 radius = 14.0357
 
-[node name="Enemy" type="CharacterBody2D" groups=["enemies"]]
+[node name="MeleeEnemy" type="CharacterBody2D"]
 script = ExtResource("1_tj1hn")
-health = SubResource("Resource_43c8l")
-weapon = SubResource("Resource_0vkyt")
+weapon = SubResource("Resource_x43cx")
 speed = 300
+metadata/_edit_group_ = true
 
 [node name="AIModules" type="Node" parent="."]
 
@@ -40,14 +39,22 @@ speed = 300
 
 [node name="ChaserModule" parent="AIModules" instance=ExtResource("5_2ce88")]
 
+[node name="HealthComponent" parent="." instance=ExtResource("1_2ytxk")]
+MAX_HEALTH = 50.0
+
+[node name="HitBoxComponent" parent="." instance=ExtResource("2_nt5q1")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitBoxComponent"]
+shape = SubResource("CircleShape2D_lxxqs")
+
 [node name="Sprite2D" type="Sprite2D" parent="."]
-material = SubResource("ShaderMaterial_m4cgq")
+material = SubResource("ShaderMaterial_7a5sf")
 rotation = -1.5708
 scale = Vector2(0.2, 0.2)
 texture = ExtResource("2_nj8b1")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("CircleShape2D_qy78n")
+shape = SubResource("CircleShape2D_pqh3w")
 
 [node name="HealthBar" type="ProgressBar" parent="."]
 anchors_preset = 5

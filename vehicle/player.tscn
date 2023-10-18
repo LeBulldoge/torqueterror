@@ -1,10 +1,16 @@
-[gd_scene load_steps=4 format=3 uid="uid://coe45xtjvuehr"]
+[gd_scene load_steps=7 format=3 uid="uid://coe45xtjvuehr"]
 
 [ext_resource type="Script" path="res://vehicle/player.gd" id="1_28sia"]
 [ext_resource type="Texture2D" uid="uid://bqs2kod2xac7k" path="res://icon.svg" id="1_v2j0e"]
+[ext_resource type="PackedScene" uid="uid://bqs5ceshq8c43" path="res://scenes/components/health_component.tscn" id="3_66xtb"]
+[ext_resource type="PackedScene" uid="uid://cpq8qcn88e664" path="res://scenes/components/hitbox_component.tscn" id="4_7fyjs"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_yyb6l"]
 size = Vector2(62, 126)
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_2u8dm"]
+radius = 31.0
+height = 128.0
 
 [node name="Player" type="RigidBody2D"]
 angular_damp = 1.0
@@ -16,6 +22,14 @@ torque = 300
 tire_grip = 2.0
 drag = 1.2
 
+[node name="HealthComponent" parent="." instance=ExtResource("3_66xtb")]
+
+[node name="HitBoxComponent" parent="." instance=ExtResource("4_7fyjs")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitBoxComponent"]
+shape = SubResource("RectangleShape2D_yyb6l")
+debug_color = Color(0, 0.6, 0.701961, 0.419608)
+
 [node name="Sprite2D" type="Sprite2D" parent="."]
 scale = Vector2(0.5, 1)
 texture = ExtResource("1_v2j0e")
@@ -23,5 +37,5 @@ texture = ExtResource("1_v2j0e")
 [node name="Camera2D" type="Camera2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("RectangleShape2D_yyb6l")
+shape = SubResource("CapsuleShape2D_2u8dm")
 debug_color = Color(0, 0.6, 0.701961, 0.419608)

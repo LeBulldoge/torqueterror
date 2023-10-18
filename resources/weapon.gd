@@ -21,9 +21,9 @@ func _init(new_damage: int = 0, new_type: WeaponType = WeaponType.Melee):
     attack_timer.one_shot = true
 
 
-func attack(health: Health):
+func attack(health: HealthComponent):
     attack_timer.start()
-    health.take_damage(damage)
+    health.damage(damage)
 
     return attack_timer.timeout
 

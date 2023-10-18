@@ -1,20 +1,15 @@
-[gd_scene load_steps=13 format=3 uid="uid://ct586xmf8u3f0"]
+[gd_scene load_steps=13 format=3 uid="uid://6fwkrwx8e00d"]
 
 [ext_resource type="Shader" path="res://enemy/ranged_enemy.gdshader" id="1_8wnw2"]
 [ext_resource type="Script" path="res://enemy/enemy.gd" id="1_ce1f0"]
-[ext_resource type="Script" path="res://resources/health.gd" id="2_5rgqe"]
+[ext_resource type="PackedScene" uid="uid://ddmqjpbhmikah" path="res://ai/chaser_module.tscn" id="2_6aj25"]
 [ext_resource type="Texture2D" uid="uid://bqs2kod2xac7k" path="res://icon.svg" id="2_f0tpk"]
+[ext_resource type="PackedScene" uid="uid://bqs5ceshq8c43" path="res://scenes/components/health_component.tscn" id="3_k6xi5"]
 [ext_resource type="Script" path="res://resources/weapon.gd" id="3_wu3xp"]
 [ext_resource type="PackedScene" uid="uid://cxspkpo4cxc45" path="res://ai/attacker_module.tscn" id="4_fv072"]
-[ext_resource type="PackedScene" uid="uid://s8fkxbacqm7m" path="res://ai/dasher_module.tscn" id="5_yhjw5"]
-[ext_resource type="Script" path="res://ai/dasher.gd" id="6_fpky0"]
+[ext_resource type="PackedScene" uid="uid://cpq8qcn88e664" path="res://scenes/components/hitbox_component.tscn" id="4_gjpqc"]
 
-[sub_resource type="Resource" id="Resource_evbdx"]
-resource_local_to_scene = true
-script = ExtResource("2_5rgqe")
-max_health = 25
-
-[sub_resource type="Resource" id="Resource_isno2"]
+[sub_resource type="Resource" id="Resource_1ehxc"]
 resource_local_to_scene = true
 script = ExtResource("3_wu3xp")
 damage = 1
@@ -22,34 +17,41 @@ type = 1
 attack_range = 200
 attack_cooldown = 1
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_23dfk"]
+[sub_resource type="CircleShape2D" id="CircleShape2D_5vcjn"]
+radius = 18.0278
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_crwmh"]
 shader = ExtResource("1_8wnw2")
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_qy78n"]
+[sub_resource type="CircleShape2D" id="CircleShape2D_8kowe"]
 radius = 14.0357
 
-[node name="Enemy" type="CharacterBody2D" groups=["enemies"]]
+[node name="RangedEnemy" type="CharacterBody2D"]
 script = ExtResource("1_ce1f0")
-health = SubResource("Resource_evbdx")
-weapon = SubResource("Resource_isno2")
+weapon = SubResource("Resource_1ehxc")
 speed = 200
 
 [node name="AIModules" type="Node" parent="."]
 
 [node name="AttackerModule" parent="AIModules" instance=ExtResource("4_fv072")]
 
-[node name="DasherModule" parent="AIModules" instance=ExtResource("5_yhjw5")]
-script = ExtResource("6_fpky0")
-dash_time = 1.0
+[node name="ChaserModule" parent="AIModules" instance=ExtResource("2_6aj25")]
+
+[node name="HealthComponent" parent="." instance=ExtResource("3_k6xi5")]
+
+[node name="HitBoxComponent" parent="." instance=ExtResource("4_gjpqc")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitBoxComponent"]
+shape = SubResource("CircleShape2D_5vcjn")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-material = SubResource("ShaderMaterial_23dfk")
+material = SubResource("ShaderMaterial_crwmh")
 rotation = -1.5708
 scale = Vector2(0.2, 0.2)
 texture = ExtResource("2_f0tpk")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("CircleShape2D_qy78n")
+shape = SubResource("CircleShape2D_8kowe")
 
 [node name="HealthBar" type="ProgressBar" parent="."]
 anchors_preset = 5

@@ -11,4 +11,4 @@ func shoot(enemy: Enemy):
     if enemy.weapon.is_attack_on_cooldown():
         return
 
-    enemy.weapon.attack(enemy.target.health)
+    enemy.weapon.attack(enemy.target.get_node("HealthComponent"))
