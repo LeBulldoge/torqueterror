@@ -1,10 +1,11 @@
-[gd_scene load_steps=13 format=3 uid="uid://6fwkrwx8e00d"]
+[gd_scene load_steps=14 format=3 uid="uid://6fwkrwx8e00d"]
 
 [ext_resource type="Shader" path="res://enemy/ranged_enemy.gdshader" id="1_8wnw2"]
 [ext_resource type="Script" path="res://enemy/enemy.gd" id="1_ce1f0"]
-[ext_resource type="PackedScene" uid="uid://ddmqjpbhmikah" path="res://ai/chaser_module.tscn" id="2_6aj25"]
 [ext_resource type="Texture2D" uid="uid://bqs2kod2xac7k" path="res://icon.svg" id="2_f0tpk"]
+[ext_resource type="PackedScene" uid="uid://s8fkxbacqm7m" path="res://ai/dasher_module.tscn" id="3_g6hq3"]
 [ext_resource type="PackedScene" uid="uid://bqs5ceshq8c43" path="res://scenes/components/health_component.tscn" id="3_k6xi5"]
+[ext_resource type="Script" path="res://ai/dasher.gd" id="4_d7g81"]
 [ext_resource type="PackedScene" uid="uid://cxspkpo4cxc45" path="res://ai/attacker_module.tscn" id="4_fv072"]
 [ext_resource type="PackedScene" uid="uid://cpq8qcn88e664" path="res://scenes/components/hitbox_component.tscn" id="4_gjpqc"]
 [ext_resource type="PackedScene" uid="uid://8ho5oq2a58id" path="res://resources/weapon_component.tscn" id="5_4foag"]
@@ -29,7 +30,9 @@ speed = 200
 
 [node name="AttackerModule" parent="AIModules" instance=ExtResource("4_fv072")]
 
-[node name="ChaserModule" parent="AIModules" instance=ExtResource("2_6aj25")]
+[node name="DasherModule" parent="AIModules" instance=ExtResource("3_g6hq3")]
+script = ExtResource("4_d7g81")
+dash_time = 1.0
 
 [node name="HealthComponent" parent="." instance=ExtResource("3_k6xi5")]
 

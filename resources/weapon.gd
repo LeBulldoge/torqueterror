@@ -17,7 +17,6 @@ func _ready():
 func start_attack(target: HitBoxComponent):
     var target_health = target.health_component
 
-    attack(target, target_health)
     attack_timer.timeout.connect(attack.bind(target, target_health))
     attack_timer.start()
 
