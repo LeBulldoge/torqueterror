@@ -16,6 +16,6 @@ func _on_weapon_area_entered(body: Area2D, enemy: Enemy) -> void:
     enemy.weapon.start_attack(body)
 
 
-func _on_weapon_area_exited(body: Area2D, enemy: Enemy) -> void:
+func _on_weapon_area_exited(_body: Area2D, enemy: Enemy) -> void:
     enemy.set_state(Enemy.State.Free)
     enemy.weapon.stop_attack()
