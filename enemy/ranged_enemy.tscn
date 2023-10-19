@@ -1,26 +1,93 @@
-[gd_scene load_steps=14 format=3 uid="uid://6fwkrwx8e00d"]
+[gd_scene load_steps=20 format=3 uid="uid://6fwkrwx8e00d"]
 
 [ext_resource type="Shader" path="res://enemy/ranged_enemy.gdshader" id="1_8wnw2"]
 [ext_resource type="Script" path="res://enemy/enemy.gd" id="1_ce1f0"]
-[ext_resource type="Texture2D" uid="uid://bqs2kod2xac7k" path="res://icon.svg" id="2_f0tpk"]
 [ext_resource type="PackedScene" uid="uid://s8fkxbacqm7m" path="res://ai/dasher_module.tscn" id="3_g6hq3"]
 [ext_resource type="PackedScene" uid="uid://bqs5ceshq8c43" path="res://scenes/components/health_component.tscn" id="3_k6xi5"]
 [ext_resource type="Script" path="res://ai/dasher.gd" id="4_d7g81"]
 [ext_resource type="PackedScene" uid="uid://cxspkpo4cxc45" path="res://ai/attacker_module.tscn" id="4_fv072"]
 [ext_resource type="PackedScene" uid="uid://cpq8qcn88e664" path="res://scenes/components/hitbox_component.tscn" id="4_gjpqc"]
 [ext_resource type="PackedScene" uid="uid://8ho5oq2a58id" path="res://resources/weapon_component.tscn" id="5_4foag"]
+[ext_resource type="Texture2D" uid="uid://cyxs51qv1mdiu" path="res://sprites/octopus.png" id="9_iedxi"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_unedk"]
 radius = 200.0
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_5vcjn"]
-radius = 18.0278
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_pfx5u"]
+radius = 28.0
+height = 106.0
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_crwmh"]
 shader = ExtResource("1_8wnw2")
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_8kowe"]
-radius = 14.0357
+[sub_resource type="AtlasTexture" id="AtlasTexture_a320g"]
+atlas = ExtResource("9_iedxi")
+region = Rect2(96, 0, 96, 107)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tpalr"]
+atlas = ExtResource("9_iedxi")
+region = Rect2(0, 0, 96, 107)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_sycb3"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_a320g")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tpalr")
+}],
+"loop": true,
+"name": &"shoot",
+"speed": 5.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_hbrif"]
+radius = 23.0
+height = 48.0
+
+[sub_resource type="Animation" id="Animation_2f7vi"]
+resource_name = "levitate"
+length = 5.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2.5),
+"transitions": PackedFloat32Array(2, 0.5),
+"update": 0,
+"values": [Vector2(-3, -53.5), Vector2(-3, -73.5)]
+}
+
+[sub_resource type="Animation" id="Animation_jnccx"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-3, -53.5)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_0vfq0"]
+_data = {
+"RESET": SubResource("Animation_jnccx"),
+"levitate": SubResource("Animation_2f7vi")
+}
 
 [node name="RangedEnemy" type="CharacterBody2D"]
 script = ExtResource("1_ce1f0")
@@ -49,16 +116,18 @@ collision_layer = 4
 collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HitBoxComponent"]
-shape = SubResource("CircleShape2D_5vcjn")
+position = Vector2(0, -53)
+shape = SubResource("CapsuleShape2D_pfx5u")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 material = SubResource("ShaderMaterial_crwmh")
-rotation = -1.5708
-scale = Vector2(0.2, 0.2)
-texture = ExtResource("2_f0tpk")
+position = Vector2(-3, -53.5)
+sprite_frames = SubResource("SpriteFrames_sycb3")
+autoplay = "default"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("CircleShape2D_8kowe")
+position = Vector2(0, -24)
+shape = SubResource("CapsuleShape2D_hbrif")
 
 [node name="HealthBar" type="ProgressBar" parent="."]
 anchors_preset = 5
@@ -70,3 +139,9 @@ offset_right = 117.0
 offset_bottom = 6.0
 grow_horizontal = 2
 scale = Vector2(0.2, 0.2)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+autoplay = "levitate"
+libraries = {
+"": SubResource("AnimationLibrary_0vfq0")
+}

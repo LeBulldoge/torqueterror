@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://bb4gsdnyngpy"]
 
-[ext_resource type="Texture2D" uid="uid://bqs2kod2xac7k" path="res://icon.svg" id="1_lm2yd"]
 [ext_resource type="Script" path="res://scenes/projectile.gd" id="1_s087w"]
+[ext_resource type="Texture2D" uid="uid://6qeeq0etgy13" path="res://sprites/fireball.png" id="2_vis5p"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_hlucg"]
 radius = 6.0
@@ -14,8 +14,7 @@ script = ExtResource("1_s087w")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 rotation = -1.5708
-scale = Vector2(0.055, 0.2)
-texture = ExtResource("1_lm2yd")
+texture = ExtResource("2_vis5p")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 rotation = -1.5708
