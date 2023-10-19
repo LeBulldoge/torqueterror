@@ -1,9 +1,10 @@
-[gd_scene load_steps=8 format=3 uid="uid://coe45xtjvuehr"]
+[gd_scene load_steps=9 format=3 uid="uid://coe45xtjvuehr"]
 
 [ext_resource type="Script" path="res://vehicle/player.gd" id="1_28sia"]
 [ext_resource type="PackedScene" uid="uid://bqs5ceshq8c43" path="res://scenes/components/health_component.tscn" id="3_66xtb"]
 [ext_resource type="Texture2D" uid="uid://cmcux0fvh1ltj" path="res://sprites/car.png" id="4_0axso"]
 [ext_resource type="PackedScene" uid="uid://cpq8qcn88e664" path="res://scenes/components/hitbox_component.tscn" id="4_7fyjs"]
+[ext_resource type="Texture2D" uid="uid://yrh3bu2lkt68" path="res://sprites/car-headlights.png" id="5_3dm5a"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_gfhdm"]
 
@@ -51,3 +52,29 @@ debug_color = Color(0, 0.6, 0.701961, 0.419608)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CapsuleShape2D_2u8dm")
 debug_color = Color(0, 0.6, 0.701961, 0.419608)
+
+[node name="Headlights" type="PointLight2D" parent="."]
+position = Vector2(0, 158)
+rotation = -3.14159
+scale = Vector2(0.7, 0.7)
+color = Color(1, 1, 1, 0.803922)
+energy = 2.0
+shadow_enabled = true
+shadow_color = Color(0, 0, 0, 1)
+texture = ExtResource("5_3dm5a")
+
+[node name="RearHeadlight" type="PointLight2D" parent="."]
+position = Vector2(24.9465, -84.1331)
+rotation = 0.139626
+scale = Vector2(0.0838229, 0.0924802)
+color = Color(1, 0, 0, 1)
+energy = 2.0
+texture = ExtResource("5_3dm5a")
+
+[node name="RearHeadlight2" type="PointLight2D" parent="."]
+position = Vector2(-25.0534, -84.133)
+rotation = -0.139626
+scale = Vector2(0.0838229, 0.0924802)
+color = Color(1, 0, 0, 1)
+energy = 2.0
+texture = ExtResource("5_3dm5a")
