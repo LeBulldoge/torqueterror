@@ -5,7 +5,7 @@ enum WeaponType { Melee, Ranged }
 
 @export var damage := 0
 @export var type: WeaponType
-@export var attack_cooldown = 1
+@export var attack_cooldown := 1.0
 
 @onready var attack_timer: Timer = $AttackTimer
 
