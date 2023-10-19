@@ -24,4 +24,11 @@ shape = SubResource("CapsuleShape2D_hlucg")
 position = Vector2(-18, 0)
 scale = Vector2(0.5, 0.6)
 
+[node name="PointLight2D" type="PointLight2D" parent="."]
+position = Vector2(20, 0)
+rotation = -1.5708
+scale = Vector2(2, 1.00433)
+color = Color(0.552941, 0, 0.0980392, 0.419608)
+texture = ExtResource("2_vis5p")
+
 [connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]

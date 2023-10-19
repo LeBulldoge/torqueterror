@@ -1,6 +1,5 @@
-[gd_scene load_steps=21 format=3 uid="uid://6fwkrwx8e00d"]
+[gd_scene load_steps=19 format=3 uid="uid://6fwkrwx8e00d"]
 
-[ext_resource type="Shader" path="res://enemy/ranged_enemy.gdshader" id="1_8wnw2"]
 [ext_resource type="Script" path="res://enemy/enemy.gd" id="1_ce1f0"]
 [ext_resource type="PackedScene" uid="uid://s8fkxbacqm7m" path="res://ai/dasher_module.tscn" id="3_g6hq3"]
 [ext_resource type="PackedScene" uid="uid://bqs5ceshq8c43" path="res://scenes/components/health_component.tscn" id="3_k6xi5"]
@@ -17,9 +16,6 @@ radius = 200.0
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_pfx5u"]
 radius = 28.0
 height = 106.0
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_crwmh"]
-shader = ExtResource("1_8wnw2")
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_a320g"]
 atlas = ExtResource("9_iedxi")
@@ -125,7 +121,6 @@ position = Vector2(0, -53)
 shape = SubResource("CapsuleShape2D_pfx5u")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-material = SubResource("ShaderMaterial_crwmh")
 position = Vector2(-3, -53.5)
 sprite_frames = SubResource("SpriteFrames_sycb3")
 animation = &"shoot"
