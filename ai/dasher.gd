@@ -11,19 +11,22 @@ var target: Vector2
 func perform(enemy: Enemy):
     if enemy.position.distance_to(enemy.target.position) < 150 and not is_dashing:
         start_dash(enemy)
-        return
+    else:
+        super.perform(enemy)
 
+
+func perform_physics(enemy: Enemy):
     if is_dashing:
         dash(enemy)
         if elapsed >= dash_time:
             stop_dash()
     else:
-        super.perform(enemy)
+        super.perform_physics(enemy)
 
 
 func dash(enemy: Enemy):
     enemy.position = enemy.position.lerp(target, (elapsed / dash_time * 0.1))
-    elapsed += enemy.get_process_delta_time()
+    elapsed += enemy.get_physics_process_delta_time()
 
 
 func start_dash(enemy: Enemy):

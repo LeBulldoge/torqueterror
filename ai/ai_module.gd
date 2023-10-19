@@ -8,3 +8,7 @@ func setup(_enemy: Enemy):
 
 func perform(_enemy: Enemy):
     pass
+
+
+func perform_physics(_enemy: Enemy):
+    pass

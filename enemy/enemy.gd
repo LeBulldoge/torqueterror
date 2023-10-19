@@ -5,7 +5,7 @@ extends CharacterBody2D
 
 var target: Node2D
 
-enum State { Free, Moving, Attacking }
+enum State { Free = 0, Moving, Attacking }
 var state: State = State.Free
 signal state_changed(new_state)
 
@@ -40,3 +40,7 @@ func set_state(new_state: State) -> void:
 
 func _process(_delta):
     get_tree().call_group(ai_module_group, "perform", self)
+
+
+func _physics_process(_delta):
+    get_tree().call_group(ai_module_group, "perform_physics", self)
