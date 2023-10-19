@@ -21,7 +21,7 @@ func _ready():
     $HealthBar.max_value = $HealthComponent.MAX_HEALTH
     $HealthBar.value = $HealthComponent.MAX_HEALTH
     $HealthComponent.health_changed.connect(display_health)
-    $HealthComponent.death.connect(queue_free)
+    $HealthComponent.death.connect(death)
 
     for module in $AIModules.get_children():
         module.add_to_group(ai_module_group)
@@ -31,6 +31,12 @@ func _ready():
 func display_health(value):
     $HealthBar.value = value
     $DamageIndicator.play()
+
+
+func death():
+    process_mode = Node.PROCESS_MODE_DISABLED
+    await $DamageIndicator.animation_finished
+    queue_free()
 
 
 func set_state(new_state: State) -> void:

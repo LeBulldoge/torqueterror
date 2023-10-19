@@ -110,6 +110,7 @@ animation = &"attack"
 autoplay = "default"
 
 [node name="DamageIndicator" type="AnimatedSprite2D" parent="."]
+process_mode = 1
 sprite_frames = SubResource("SpriteFrames_47okv")
 frame = 2
 frame_progress = 1.0
