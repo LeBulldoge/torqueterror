@@ -11,6 +11,7 @@ signal state_changed(new_state)
 
 @onready var ai_module_group = str(get_instance_id()) + "_ai_modules"
 @onready var weapon = $WeaponComponent as Weapon
+@onready var sprite = $AnimatedSprite2D as AnimatedSprite2D
 
 func _ready():
     assert(target, "Enemy node requires a target")
@@ -44,3 +45,21 @@ func _process(_delta):
 
 func _physics_process(_delta):
     get_tree().call_group(ai_module_group, "perform_physics", self)
+
+    # Currently the sprites we use face in one direction
+    # flip them based on the direction they're walking
+    if sprite == null:
+        return
+    var dir = position.direction_to(target.position).dot(transform.x)
+    sprite.flip_h = dir > 0
+
+
+func _on_state_changed(new_state):
+    if sprite == null:
+        return
+
+    if new_state == Enemy.State.Attacking:
+        if sprite.sprite_frames.has_animation("attack"):
+            sprite.play("attack")
+    else:
+        sprite.play("default")

@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://6fwkrwx8e00d"]
+[gd_scene load_steps=18 format=3 uid="uid://6fwkrwx8e00d"]
 
 [ext_resource type="Script" path="res://enemy/enemy.gd" id="1_ce1f0"]
 [ext_resource type="PackedScene" uid="uid://s8fkxbacqm7m" path="res://ai/dasher_module.tscn" id="3_g6hq3"]
@@ -8,7 +8,6 @@
 [ext_resource type="PackedScene" uid="uid://cpq8qcn88e664" path="res://scenes/components/hitbox_component.tscn" id="4_gjpqc"]
 [ext_resource type="PackedScene" uid="uid://8ho5oq2a58id" path="res://resources/weapon_component.tscn" id="5_4foag"]
 [ext_resource type="Texture2D" uid="uid://cyxs51qv1mdiu" path="res://sprites/octopus.png" id="9_iedxi"]
-[ext_resource type="Script" path="res://enemy/ranged_enemy_sprite.gd" id="10_odqs4"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_unedk"]
 radius = 200.0
@@ -17,24 +16,16 @@ radius = 200.0
 radius = 28.0
 height = 106.0
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_a320g"]
-atlas = ExtResource("9_iedxi")
-region = Rect2(96, 0, 96, 107)
-
 [sub_resource type="AtlasTexture" id="AtlasTexture_tpalr"]
 atlas = ExtResource("9_iedxi")
 region = Rect2(0, 0, 96, 107)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_a320g"]
+atlas = ExtResource("9_iedxi")
+region = Rect2(96, 0, 96, 107)
+
 [sub_resource type="SpriteFrames" id="SpriteFrames_sycb3"]
 animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_a320g")
-}],
-"loop": false,
-"name": &"default",
-"speed": 5.0
-}, {
 "frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_tpalr")
@@ -43,8 +34,16 @@ animations = [{
 "texture": SubResource("AtlasTexture_a320g")
 }],
 "loop": true,
-"name": &"shoot",
+"name": &"attack",
 "speed": 1.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_a320g")
+}],
+"loop": false,
+"name": &"default",
+"speed": 5.0
 }]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_hbrif"]
@@ -123,9 +122,8 @@ shape = SubResource("CapsuleShape2D_pfx5u")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(-3, -53.5)
 sprite_frames = SubResource("SpriteFrames_sycb3")
-animation = &"shoot"
+animation = &"attack"
 autoplay = "default"
-script = ExtResource("10_odqs4")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, -24)
@@ -147,5 +145,3 @@ autoplay = "levitate"
 libraries = {
 "": SubResource("AnimationLibrary_0vfq0")
 }
-
-[connection signal="state_changed" from="." to="AnimatedSprite2D" method="_on_ranged_enemy_state_changed"]

@@ -1,13 +1,12 @@
-[gd_scene load_steps=13 format=3 uid="uid://chnlkisvev6n1"]
+[gd_scene load_steps=14 format=3 uid="uid://chnlkisvev6n1"]
 
 [ext_resource type="PackedScene" uid="uid://bqs5ceshq8c43" path="res://scenes/components/health_component.tscn" id="1_2ytxk"]
 [ext_resource type="Script" path="res://enemy/enemy.gd" id="1_tj1hn"]
-[ext_resource type="Texture2D" uid="uid://bqs2kod2xac7k" path="res://icon.svg" id="2_nj8b1"]
 [ext_resource type="PackedScene" uid="uid://cpq8qcn88e664" path="res://scenes/components/hitbox_component.tscn" id="2_nt5q1"]
-[ext_resource type="Shader" path="res://enemy/melee_enemy.gdshader" id="4_2uae1"]
 [ext_resource type="PackedScene" uid="uid://cxspkpo4cxc45" path="res://ai/attacker_module.tscn" id="4_ieso8"]
 [ext_resource type="PackedScene" uid="uid://ddmqjpbhmikah" path="res://ai/chaser_module.tscn" id="5_2ce88"]
 [ext_resource type="PackedScene" uid="uid://8ho5oq2a58id" path="res://resources/weapon_component.tscn" id="5_2viey"]
+[ext_resource type="Texture2D" uid="uid://dk4pwtbpqlyf6" path="res://sprites/enemy.png" id="8_1xdek"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_2080b"]
 radius = 17.0
@@ -15,12 +14,38 @@ radius = 17.0
 [sub_resource type="CircleShape2D" id="CircleShape2D_lxxqs"]
 radius = 17.0294
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_7a5sf"]
-resource_local_to_scene = true
-shader = ExtResource("4_2uae1")
+[sub_resource type="AtlasTexture" id="AtlasTexture_3mqup"]
+atlas = ExtResource("8_1xdek")
+region = Rect2(72, 0, 72, 107)
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_pqh3w"]
-radius = 14.0357
+[sub_resource type="AtlasTexture" id="AtlasTexture_gchv5"]
+atlas = ExtResource("8_1xdek")
+region = Rect2(0, 0, 72, 107)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_gh7ww"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3mqup")
+}],
+"loop": false,
+"name": &"attack",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gchv5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3mqup")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_vuat2"]
+height = 28.0
 
 [node name="MeleeEnemy" type="CharacterBody2D"]
 script = ExtResource("1_tj1hn")
@@ -50,22 +75,25 @@ collision_mask = 2
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HitBoxComponent"]
 shape = SubResource("CircleShape2D_lxxqs")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-material = SubResource("ShaderMaterial_7a5sf")
-rotation = -1.5708
-scale = Vector2(0.2, 0.2)
-texture = ExtResource("2_nj8b1")
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+scale = Vector2(0.6, 0.6)
+sprite_frames = SubResource("SpriteFrames_gh7ww")
+animation = &"attack"
+autoplay = "default"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("CircleShape2D_pqh3w")
+position = Vector2(0, 17)
+shape = SubResource("CapsuleShape2D_vuat2")
 
 [node name="HealthBar" type="ProgressBar" parent="."]
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
 offset_left = -13.0
-offset_top = -21.0
+offset_top = -38.0
 offset_right = 117.0
-offset_bottom = 6.0
+offset_bottom = -11.0
 grow_horizontal = 2
 scale = Vector2(0.2, 0.2)
+
+[connection signal="state_changed" from="." to="." method="_on_state_changed"]
