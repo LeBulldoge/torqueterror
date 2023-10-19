@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://coe45xtjvuehr"]
+[gd_scene load_steps=17 format=3 uid="uid://coe45xtjvuehr"]
 
 [ext_resource type="Script" path="res://vehicle/player.gd" id="1_28sia"]
 [ext_resource type="PackedScene" uid="uid://bqs5ceshq8c43" path="res://scenes/components/health_component.tscn" id="3_66xtb"]
@@ -6,8 +6,30 @@
 [ext_resource type="PackedScene" uid="uid://cpq8qcn88e664" path="res://scenes/components/hitbox_component.tscn" id="4_7fyjs"]
 [ext_resource type="Texture2D" uid="uid://yrh3bu2lkt68" path="res://sprites/car-headlights.png" id="5_3dm5a"]
 [ext_resource type="Texture2D" uid="uid://cpcq2l01o33i5" path="res://sprites/tire.png" id="6_tm6h7"]
+[ext_resource type="Shader" path="res://vehicle/car_exhaust.gdshader" id="7_lfr1p"]
+[ext_resource type="Texture2D" uid="uid://dutwnxq4ojprf" path="res://sprites/enemy-blood.png" id="9_fk24d"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_gfhdm"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_jyw0a"]
+noise_type = 3
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_l7xcf"]
+width = 64
+height = 64
+generate_mipmaps = false
+normalize = false
+noise = SubResource("FastNoiseLite_jyw0a")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_pv5wp"]
+shader = ExtResource("7_lfr1p")
+shader_parameter/speed = 0.2
+shader_parameter/noise_amount = 2.0
+shader_parameter/noise = SubResource("NoiseTexture2D_l7xcf")
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qnn5a"]
+atlas = ExtResource("9_fk24d")
+region = Rect2(29, 0, 29, 28)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_yyb6l"]
 size = Vector2(76, 161)
@@ -48,6 +70,24 @@ texture = ExtResource("6_tm6h7")
 [node name="WheelBR" type="Sprite2D" parent="."]
 position = Vector2(-34, -52)
 texture = ExtResource("6_tm6h7")
+
+[node name="Exhaust" type="CPUParticles2D" parent="."]
+material = SubResource("ShaderMaterial_pv5wp")
+position = Vector2(18, -71)
+emitting = false
+amount = 4
+randomness = 0.21
+lifetime_randomness = 0.74
+texture = SubResource("AtlasTexture_qnn5a")
+direction = Vector2(2.08165e-12, -1)
+spread = 37.73
+gravity = Vector2(2.08165e-12, 2.08165e-12)
+initial_velocity_min = 30.0
+initial_velocity_max = 198.99
+angle_min = -116.4
+angle_max = 109.1
+scale_amount_min = 0.4
+scale_amount_max = 0.8
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 rotation = -3.14159

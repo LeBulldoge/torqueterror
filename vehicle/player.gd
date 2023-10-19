@@ -15,6 +15,7 @@ func _input(_event):
     self.drive_dir = new_drive_dir
 
     set_front_wheel_angle(self.steer_dir)
+    switch_exhaust(self.drive_dir != 0)
 
 
 func _physics_process(delta):
@@ -29,6 +30,10 @@ func switch_brake_lights(value: bool):
 func set_front_wheel_angle(direction: float):
     $WheelFL.rotation_degrees = 25 * direction
     $WheelFR.rotation_degrees = 25 * direction
+
+
+func switch_exhaust(value: bool):
+    $Exhaust.emitting = value
 
 
 func _on_hurt_box_component_area_entered(area: Area2D):
