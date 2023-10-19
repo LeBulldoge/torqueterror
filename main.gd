@@ -8,6 +8,7 @@ func _ready():
     start_game()
 
     $Map/Player/HealthComponent.health_changed.connect($HUD.display_health)
+    $HUD.display_health($Map/Player/HealthComponent.MAX_HEALTH)
     $Map/Player/HealthComponent.death.connect(game_over)
 
 
