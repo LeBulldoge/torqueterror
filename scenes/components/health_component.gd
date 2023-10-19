@@ -13,6 +13,9 @@ func _ready():
 
 
 func damage(value: float):
+    if value <= 0:
+        return
+
     health -= value
     health_changed.emit(health)
 

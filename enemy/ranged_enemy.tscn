@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://6fwkrwx8e00d"]
+[gd_scene load_steps=22 format=3 uid="uid://6fwkrwx8e00d"]
 
 [ext_resource type="Script" path="res://enemy/enemy.gd" id="1_ce1f0"]
 [ext_resource type="PackedScene" uid="uid://s8fkxbacqm7m" path="res://ai/dasher_module.tscn" id="3_g6hq3"]
@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://cpq8qcn88e664" path="res://scenes/components/hitbox_component.tscn" id="4_gjpqc"]
 [ext_resource type="PackedScene" uid="uid://8ho5oq2a58id" path="res://resources/weapon_component.tscn" id="5_4foag"]
 [ext_resource type="Texture2D" uid="uid://cyxs51qv1mdiu" path="res://sprites/octopus.png" id="9_iedxi"]
+[ext_resource type="Texture2D" uid="uid://dutwnxq4ojprf" path="res://sprites/enemy-blood.png" id="9_x441h"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_unedk"]
 radius = 200.0
@@ -40,6 +41,31 @@ animations = [{
 "frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_a320g")
+}],
+"loop": false,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_b1ax6"]
+atlas = ExtResource("9_x441h")
+region = Rect2(0, 0, 29, 28)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_e06ol"]
+atlas = ExtResource("9_x441h")
+region = Rect2(29, 0, 29, 28)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_qcgee"]
+animations = [{
+"frames": [{
+"duration": 2.0,
+"texture": SubResource("AtlasTexture_b1ax6")
+}, {
+"duration": 6.0,
+"texture": SubResource("AtlasTexture_e06ol")
+}, {
+"duration": 1.0,
+"texture": null
 }],
 "loop": false,
 "name": &"default",
@@ -124,6 +150,12 @@ position = Vector2(-3, -53.5)
 sprite_frames = SubResource("SpriteFrames_sycb3")
 animation = &"attack"
 autoplay = "default"
+
+[node name="DamageIndicator" type="AnimatedSprite2D" parent="."]
+position = Vector2(-3, -53.5)
+sprite_frames = SubResource("SpriteFrames_qcgee")
+frame = 2
+frame_progress = 1.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, -24)

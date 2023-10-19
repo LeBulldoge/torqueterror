@@ -19,6 +19,7 @@ func _ready():
     add_to_group("enemies")
 
     $HealthBar.max_value = $HealthComponent.MAX_HEALTH
+    $HealthBar.value = $HealthComponent.MAX_HEALTH
     $HealthComponent.health_changed.connect(display_health)
     $HealthComponent.death.connect(queue_free)
 
@@ -29,6 +30,7 @@ func _ready():
 
 func display_health(value):
     $HealthBar.value = value
+    $DamageIndicator.play()
 
 
 func set_state(new_state: State) -> void:

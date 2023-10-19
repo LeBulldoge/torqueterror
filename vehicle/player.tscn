@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://coe45xtjvuehr"]
+[gd_scene load_steps=11 format=3 uid="uid://coe45xtjvuehr"]
 
 [ext_resource type="Script" path="res://vehicle/player.gd" id="1_28sia"]
 [ext_resource type="PackedScene" uid="uid://bqs5ceshq8c43" path="res://scenes/components/health_component.tscn" id="3_66xtb"]
@@ -15,6 +15,9 @@ size = Vector2(76, 161)
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_2u8dm"]
 radius = 36.0
 height = 158.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_yghwj"]
+size = Vector2(80, 28)
 
 [node name="Player" type="RigidBody2D"]
 collision_layer = 2
@@ -99,3 +102,14 @@ enabled = false
 color = Color(1, 0, 0, 1)
 energy = 2.0
 texture = ExtResource("5_3dm5a")
+
+[node name="HurtBoxComponent" type="Area2D" parent="."]
+collision_layer = 64
+collision_mask = 4
+input_pickable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBoxComponent"]
+position = Vector2(0, 80)
+shape = SubResource("RectangleShape2D_yghwj")
+
+[connection signal="area_entered" from="HurtBoxComponent" to="." method="_on_hurt_box_component_area_entered"]

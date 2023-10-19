@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://chnlkisvev6n1"]
+[gd_scene load_steps=18 format=3 uid="uid://chnlkisvev6n1"]
 
 [ext_resource type="PackedScene" uid="uid://bqs5ceshq8c43" path="res://scenes/components/health_component.tscn" id="1_2ytxk"]
 [ext_resource type="Script" path="res://enemy/enemy.gd" id="1_tj1hn"]
@@ -6,13 +6,15 @@
 [ext_resource type="PackedScene" uid="uid://cxspkpo4cxc45" path="res://ai/attacker_module.tscn" id="4_ieso8"]
 [ext_resource type="PackedScene" uid="uid://ddmqjpbhmikah" path="res://ai/chaser_module.tscn" id="5_2ce88"]
 [ext_resource type="PackedScene" uid="uid://8ho5oq2a58id" path="res://resources/weapon_component.tscn" id="5_2viey"]
+[ext_resource type="Texture2D" uid="uid://dutwnxq4ojprf" path="res://sprites/enemy-blood.png" id="5_fgo6m"]
 [ext_resource type="Texture2D" uid="uid://dk4pwtbpqlyf6" path="res://sprites/enemy.png" id="8_1xdek"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_2080b"]
 radius = 17.0
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_lxxqs"]
-radius = 17.0294
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_d1agx"]
+radius = 23.0
+height = 64.0
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_3mqup"]
 atlas = ExtResource("8_1xdek")
@@ -44,6 +46,31 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_b1ax6"]
+atlas = ExtResource("5_fgo6m")
+region = Rect2(0, 0, 29, 28)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_e06ol"]
+atlas = ExtResource("5_fgo6m")
+region = Rect2(29, 0, 29, 28)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_47okv"]
+animations = [{
+"frames": [{
+"duration": 2.0,
+"texture": SubResource("AtlasTexture_b1ax6")
+}, {
+"duration": 6.0,
+"texture": SubResource("AtlasTexture_e06ol")
+}, {
+"duration": 1.0,
+"texture": null
+}],
+"loop": false,
+"name": &"default",
+"speed": 5.0
+}]
+
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_vuat2"]
 height = 28.0
 
@@ -68,18 +95,24 @@ damage = 1
 shape = SubResource("CircleShape2D_2080b")
 debug_color = Color(0.956863, 0, 0.529412, 0.419608)
 
-[node name="HitBoxComponent" parent="." instance=ExtResource("2_nt5q1")]
+[node name="HitBoxComponent" parent="." node_paths=PackedStringArray("health_component") instance=ExtResource("2_nt5q1")]
 collision_layer = 4
 collision_mask = 2
+health_component = NodePath("../HealthComponent")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HitBoxComponent"]
-shape = SubResource("CircleShape2D_lxxqs")
+shape = SubResource("CapsuleShape2D_d1agx")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 scale = Vector2(0.6, 0.6)
 sprite_frames = SubResource("SpriteFrames_gh7ww")
 animation = &"attack"
 autoplay = "default"
+
+[node name="DamageIndicator" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_47okv")
+frame = 2
+frame_progress = 1.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 17)

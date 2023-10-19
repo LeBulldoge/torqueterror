@@ -26,3 +26,14 @@ func switch_brake_lights(value: bool):
 func set_front_wheel_angle(direction: float):
     $WheelFL.rotation_degrees = 25 * direction
     $WheelFR.rotation_degrees = 25 * direction
+
+
+func _on_hurt_box_component_area_entered(area):
+    print(area)
+    if not area is HitBoxComponent:
+        return
+
+    var hb = area as HitBoxComponent
+
+    var forward_velocity = linear_velocity.dot(transform.y)
+    hb.damage(forward_velocity / 5.0)
