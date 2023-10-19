@@ -28,9 +28,9 @@ func move_vehicle(_delta):
     var lateral_velocity = right.dot(linear_velocity) * right
     apply_central_force(-lateral_velocity * tire_grip)
 
+    # Turn
     if steer_dir != 0:
+        var torque_force = steer_dir * torque * sqrt(linear_velocity.length())
         if linear_velocity.dot(forward) < 0:
-            steer_dir = -steer_dir
-
-        # Turn
-        apply_torque(steer_dir * torque * sqrt(linear_velocity.length()))
+            torque_force = -torque_force
+        apply_torque(torque_force)

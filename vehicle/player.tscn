@@ -1,10 +1,11 @@
-[gd_scene load_steps=9 format=3 uid="uid://coe45xtjvuehr"]
+[gd_scene load_steps=10 format=3 uid="uid://coe45xtjvuehr"]
 
 [ext_resource type="Script" path="res://vehicle/player.gd" id="1_28sia"]
 [ext_resource type="PackedScene" uid="uid://bqs5ceshq8c43" path="res://scenes/components/health_component.tscn" id="3_66xtb"]
 [ext_resource type="Texture2D" uid="uid://cmcux0fvh1ltj" path="res://sprites/car.png" id="4_0axso"]
 [ext_resource type="PackedScene" uid="uid://cpq8qcn88e664" path="res://scenes/components/hitbox_component.tscn" id="4_7fyjs"]
 [ext_resource type="Texture2D" uid="uid://yrh3bu2lkt68" path="res://sprites/car-headlights.png" id="5_3dm5a"]
+[ext_resource type="Texture2D" uid="uid://cpcq2l01o33i5" path="res://sprites/tire.png" id="6_tm6h7"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_gfhdm"]
 
@@ -28,6 +29,22 @@ torque = 300
 tire_grip = 2.0
 drag = 1.2
 
+[node name="WheelFR" type="Sprite2D" parent="."]
+position = Vector2(-34, 36)
+texture = ExtResource("6_tm6h7")
+
+[node name="WheelFL" type="Sprite2D" parent="."]
+position = Vector2(34, 36)
+texture = ExtResource("6_tm6h7")
+
+[node name="WheelBL" type="Sprite2D" parent="."]
+position = Vector2(34, -52)
+texture = ExtResource("6_tm6h7")
+
+[node name="WheelBR" type="Sprite2D" parent="."]
+position = Vector2(-34, -52)
+texture = ExtResource("6_tm6h7")
+
 [node name="Sprite2D" type="Sprite2D" parent="."]
 rotation = -3.14159
 scale = Vector2(0.8, 0.8)
@@ -43,6 +60,7 @@ collision_mask = 13
 health_component = NodePath("../HealthComponent")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HitBoxComponent"]
+visible = false
 position = Vector2(0, -0.5)
 shape = SubResource("RectangleShape2D_yyb6l")
 debug_color = Color(0, 0.6, 0.701961, 0.419608)
@@ -50,6 +68,7 @@ debug_color = Color(0, 0.6, 0.701961, 0.419608)
 [node name="Camera2D" type="Camera2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
 shape = SubResource("CapsuleShape2D_2u8dm")
 debug_color = Color(0, 0.6, 0.701961, 0.419608)
 

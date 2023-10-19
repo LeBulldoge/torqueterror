@@ -75,5 +75,6 @@ position = Vector2(355, 49)
 
 [node name="Player" parent="Map" instance=ExtResource("5_gcot7")]
 position = Vector2(339, -283)
+rotation = -3.14159
 
 [connection signal="timeout" from="SpawnTimer" to="." method="_on_spawn_timer_timeout"]

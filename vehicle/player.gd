@@ -11,6 +11,8 @@ func _input(_event):
 
     self.drive_dir = new_drive_dir
 
+    set_front_wheel_angle(self.steer_dir)
+
 
 func _physics_process(delta):
     self.move_vehicle(delta)
@@ -19,3 +21,8 @@ func _physics_process(delta):
 func switch_brake_lights(value: bool):
     $BrakeLightLeft.enabled = value
     $BrakeLightRight.enabled = value
+
+
+func set_front_wheel_angle(direction: float):
+    $WheelFL.rotation_degrees = 25 * direction
+    $WheelFR.rotation_degrees = 25 * direction
