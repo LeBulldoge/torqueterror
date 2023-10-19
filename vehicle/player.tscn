@@ -63,18 +63,20 @@ shadow_enabled = true
 shadow_color = Color(0, 0, 0, 1)
 texture = ExtResource("5_3dm5a")
 
-[node name="RearHeadlight" type="PointLight2D" parent="."]
+[node name="BrakeLightLeft" type="PointLight2D" parent="."]
 position = Vector2(24.9465, -84.1331)
 rotation = 0.139626
 scale = Vector2(0.0838229, 0.0924802)
+enabled = false
 color = Color(1, 0, 0, 1)
 energy = 2.0
 texture = ExtResource("5_3dm5a")
 
-[node name="RearHeadlight2" type="PointLight2D" parent="."]
+[node name="BrakeLightRight" type="PointLight2D" parent="."]
 position = Vector2(-25.0534, -84.133)
 rotation = -0.139626
 scale = Vector2(0.0838229, 0.0924802)
+enabled = false
 color = Color(1, 0, 0, 1)
 energy = 2.0
 texture = ExtResource("5_3dm5a")
