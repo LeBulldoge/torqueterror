@@ -17,9 +17,9 @@ func move_vehicle(_delta):
 
     if drive_dir == 0 and linear_velocity.length() < stall_speed:
         linear_velocity = Vector2.ZERO
-
-    # Acceleration
-    apply_central_force(drive_dir * forward * speed)
+    else:
+        # Acceleration
+        apply_central_force(drive_dir * forward * speed)
 
     # Drag
     apply_central_force(-drag * linear_velocity)
@@ -28,5 +28,9 @@ func move_vehicle(_delta):
     var lateral_velocity = right.dot(linear_velocity) * right
     apply_central_force(-lateral_velocity * tire_grip)
 
-    # Turn
-    apply_torque(steer_dir * torque * sqrt(linear_velocity.length()))
+    if steer_dir != 0:
+        if linear_velocity.dot(forward) < 0:
+            steer_dir = -steer_dir
+
+        # Turn
+        apply_torque(steer_dir * torque * sqrt(linear_velocity.length()))

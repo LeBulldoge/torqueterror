@@ -14,6 +14,5 @@ func perform_physics(enemy: Enemy):
 
 
 func walk(enemy: Enemy):
-    var delta = enemy.get_physics_process_delta_time()
     enemy.velocity = enemy.transform.x * enemy.speed
     enemy.move_and_slide()
