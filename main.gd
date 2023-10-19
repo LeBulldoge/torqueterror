@@ -4,7 +4,6 @@ extends Node
 var ranged_enemy_scene = preload("res://enemy/ranged_enemy.tscn")
 var melee_enemy_scene = preload("res://enemy/melee_enemy.tscn")
 
-
 func _ready():
     start_game()
 
@@ -19,6 +18,8 @@ func start_game():
 func game_over():
     $SpawnTimer.stop()
     get_tree().call_group("enemies", "queue_free")
+    get_tree().change_scene_to_file("res://ui/main_menu.tscn")
+
 
 func get_point_outside_viewport() -> Vector2:
     $SpawnPath.position = $Map/Player.position
