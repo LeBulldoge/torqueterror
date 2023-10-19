@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://6fwkrwx8e00d"]
+[gd_scene load_steps=21 format=3 uid="uid://6fwkrwx8e00d"]
 
 [ext_resource type="Shader" path="res://enemy/ranged_enemy.gdshader" id="1_8wnw2"]
 [ext_resource type="Script" path="res://enemy/enemy.gd" id="1_ce1f0"]
@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://cpq8qcn88e664" path="res://scenes/components/hitbox_component.tscn" id="4_gjpqc"]
 [ext_resource type="PackedScene" uid="uid://8ho5oq2a58id" path="res://resources/weapon_component.tscn" id="5_4foag"]
 [ext_resource type="Texture2D" uid="uid://cyxs51qv1mdiu" path="res://sprites/octopus.png" id="9_iedxi"]
+[ext_resource type="Script" path="res://enemy/ranged_enemy_sprite.gd" id="10_odqs4"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_unedk"]
 radius = 200.0
@@ -34,22 +35,40 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_a320g")
 }],
-"loop": true,
+"loop": false,
 "name": &"default",
 "speed": 5.0
 }, {
 "frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_tpalr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_a320g")
 }],
 "loop": true,
 "name": &"shoot",
-"speed": 5.0
+"speed": 1.0
 }]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_hbrif"]
 radius = 23.0
 height = 48.0
+
+[sub_resource type="Animation" id="Animation_jnccx"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-3, -53.5)]
+}
 
 [sub_resource type="Animation" id="Animation_2f7vi"]
 resource_name = "levitate"
@@ -66,21 +85,6 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(2, 0.5),
 "update": 0,
 "values": [Vector2(-3, -53.5), Vector2(-3, -73.5)]
-}
-
-[sub_resource type="Animation" id="Animation_jnccx"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("AnimatedSprite2D:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(-3, -53.5)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_0vfq0"]
@@ -111,9 +115,10 @@ type = 1
 shape = SubResource("CircleShape2D_unedk")
 debug_color = Color(0.964706, 0, 0.501961, 0.419608)
 
-[node name="HitBoxComponent" parent="." instance=ExtResource("4_gjpqc")]
+[node name="HitBoxComponent" parent="." node_paths=PackedStringArray("health_component") instance=ExtResource("4_gjpqc")]
 collision_layer = 4
 collision_mask = 2
+health_component = NodePath("../HealthComponent")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HitBoxComponent"]
 position = Vector2(0, -53)
@@ -123,7 +128,9 @@ shape = SubResource("CapsuleShape2D_pfx5u")
 material = SubResource("ShaderMaterial_crwmh")
 position = Vector2(-3, -53.5)
 sprite_frames = SubResource("SpriteFrames_sycb3")
+animation = &"shoot"
 autoplay = "default"
+script = ExtResource("10_odqs4")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, -24)
@@ -145,3 +152,5 @@ autoplay = "levitate"
 libraries = {
 "": SubResource("AnimationLibrary_0vfq0")
 }
+
+[connection signal="state_changed" from="." to="AnimatedSprite2D" method="_on_ranged_enemy_state_changed"]
