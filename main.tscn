@@ -1,7 +1,7 @@
 [gd_scene load_steps=11 format=3 uid="uid://mn5kouylgoij"]
 
 [ext_resource type="Script" path="res://main.gd" id="1_mpdvn"]
-[ext_resource type="Script" path="res://hud.gd" id="3_6474f"]
+[ext_resource type="PackedScene" uid="uid://dlquo6hrey02w" path="res://scenes/hud.tscn" id="2_okvge"]
 [ext_resource type="Texture2D" uid="uid://cby16p73b56ck" path="res://sprites/map.png" id="3_jkukl"]
 [ext_resource type="PackedScene" uid="uid://b1bqbrxqh68jc" path="res://scenes/tree.tscn" id="4_j4jkh"]
 [ext_resource type="Script" path="res://scenes/fog.gd" id="4_tbovf"]
@@ -26,6 +26,8 @@ polygon = PackedVector2Array(19, 61, 15, 43, 8, -35, -1, -36, -15, 48, -21, 59, 
 [node name="Main" type="Node"]
 script = ExtResource("1_mpdvn")
 
+[node name="HUD" parent="." instance=ExtResource("2_okvge")]
+
 [node name="Floor" type="Sprite2D" parent="."]
 scale = Vector2(2, 2)
 texture = ExtResource("3_jkukl")
@@ -37,22 +39,6 @@ curve = SubResource("Curve2D_2f5cj")
 
 [node name="SpawnPoint" type="PathFollow2D" parent="SpawnPath"]
 position = Vector2(-576, -320)
-
-[node name="HUD" type="CanvasLayer" parent="."]
-script = ExtResource("3_6474f")
-
-[node name="HealthBar" type="ProgressBar" parent="HUD"]
-anchors_preset = 7
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = -150.0
-offset_top = -30.0
-offset_right = 150.0
-grow_horizontal = 2
-grow_vertical = 0
-step = 1.0
 
 [node name="Map" type="Node2D" parent="."]
 y_sort_enabled = true

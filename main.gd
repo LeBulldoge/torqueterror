@@ -39,6 +39,12 @@ func setup_melee_enemy() -> Enemy:
     return enemy
 
 
+var score := 0
+func add_score():
+    score += 1
+    $HUD.display_score(score)
+
+
 func _on_spawn_timer_timeout():
     var enemy = setup_ranged_enemy() if randi_range(0, 1) == 0 else setup_melee_enemy()
 
@@ -47,6 +53,7 @@ func _on_spawn_timer_timeout():
 
     $Map.add_child(enemy)
     enemy.weapon.shoot_projectile.connect(_on_spawn_projectile)
+    enemy.get_node("HealthComponent").death.connect(add_score)
 
 func _on_spawn_projectile(projectile: Projectile):
     $Map.call_deferred("add_child", projectile)

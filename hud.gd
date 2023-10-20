@@ -13,3 +13,7 @@ func _process(_delta):
 
 func display_health(health):
     $HealthBar.value = health
+
+
+func display_score(score: int):
+    $Score.text = str(score)
