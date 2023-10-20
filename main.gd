@@ -33,6 +33,7 @@ func _on_level_up(_level, _new_max):
 
     get_tree().paused = false
 
+
 func start_game():
     $SpawnTimer.start()
 

@@ -13,7 +13,6 @@ func add_upgrade_item(icon: Texture2D, description: String):
 
 func choose_upgrade() -> Signal:
     show()
-    upgrade_list.set_column_width($MarginContainer.size.x)
     return upgrade_selected
 
 
