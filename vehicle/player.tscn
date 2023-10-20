@@ -1,10 +1,11 @@
-[gd_scene load_steps=17 format=3 uid="uid://coe45xtjvuehr"]
+[gd_scene load_steps=18 format=3 uid="uid://coe45xtjvuehr"]
 
 [ext_resource type="Script" path="res://vehicle/player.gd" id="1_28sia"]
 [ext_resource type="PackedScene" uid="uid://bqs5ceshq8c43" path="res://scenes/components/health_component.tscn" id="3_66xtb"]
 [ext_resource type="Texture2D" uid="uid://cmcux0fvh1ltj" path="res://sprites/car.png" id="4_0axso"]
 [ext_resource type="PackedScene" uid="uid://cpq8qcn88e664" path="res://scenes/components/hitbox_component.tscn" id="4_7fyjs"]
 [ext_resource type="Texture2D" uid="uid://yrh3bu2lkt68" path="res://sprites/car-headlights.png" id="5_3dm5a"]
+[ext_resource type="AudioStream" uid="uid://dl8ykynk6g1yq" path="res://audio/engine_sound.wav" id="5_wuhjc"]
 [ext_resource type="Texture2D" uid="uid://cpcq2l01o33i5" path="res://sprites/tire.png" id="6_tm6h7"]
 [ext_resource type="Shader" path="res://vehicle/car_exhaust.gdshader" id="7_lfr1p"]
 [ext_resource type="Texture2D" uid="uid://dutwnxq4ojprf" path="res://sprites/enemy-blood.png" id="9_fk24d"]
@@ -88,6 +89,11 @@ angle_min = -116.4
 angle_max = 109.1
 scale_amount_min = 0.4
 scale_amount_max = 0.8
+
+[node name="EngineSound" type="AudioStreamPlayer2D" parent="."]
+scale = Vector2(1, 1)
+stream = ExtResource("5_wuhjc")
+autoplay = true
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 rotation = -3.14159

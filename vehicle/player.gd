@@ -20,7 +20,7 @@ func _input(_event):
 
 func _physics_process(delta):
     self.move_vehicle(delta)
-
+    pitch_engine_sound()
 
 func switch_brake_lights(value: bool):
     $BrakeLightLeft.enabled = value
@@ -34,6 +34,10 @@ func set_front_wheel_angle(direction: float):
 
 func switch_exhaust(value: bool):
     $Exhaust.emitting = value
+
+
+func pitch_engine_sound():
+    $EngineSound.pitch_scale = max(linear_velocity.length() / 200, 0.3)
 
 
 func _on_hurt_box_component_area_entered(area: Area2D):
