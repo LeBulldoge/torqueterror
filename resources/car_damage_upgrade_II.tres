@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="CarDamageUpgrade" load_steps=3 format=3 uid="uid://bwotn7nfespol"]
+
+[ext_resource type="Texture2D" uid="uid://bqs2kod2xac7k" path="res://icon.svg" id="1_sumgn"]
+[ext_resource type="Script" path="res://resources/car_damage_upgrade.gd" id="2_ithmw"]
+
+[resource]
+script = ExtResource("2_ithmw")
+modifier = 0.6
+title = "Ramming Speed II"
+description = "Boosts your car's ramming damage"
+icon = ExtResource("1_sumgn")
+single_use = true

@@ -1,0 +1,11 @@
+[gd_scene load_steps=6 format=3 uid="uid://bx3lxglo7vyjs"]
+
+[ext_resource type="Script" path="res://scripts/game_state.gd" id="1_yl640"]
+[ext_resource type="Resource" uid="uid://drx125hwm5guq" path="res://resources/car_damage_upgrade_I.tres" id="2_fuqav"]
+[ext_resource type="Resource" uid="uid://bwotn7nfespol" path="res://resources/car_damage_upgrade_II.tres" id="3_8bdg0"]
+[ext_resource type="Resource" uid="uid://bugsqrdm0l6cr" path="res://resources/car_damage_upgrade_III.tres" id="4_pyh8t"]
+[ext_resource type="Resource" uid="uid://ba5lifbmjrhew" path="res://resources/car_damage_upgrade_IV.tres" id="5_275vs"]
+
+[node name="GameState" type="Node"]
+script = ExtResource("1_yl640")
+upgrade_pool = Array[Resource("res://resources/upgrade.gd")]([ExtResource("2_fuqav"), ExtResource("3_8bdg0"), ExtResource("4_pyh8t"), ExtResource("5_275vs")])

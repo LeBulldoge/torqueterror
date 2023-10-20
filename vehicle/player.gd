@@ -2,7 +2,9 @@ class_name Player
 extends Vehicle
 
 
-@export var velocity_damage_modifier = 5.0
+@export var velocity_damage_modifier = 0.0
+
+var upgrades: Array[Upgrade] = []
 
 
 func _input(_event):

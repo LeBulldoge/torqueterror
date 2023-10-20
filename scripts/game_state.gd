@@ -25,7 +25,6 @@ func _level_up() -> void:
 func add_experience(value: float) -> void:
     experience += value
     experience_changed.emit(experience)
-    print(experience, "/", get_level_requirement())
     if experience >= get_level_requirement():
         _level_up()
 
@@ -37,3 +36,19 @@ func get_level_requirement() -> float:
 func add_score(value: int) -> void:
     score += value
     score_changed.emit(score)
+
+
+@export var upgrade_pool: Array[Upgrade]
+func get_random_upgrades(count: int) -> Array[Upgrade]:
+    var results: Array[Upgrade] = []
+    while count != 0:
+        var idx = randi_range(0, upgrade_pool.size() - 1)
+        if results.has(upgrade_pool[idx]):
+            continue
+
+        results.append(upgrade_pool[idx])
+        count -= 1
+
+    return results
+
+

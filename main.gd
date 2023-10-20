@@ -22,14 +22,15 @@ func _ready():
 
 
 var icon = preload("res://icon.svg")
-func _on_level_up(_level, _new_max):
+func _on_level_up(level: int, _new_max: float):
     get_tree().paused = true
 
-    $LevelUpScreen.add_upgrade_item(icon, "Pog upgrade")
-    $LevelUpScreen.add_upgrade_item(icon, "Mid upgrade")
-    $LevelUpScreen.add_upgrade_item(icon, "DO NOT pick this")
+    var upgrades = GameState.get_random_upgrades(level)
+    for upgrade in upgrades:
+        $LevelUpScreen.add_upgrade_item(upgrade.title, upgrade.icon, upgrade.description)
 
     var upgrade = await $LevelUpScreen.choose_upgrade()
+    upgrades[upgrade].apply($Map/Player)
 
     get_tree().paused = false
 
