@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://6fwkrwx8e00d"]
+[gd_scene load_steps=28 format=3 uid="uid://6fwkrwx8e00d"]
 
 [ext_resource type="Script" path="res://enemy/enemy.gd" id="1_ce1f0"]
 [ext_resource type="PackedScene" uid="uid://s8fkxbacqm7m" path="res://ai/dasher_module.tscn" id="3_g6hq3"]
@@ -7,8 +7,14 @@
 [ext_resource type="PackedScene" uid="uid://cxspkpo4cxc45" path="res://ai/attacker_module.tscn" id="4_fv072"]
 [ext_resource type="PackedScene" uid="uid://cpq8qcn88e664" path="res://scenes/components/hitbox_component.tscn" id="4_gjpqc"]
 [ext_resource type="PackedScene" uid="uid://8ho5oq2a58id" path="res://resources/weapon_component.tscn" id="5_4foag"]
+[ext_resource type="AudioStream" uid="uid://b7onoxp0vqhj7" path="res://audio/noise/enemy-2 2.wav" id="6_3kmbe"]
+[ext_resource type="AudioStream" uid="uid://5le3iohgqs2y" path="res://audio/noise/enemy-3 2.wav" id="8_76o5g"]
+[ext_resource type="Script" path="res://enemy/sound_component.gd" id="9_335pr"]
 [ext_resource type="Texture2D" uid="uid://cyxs51qv1mdiu" path="res://sprites/octopus.png" id="9_iedxi"]
 [ext_resource type="Texture2D" uid="uid://dutwnxq4ojprf" path="res://sprites/enemy-blood.png" id="9_x441h"]
+[ext_resource type="AudioStream" uid="uid://biqhxhit82wc8" path="res://audio/noise/enemy-4.wav" id="9_y7flw"]
+[ext_resource type="AudioStream" uid="uid://criq4jrngrfy7" path="res://audio/noise/enemy.wav" id="11_noao7"]
+[ext_resource type="AudioStream" uid="uid://bnfgijmjtdghp" path="res://audio/noise/enemy-2.wav" id="13_q087t"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_unedk"]
 radius = 200.0
@@ -125,6 +131,15 @@ speed = 100
 [node name="DasherModule" parent="AIModules" instance=ExtResource("3_g6hq3")]
 script = ExtResource("4_d7g81")
 dash_time = 1.0
+
+[node name="SoundComponent" type="AudioStreamPlayer2D" parent="."]
+process_mode = 1
+position = Vector2(-3, -53.5)
+script = ExtResource("9_335pr")
+sounds = {
+"damage": [ExtResource("6_3kmbe"), ExtResource("11_noao7"), ExtResource("8_76o5g")],
+"death": [ExtResource("9_y7flw"), ExtResource("13_q087t")]
+}
 
 [node name="HealthComponent" parent="." instance=ExtResource("3_k6xi5")]
 

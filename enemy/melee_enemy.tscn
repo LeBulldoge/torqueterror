@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://chnlkisvev6n1"]
+[gd_scene load_steps=24 format=3 uid="uid://chnlkisvev6n1"]
 
 [ext_resource type="PackedScene" uid="uid://bqs5ceshq8c43" path="res://scenes/components/health_component.tscn" id="1_2ytxk"]
 [ext_resource type="Script" path="res://enemy/enemy.gd" id="1_tj1hn"]
@@ -8,6 +8,12 @@
 [ext_resource type="PackedScene" uid="uid://8ho5oq2a58id" path="res://resources/weapon_component.tscn" id="5_2viey"]
 [ext_resource type="Texture2D" uid="uid://dutwnxq4ojprf" path="res://sprites/enemy-blood.png" id="5_fgo6m"]
 [ext_resource type="Texture2D" uid="uid://dk4pwtbpqlyf6" path="res://sprites/enemy.png" id="8_1xdek"]
+[ext_resource type="AudioStream" uid="uid://b7onoxp0vqhj7" path="res://audio/noise/enemy-2 2.wav" id="8_41pgy"]
+[ext_resource type="AudioStream" uid="uid://565nqggi0beh" path="res://audio/noise/enemy-3.wav" id="9_cn547"]
+[ext_resource type="Script" path="res://enemy/sound_component.gd" id="9_kdly7"]
+[ext_resource type="AudioStream" uid="uid://criq4jrngrfy7" path="res://audio/noise/enemy.wav" id="11_xggij"]
+[ext_resource type="AudioStream" uid="uid://6uvokxj60cit" path="res://audio/noise/enemy 2.wav" id="12_jhlue"]
+[ext_resource type="AudioStream" uid="uid://bnfgijmjtdghp" path="res://audio/noise/enemy-2.wav" id="13_u457h"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_2080b"]
 radius = 36.3456
@@ -87,6 +93,14 @@ metadata/_edit_group_ = true
 
 [node name="HealthComponent" parent="." instance=ExtResource("1_2ytxk")]
 MAX_HEALTH = 50.0
+
+[node name="SoundComponent" type="AudioStreamPlayer2D" parent="."]
+process_mode = 1
+script = ExtResource("9_kdly7")
+sounds = {
+"damage": [ExtResource("9_cn547"), ExtResource("11_xggij"), ExtResource("8_41pgy")],
+"death": [ExtResource("12_jhlue"), ExtResource("13_u457h")]
+}
 
 [node name="WeaponComponent" parent="." instance=ExtResource("5_2viey")]
 damage = 1

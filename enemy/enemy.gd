@@ -31,10 +31,12 @@ func _ready():
 func display_health(value):
     $HealthBar.value = value
     $DamageIndicator.play()
+    $SoundComponent.play_random_sound("damage")
 
 
 func death():
     process_mode = Node.PROCESS_MODE_DISABLED
+    $SoundComponent.play_random_sound("death")
     await $DamageIndicator.animation_finished
     queue_free()
 
