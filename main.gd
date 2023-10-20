@@ -12,11 +12,26 @@ func _ready():
     $Map/Player/HealthComponent.health_changed.connect($HUD.display_health)
     $HUD.display_health($Map/Player/HealthComponent.MAX_HEALTH)
     $Map/Player/HealthComponent.death.connect(game_over)
+
     GameState.score_changed.connect($HUD.display_score)
-    GameState.level_changed.connect($HUD.set_level)
     GameState.experience_changed.connect($HUD.display_experience)
+
+    GameState.level_changed.connect(_on_level_up)
+    GameState.level_changed.connect($HUD.set_level)
     $HUD.set_level(GameState.level, GameState.get_level_requirement())
 
+
+var icon = preload("res://icon.svg")
+func _on_level_up(_level, _new_max):
+    get_tree().paused = true
+
+    $LevelUpScreen.add_upgrade_item(icon, "Pog upgrade")
+    $LevelUpScreen.add_upgrade_item(icon, "Mid upgrade")
+    $LevelUpScreen.add_upgrade_item(icon, "DO NOT pick this")
+
+    var upgrade = await $LevelUpScreen.choose_upgrade()
+
+    get_tree().paused = false
 
 func start_game():
     $SpawnTimer.start()
