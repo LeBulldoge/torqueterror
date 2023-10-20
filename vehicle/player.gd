@@ -51,3 +51,8 @@ func _on_hurt_box_component_area_entered(area: Area2D):
     var damage = forward_velocity * velocity_damage_modifier
     var hb = area as HitBoxComponent
     hb.damage(damage)
+
+
+func _on_experience_component_body_entered(body: RigidBody2D):
+    GameState.add_experience(1)
+    body.queue_free()

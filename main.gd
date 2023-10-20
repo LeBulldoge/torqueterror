@@ -3,6 +3,8 @@ extends Node
 
 var ranged_enemy_scene = preload("res://enemy/ranged_enemy.tscn")
 var melee_enemy_scene = preload("res://enemy/melee_enemy.tscn")
+var experience = preload("res://enemy/experience.tscn")
+
 
 func _ready():
     start_game()
@@ -11,6 +13,9 @@ func _ready():
     $HUD.display_health($Map/Player/HealthComponent.MAX_HEALTH)
     $Map/Player/HealthComponent.death.connect(game_over)
     GameState.score_changed.connect($HUD.display_score)
+    GameState.level_changed.connect($HUD.set_level)
+    GameState.experience_changed.connect($HUD.display_experience)
+    $HUD.set_level(GameState.level, GameState.get_level_requirement())
 
 
 func start_game():
@@ -21,6 +26,7 @@ func game_over():
     $SpawnTimer.stop()
     get_tree().call_group("enemies", "queue_free")
     get_tree().change_scene_to_file("res://ui/main_menu.tscn")
+    GameState.reset()
 
 
 func get_point_outside_viewport() -> Vector2:
@@ -48,7 +54,16 @@ func _on_spawn_timer_timeout():
 
     $Map.add_child(enemy)
     enemy.weapon.shoot_projectile.connect(_on_spawn_projectile)
-    enemy.get_node("HealthComponent").death.connect(GameState.add_score.bind(1))
+    var death = enemy.get_node("HealthComponent").death
+    death.connect(GameState.add_score.bind(1))
+    death.connect(spawn_experience.bind(enemy))
 
 func _on_spawn_projectile(projectile: Projectile):
     $Map.call_deferred("add_child", projectile)
+
+
+func spawn_experience(enemy: Enemy):
+    var e = experience.instantiate()
+    e.position = enemy.position
+
+    $Map.call_deferred("add_child", e)

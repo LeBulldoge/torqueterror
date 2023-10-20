@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://coe45xtjvuehr"]
+[gd_scene load_steps=20 format=3 uid="uid://coe45xtjvuehr"]
 
 [ext_resource type="Script" path="res://vehicle/player.gd" id="1_28sia"]
 [ext_resource type="PackedScene" uid="uid://bqs5ceshq8c43" path="res://scenes/components/health_component.tscn" id="3_66xtb"]
@@ -42,13 +42,20 @@ height = 158.0
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_yghwj"]
 size = Vector2(80, 23)
 
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_4ieiy"]
+radius = 28.0
+height = 114.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_j8qdt"]
+radius = 106.118
+
 [node name="Player" type="RigidBody2D"]
 collision_layer = 2
 collision_mask = 5
 physics_material_override = SubResource("PhysicsMaterial_gfhdm")
 angular_damp = 1.0
 script = ExtResource("1_28sia")
-velocity_damage_modifier = 0.2
+velocity_damage_modifier = 1.0
 speed = 500
 top_speed = 250
 stall_speed = 50
@@ -158,4 +165,29 @@ input_pickable = false
 position = Vector2(0, 77.5)
 shape = SubResource("RectangleShape2D_yghwj")
 
+[node name="ExperienceComponent" type="Area2D" parent="."]
+collision_layer = 256
+collision_mask = 128
+gravity_point = true
+gravity_point_center = Vector2(2.08165e-12, 2.08165e-12)
+gravity_direction = Vector2(2.08165e-12, 2.08165e-12)
+linear_damp = 1.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ExperienceComponent"]
+shape = SubResource("CapsuleShape2D_4ieiy")
+
+[node name="GravityFunnel" type="Area2D" parent="ExperienceComponent"]
+collision_layer = 256
+collision_mask = 128
+gravity_space_override = 1
+gravity_point = true
+gravity_point_center = Vector2(2.08165e-12, 2.08165e-12)
+gravity_direction = Vector2(2.08165e-12, 2.08165e-12)
+linear_damp_space_override = 1
+linear_damp = 1.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ExperienceComponent/GravityFunnel"]
+shape = SubResource("CircleShape2D_j8qdt")
+
 [connection signal="area_entered" from="HurtBoxComponent" to="." method="_on_hurt_box_component_area_entered"]
+[connection signal="body_entered" from="ExperienceComponent" to="." method="_on_experience_component_body_entered"]
