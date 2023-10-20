@@ -15,6 +15,10 @@ run/main_scene="res://ui/main_menu.tscn"
 config/features=PackedStringArray("4.1", "GL Compatibility")
 config/icon="res://icon.svg"
 
+[autoload]
+
+GameState="*res://scripts/game_state.gd"
+
 [display]
 
 window/stretch/mode="canvas_items"
