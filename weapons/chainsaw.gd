@@ -10,6 +10,15 @@ func _ready():
     set_speed(spin_speed)
 
 
+func set_sprite(sprite: Texture2D):
+    var animation = $AnimatedSprite2D.animation
+    var frames = $AnimatedSprite2D.sprite_frames as SpriteFrames
+    for id in frames.get_frame_count($AnimatedSprite2D.animation):
+        var texture := frames.get_frame_texture(animation, id)
+        texture.atlas = sprite
+        frames.set_frame(animation, id, texture)
+
+
 func set_speed(new_speed: float):
     $AnimationPlayer.speed_scale = new_speed
 
