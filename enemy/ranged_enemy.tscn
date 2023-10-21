@@ -122,7 +122,7 @@ _data = {
 
 [node name="RangedEnemy" type="CharacterBody2D"]
 script = ExtResource("1_ce1f0")
-speed = 100
+speed = 50
 
 [node name="AIModules" type="Node" parent="."]
 

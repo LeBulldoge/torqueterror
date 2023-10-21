@@ -74,18 +74,8 @@ func get_point_outside_viewport() -> Vector2:
     return $SpawnPath/SpawnPoint.global_position
 
 
-func setup_ranged_enemy() -> Enemy:
-    var enemy = ranged_enemy_scene.instantiate()
-    return enemy
-
-
-func setup_melee_enemy() -> Enemy:
-    var enemy = melee_enemy_scene.instantiate()
-    return enemy
-
-
 func _on_spawn_timer_timeout():
-    var enemy = setup_ranged_enemy() if randi_range(0, 1) == 0 else setup_melee_enemy()
+    var enemy = ranged_enemy_scene.instantiate() if randi_range(0, 1) == 0 else melee_enemy_scene.instantiate()
 
     enemy.target = $Map/Player
     enemy.global_position = get_point_outside_viewport()

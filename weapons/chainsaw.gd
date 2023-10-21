@@ -2,7 +2,7 @@ class_name Chainsaw
 extends Area2D
 
 
-@export var damage := 1
+@export var damage := 1.0
 @export var spin_speed := 1.0
 
 
