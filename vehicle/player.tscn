@@ -108,6 +108,8 @@ texture = ExtResource("4_0axso")
 region_enabled = true
 region_rect = Rect2(223, 0, 110, 201)
 
+[node name="Weapons" type="Node2D" parent="."]
+
 [node name="HealthComponent" parent="." instance=ExtResource("3_66xtb")]
 
 [node name="HitBoxComponent" parent="." node_paths=PackedStringArray("health_component") instance=ExtResource("4_7fyjs")]

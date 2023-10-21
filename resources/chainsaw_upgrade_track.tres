@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="UpgradeTrack" load_steps=7 format=3 uid="uid://r3bamcexwayh"]
+
+[ext_resource type="Script" path="res://resources/upgrade_track.gd" id="1_r7ckp"]
+[ext_resource type="Resource" uid="uid://cguxhuyo5bibi" path="res://resources/chainsaw_upgrade_I.tres" id="2_fb0w6"]
+[ext_resource type="Resource" uid="uid://bqf0f28lj15ui" path="res://resources/chainsaw_upgrade_II.tres" id="3_qpm2n"]
+[ext_resource type="Resource" uid="uid://bemr728d6jttq" path="res://resources/chainsaw_upgrade_III.tres" id="4_5vox3"]
+[ext_resource type="Resource" uid="uid://0j6nt3uisqv5" path="res://resources/chainsaw_upgrade_IV.tres" id="5_40evx"]
+[ext_resource type="Resource" uid="uid://bm3acc2a4b3bw" path="res://resources/chainsaw_upgrade_V.tres" id="6_xu0ht"]
+
+[resource]
+script = ExtResource("1_r7ckp")
+key = "chainsaw"
+upgrades = Array[Resource("res://resources/upgrade.gd")]([ExtResource("2_fb0w6"), ExtResource("3_qpm2n"), ExtResource("4_5vox3"), ExtResource("5_40evx"), ExtResource("6_xu0ht")])

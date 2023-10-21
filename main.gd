@@ -24,6 +24,14 @@ func _ready():
 func _on_level_up(level: int, _new_max: float):
     get_tree().paused = true
 
+    var upgrade = await choose_upgrade(level)
+    if upgrade != null:
+        upgrade.apply($Map/Player)
+
+    get_tree().paused = false
+
+
+func choose_upgrade(level: int) -> Upgrade:
     var upgrades = GameState.get_random_upgrades(level)
     if upgrades.is_empty():
         return
@@ -39,15 +47,13 @@ func _on_level_up(level: int, _new_max: float):
     var upgrade: Upgrade
     if chosen_upgrade is UpgradeTrack:
         upgrade = chosen_upgrade.get_current()
-        if chosen_upgrade.next_level():
+        if not chosen_upgrade.next_level():
             GameState.choose_upgrade(chosen_upgrade)
     else:
         upgrade = chosen_upgrade
         GameState.choose_upgrade(upgrade)
 
-    upgrade.apply($Map/Player)
-
-    get_tree().paused = false
+    return upgrade
 
 
 func start_game():

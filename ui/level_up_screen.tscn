@@ -52,9 +52,10 @@ same_column_width = true
 fixed_column_width = 268
 icon_mode = 0
 
-[node name="Description" type="Label" parent="MarginContainer/Panel/MarginContainer/VBoxContainer/UpgradeList"]
+[node name="Description" type="RichTextLabel" parent="MarginContainer/Panel/MarginContainer/VBoxContainer/UpgradeList"]
 layout_mode = 2
-horizontal_alignment = 1
+bbcode_enabled = true
+fit_content = true
 
 [connection signal="upgrade_selected" from="MarginContainer/Panel/MarginContainer/VBoxContainer/UpgradeList" to="." method="_on_upgrade_list_upgrade_selected"]
 [connection signal="gui_input" from="MarginContainer/Panel/MarginContainer/VBoxContainer/UpgradeList/List" to="MarginContainer/Panel/MarginContainer/VBoxContainer/UpgradeList" method="_on_list_gui_input"]

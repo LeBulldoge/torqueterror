@@ -40,8 +40,11 @@ func add_score(value: int) -> void:
 
 @export var upgrade_pool: Array[Resource]
 func get_random_upgrades(count: int) -> Array[Resource]:
+    if upgrade_pool.is_empty():
+        return []
+
     var results: Array[Resource] = []
-    while count != 0 and results.size() != upgrade_pool.size():
+    while count != 0 and results.size() < upgrade_pool.size():
         var idx = randi_range(0, upgrade_pool.size() - 1)
         if results.has(upgrade_pool[idx]):
             continue
