@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=3 uid="uid://6fwkrwx8e00d"]
+[gd_scene load_steps=30 format=3 uid="uid://6fwkrwx8e00d"]
 
 [ext_resource type="Script" path="res://enemy/enemy.gd" id="1_ce1f0"]
 [ext_resource type="PackedScene" uid="uid://s8fkxbacqm7m" path="res://ai/dasher_module.tscn" id="3_g6hq3"]
@@ -15,6 +15,7 @@
 [ext_resource type="AudioStream" uid="uid://biqhxhit82wc8" path="res://audio/noise/enemy-4.wav" id="9_y7flw"]
 [ext_resource type="AudioStream" uid="uid://criq4jrngrfy7" path="res://audio/noise/enemy.wav" id="11_noao7"]
 [ext_resource type="AudioStream" uid="uid://bnfgijmjtdghp" path="res://audio/noise/enemy-2.wav" id="13_q087t"]
+[ext_resource type="Shader" path="res://enemy/ranged_enemy.gdshader" id="15_8mdub"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_unedk"]
 radius = 200.0
@@ -53,6 +54,9 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_w5yns"]
+shader = ExtResource("15_8mdub")
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_b1ax6"]
 atlas = ExtResource("9_x441h")
 region = Rect2(0, 0, 29, 28)
@@ -75,7 +79,7 @@ animations = [{
 }],
 "loop": false,
 "name": &"default",
-"speed": 5.0
+"speed": 20.0
 }]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_hbrif"]
@@ -168,7 +172,8 @@ autoplay = "default"
 
 [node name="DamageIndicator" type="AnimatedSprite2D" parent="."]
 process_mode = 1
-position = Vector2(-3, -53.5)
+material = SubResource("ShaderMaterial_w5yns")
+position = Vector2(0, -77)
 sprite_frames = SubResource("SpriteFrames_qcgee")
 frame = 2
 frame_progress = 1.0

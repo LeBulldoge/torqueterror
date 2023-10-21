@@ -11,6 +11,7 @@
 [ext_resource type="Texture2D" uid="uid://dutwnxq4ojprf" path="res://sprites/enemy-blood.png" id="9_fk24d"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_gfhdm"]
+friction = 0.0
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_jyw0a"]
 noise_type = 3
