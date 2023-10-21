@@ -1,0 +1,58 @@
+[gd_scene load_steps=2 format=3 uid="uid://bvmb1w8n5rggs"]
+
+[ext_resource type="PackedScene" uid="uid://dc0wlbeang4sy" path="res://enemy/swarm_enemy.tscn" id="1_nmen3"]
+
+[node name="Swarm" type="Node2D"]
+
+[node name="SwarmEnemy" parent="." instance=ExtResource("1_nmen3")]
+
+[node name="SwarmEnemy2" parent="." instance=ExtResource("1_nmen3")]
+position = Vector2(-50, 31)
+
+[node name="SwarmEnemy3" parent="." instance=ExtResource("1_nmen3")]
+position = Vector2(49, 22)
+
+[node name="SwarmEnemy4" parent="." instance=ExtResource("1_nmen3")]
+position = Vector2(-45, -43)
+
+[node name="SwarmEnemy5" parent="." instance=ExtResource("1_nmen3")]
+position = Vector2(50, -43)
+
+[node name="SwarmEnemy6" parent="." instance=ExtResource("1_nmen3")]
+position = Vector2(6, -47)
+
+[node name="SwarmEnemy7" parent="." instance=ExtResource("1_nmen3")]
+position = Vector2(86, -6)
+
+[node name="SwarmEnemy8" parent="." instance=ExtResource("1_nmen3")]
+position = Vector2(11, 51)
+
+[node name="SwarmEnemy9" parent="." instance=ExtResource("1_nmen3")]
+position = Vector2(-85, -11)
+
+[node name="SwarmEnemy10" parent="." instance=ExtResource("1_nmen3")]
+position = Vector2(-29, 78)
+
+[node name="SwarmEnemy11" parent="." instance=ExtResource("1_nmen3")]
+position = Vector2(96, -64)
+
+[node name="SwarmEnemy12" parent="." instance=ExtResource("1_nmen3")]
+position = Vector2(36, -90)
+
+[node name="SwarmEnemy13" parent="." instance=ExtResource("1_nmen3")]
+position = Vector2(-22, -92)
+
+[node name="SwarmEnemy14" parent="." instance=ExtResource("1_nmen3")]
+position = Vector2(-82, -85)
+
+[node name="SwarmEnemy15" parent="." instance=ExtResource("1_nmen3")]
+position = Vector2(-118, -51)
+
+[node name="SwarmEnemy16" parent="." instance=ExtResource("1_nmen3")]
+position = Vector2(-130, 15)
+
+[node name="SwarmEnemy17" parent="." instance=ExtResource("1_nmen3")]
+position = Vector2(-89, 48)
+
+[node name="SwarmEnemy18" parent="." instance=ExtResource("1_nmen3")]
+position = Vector2(-89, 48)

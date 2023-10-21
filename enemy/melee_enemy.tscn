@@ -83,6 +83,7 @@ height = 28.0
 [node name="MeleeEnemy" type="CharacterBody2D"]
 script = ExtResource("1_tj1hn")
 speed = 100
+experience = 1.0
 metadata/_edit_group_ = true
 
 [node name="AIModules" type="Node" parent="."]

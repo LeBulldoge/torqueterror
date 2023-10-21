@@ -2,6 +2,7 @@ class_name Enemy
 extends CharacterBody2D
 
 @export var speed := 0
+@export var experience := 0.0
 
 var target: Node2D
 

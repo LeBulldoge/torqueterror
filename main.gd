@@ -3,6 +3,7 @@ extends Node
 
 var ranged_enemy_scene = preload("res://enemy/ranged_enemy.tscn")
 var melee_enemy_scene = preload("res://enemy/melee_enemy.tscn")
+var swarm_enemy = preload("res://enemy/swarm.tscn")
 var experience = preload("res://enemy/experience.tscn")
 
 
@@ -74,8 +75,26 @@ func get_point_outside_viewport() -> Vector2:
     return $SpawnPath/SpawnPoint.global_position
 
 
+func spawn_swarm():
+    var spawn_point := get_point_outside_viewport()
+    var swarm = swarm_enemy.instantiate()
+    swarm.global_position = spawn_point
+
+    for enemy in swarm.get_children():
+        enemy.target = $Map/Player
+
+        var death = enemy.get_node("HealthComponent").death
+        death.connect(GameState.add_score.bind(0.2))
+        death.connect(spawn_experience.bind(enemy))
+    $Map.add_child(swarm)
+
 func _on_spawn_timer_timeout():
-    var enemy = ranged_enemy_scene.instantiate() if randi_range(0, 1) == 0 else melee_enemy_scene.instantiate()
+    var num := randi_range(0, 5)
+    if num == 5:
+        spawn_swarm()
+        return
+
+    var enemy = ranged_enemy_scene.instantiate() if num <= 1 else melee_enemy_scene.instantiate()
 
     enemy.target = $Map/Player
     enemy.global_position = get_point_outside_viewport()
@@ -86,12 +105,14 @@ func _on_spawn_timer_timeout():
     death.connect(GameState.add_score.bind(1))
     death.connect(spawn_experience.bind(enemy))
 
+
 func _on_spawn_projectile(projectile: Projectile):
     $Map.call_deferred("add_child", projectile)
 
 
 func spawn_experience(enemy: Enemy):
     var e = experience.instantiate()
-    e.position = enemy.position
+    e.position = enemy.global_position
+    e.experience = enemy.experience
 
     $Map.call_deferred("add_child", e)

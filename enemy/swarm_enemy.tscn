@@ -1,0 +1,143 @@
+[gd_scene load_steps=24 format=3 uid="uid://dc0wlbeang4sy"]
+
+[ext_resource type="Script" path="res://enemy/enemy.gd" id="1_vu4rd"]
+[ext_resource type="PackedScene" uid="uid://cxspkpo4cxc45" path="res://ai/attacker_module.tscn" id="2_cgfjm"]
+[ext_resource type="PackedScene" uid="uid://ddmqjpbhmikah" path="res://ai/chaser_module.tscn" id="3_t0anv"]
+[ext_resource type="PackedScene" uid="uid://bqs5ceshq8c43" path="res://scenes/components/health_component.tscn" id="4_7evva"]
+[ext_resource type="Script" path="res://enemy/sound_component.gd" id="5_1om00"]
+[ext_resource type="AudioStream" uid="uid://565nqggi0beh" path="res://audio/noise/enemy-3.wav" id="6_kp3py"]
+[ext_resource type="AudioStream" uid="uid://criq4jrngrfy7" path="res://audio/noise/enemy.wav" id="7_r8f7s"]
+[ext_resource type="AudioStream" uid="uid://b7onoxp0vqhj7" path="res://audio/noise/enemy-2 2.wav" id="8_vjn0k"]
+[ext_resource type="AudioStream" uid="uid://6uvokxj60cit" path="res://audio/noise/enemy 2.wav" id="9_dvlm6"]
+[ext_resource type="AudioStream" uid="uid://bnfgijmjtdghp" path="res://audio/noise/enemy-2.wav" id="10_2pwqd"]
+[ext_resource type="PackedScene" uid="uid://8ho5oq2a58id" path="res://resources/weapon_component.tscn" id="11_tp6un"]
+[ext_resource type="PackedScene" uid="uid://cpq8qcn88e664" path="res://scenes/components/hitbox_component.tscn" id="12_px7su"]
+[ext_resource type="Texture2D" uid="uid://dktnnf5j4v8qt" path="res://sprites/smalldemon.png" id="13_rawin"]
+[ext_resource type="Texture2D" uid="uid://dutwnxq4ojprf" path="res://sprites/enemy-blood.png" id="14_0ro0x"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_2080b"]
+radius = 36.3456
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_d1agx"]
+radius = 19.0
+height = 48.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kkmn8"]
+atlas = ExtResource("13_rawin")
+region = Rect2(0, 0, 41, 59)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ppnxn"]
+atlas = ExtResource("13_rawin")
+region = Rect2(41, 0, 41, 59)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_gh7ww"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kkmn8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ppnxn")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_b1ax6"]
+atlas = ExtResource("14_0ro0x")
+region = Rect2(0, 0, 29, 28)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_e06ol"]
+atlas = ExtResource("14_0ro0x")
+region = Rect2(29, 0, 29, 28)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_47okv"]
+animations = [{
+"frames": [{
+"duration": 2.0,
+"texture": SubResource("AtlasTexture_b1ax6")
+}, {
+"duration": 6.0,
+"texture": SubResource("AtlasTexture_e06ol")
+}, {
+"duration": 1.0,
+"texture": null
+}],
+"loop": false,
+"name": &"default",
+"speed": 20.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_vuat2"]
+height = 22.0
+
+[node name="SwarmEnemy" type="CharacterBody2D"]
+script = ExtResource("1_vu4rd")
+speed = 150
+experience = 0.2
+metadata/_edit_group_ = true
+
+[node name="AIModules" type="Node" parent="."]
+
+[node name="AttackerModule" parent="AIModules" instance=ExtResource("2_cgfjm")]
+
+[node name="ChaserModule" parent="AIModules" instance=ExtResource("3_t0anv")]
+
+[node name="HealthComponent" parent="." instance=ExtResource("4_7evva")]
+MAX_HEALTH = 25.0
+
+[node name="SoundComponent" type="AudioStreamPlayer2D" parent="."]
+process_mode = 1
+volume_db = -10.0
+pitch_scale = 3.0
+script = ExtResource("5_1om00")
+sounds = {
+"damage": [ExtResource("6_kp3py"), ExtResource("7_r8f7s"), ExtResource("8_vjn0k")],
+"death": [ExtResource("9_dvlm6"), ExtResource("10_2pwqd")]
+}
+
+[node name="WeaponComponent" parent="." instance=ExtResource("11_tp6un")]
+damage = 1
+attack_cooldown = 0.2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="WeaponComponent"]
+shape = SubResource("CircleShape2D_2080b")
+debug_color = Color(0.956863, 0, 0.529412, 0.419608)
+
+[node name="HitBoxComponent" parent="." node_paths=PackedStringArray("health_component") instance=ExtResource("12_px7su")]
+collision_layer = 4
+collision_mask = 2
+health_component = NodePath("../HealthComponent")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitBoxComponent"]
+shape = SubResource("CapsuleShape2D_d1agx")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+scale = Vector2(0.6, 0.6)
+sprite_frames = SubResource("SpriteFrames_gh7ww")
+autoplay = "default"
+
+[node name="DamageIndicator" type="AnimatedSprite2D" parent="."]
+process_mode = 1
+scale = Vector2(0.8, 0.8)
+sprite_frames = SubResource("SpriteFrames_47okv")
+frame = 2
+frame_progress = 1.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 12)
+shape = SubResource("CapsuleShape2D_vuat2")
+
+[node name="HealthBar" type="ProgressBar" parent="."]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -13.0
+offset_top = -38.0
+offset_right = 117.0
+offset_bottom = -11.0
+grow_horizontal = 2
+scale = Vector2(0.2, 0.2)
+
+[connection signal="state_changed" from="." to="." method="_on_state_changed"]
