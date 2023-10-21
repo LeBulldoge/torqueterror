@@ -1,6 +1,13 @@
-[gd_scene load_steps=2 format=3 uid="uid://dlquo6hrey02w"]
+[gd_scene load_steps=5 format=3 uid="uid://dlquo6hrey02w"]
 
 [ext_resource type="Script" path="res://ui/hud.gd" id="1_exnb2"]
+[ext_resource type="Script" path="res://ui/flashing_bar.gd" id="2_bvot2"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_q2ei7"]
+bg_color = Color(0.329412, 0.917647, 0.882353, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1boq8"]
+bg_color = Color(1, 0.105882, 0.223529, 1)
 
 [node name="HUD" type="CanvasLayer"]
 script = ExtResource("1_exnb2")
@@ -37,7 +44,9 @@ custom_minimum_size = Vector2(250, 30)
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 8
+theme_override_styles/fill = SubResource("StyleBoxFlat_q2ei7")
 max_value = 2.08165e-12
+script = ExtResource("2_bvot2")
 
 [node name="Health" type="VBoxContainer" parent="MarginContainer"]
 layout_mode = 2
@@ -55,4 +64,10 @@ layout_mode = 2
 size_flags_horizontal = 8
 size_flags_vertical = 8
 size_flags_stretch_ratio = 7.96
+theme_override_styles/fill = SubResource("StyleBoxFlat_1boq8")
 step = 1.0
+value = 100.0
+script = ExtResource("2_bvot2")
+
+[connection signal="value_changed" from="MarginContainer/Experience/ProgressBar" to="MarginContainer/Experience/ProgressBar" method="_on_value_changed"]
+[connection signal="value_changed" from="MarginContainer/Health/HealthBar" to="MarginContainer/Health/HealthBar" method="_on_value_changed"]
