@@ -1,11 +1,12 @@
 [gd_resource type="Resource" script_class="ChainsawUpgrade" load_steps=4 format=3 uid="uid://cguxhuyo5bibi"]
 
 [ext_resource type="Script" path="res://resources/chainsaw_upgrade.gd" id="1_abc58"]
-[ext_resource type="Texture2D" uid="uid://bxpe2gi8qlk0l" path="res://sprites/chainsaw.png" id="1_i52dd"]
+[ext_resource type="Texture2D" uid="uid://bt0qr6l562ovw" path="res://sprites/chainsaw_icons.png" id="3_tpexj"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_eodw6"]
-atlas = ExtResource("1_i52dd")
-region = Rect2(224, -4, 64, 64)
+[sub_resource type="AtlasTexture" id="AtlasTexture_uw1um"]
+resource_local_to_scene = true
+atlas = ExtResource("3_tpexj")
+region = Rect2(2.08165e-12, 2.08165e-12, 128, 128)
 
 [resource]
 script = ExtResource("1_abc58")
@@ -14,5 +15,5 @@ spin_speed = 1.0
 scale = 1.0
 title = "Chainsaw I"
 description = "[wave]Skin their souls raw[/wave]"
-icon = SubResource("AtlasTexture_eodw6")
+icon = SubResource("AtlasTexture_uw1um")
 single_use = false

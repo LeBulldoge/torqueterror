@@ -1,11 +1,11 @@
 [gd_resource type="Resource" script_class="ChainsawUpgrade" load_steps=4 format=3 uid="uid://bqf0f28lj15ui"]
 
+[ext_resource type="Texture2D" uid="uid://bt0qr6l562ovw" path="res://sprites/chainsaw_icons.png" id="1_4d7ld"]
 [ext_resource type="Script" path="res://resources/chainsaw_upgrade.gd" id="1_6ml3y"]
-[ext_resource type="Texture2D" uid="uid://bxpe2gi8qlk0l" path="res://sprites/chainsaw.png" id="1_7gqwr"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_eodw6"]
-atlas = ExtResource("1_7gqwr")
-region = Rect2(224, -4, 52, 32)
+[sub_resource type="AtlasTexture" id="AtlasTexture_77ds4"]
+atlas = ExtResource("1_4d7ld")
+region = Rect2(128, 2.08165e-12, 128, 128)
 
 [resource]
 script = ExtResource("1_6ml3y")
@@ -14,5 +14,5 @@ spin_speed = 1.2
 scale = 1.1
 title = "Chainsaw II"
 description = "Upgrade for your [wave]chainsaw"
-icon = SubResource("AtlasTexture_eodw6")
+icon = SubResource("AtlasTexture_77ds4")
 single_use = false
