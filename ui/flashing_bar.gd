@@ -18,7 +18,7 @@ func _ready():
 
 func _on_value_changed(_value):
     if flash_tween:
-        flash_tween.kill
+        flash_tween.kill()
 
     flash_tween = create_tween()
     flash_tween.tween_property(style, "bg_color", flash_color, flash_duration)

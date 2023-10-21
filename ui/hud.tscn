@@ -47,6 +47,7 @@ size_flags_vertical = 8
 theme_override_styles/fill = SubResource("StyleBoxFlat_q2ei7")
 max_value = 2.08165e-12
 script = ExtResource("2_bvot2")
+flash_color = Color(0.643137, 0.917647, 0.882353, 0.992157)
 
 [node name="Health" type="VBoxContainer" parent="MarginContainer"]
 layout_mode = 2
@@ -68,6 +69,7 @@ theme_override_styles/fill = SubResource("StyleBoxFlat_1boq8")
 step = 1.0
 value = 100.0
 script = ExtResource("2_bvot2")
+flash_color = Color(1, 0.321569, 0.321569, 0.690196)
 
 [connection signal="value_changed" from="MarginContainer/Experience/ProgressBar" to="MarginContainer/Experience/ProgressBar" method="_on_value_changed"]
 [connection signal="value_changed" from="MarginContainer/Health/HealthBar" to="MarginContainer/Health/HealthBar" method="_on_value_changed"]
