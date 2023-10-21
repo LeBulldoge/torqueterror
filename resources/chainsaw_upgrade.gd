@@ -11,7 +11,7 @@ var chainsaw_scene = preload("res://weapons/chainsaw.tscn")
 
 
 func apply(player: Player):
-    var chainsaw: Chainsaw = get_chainsaw(player.get_node("Weapons").get_children())
+    var chainsaw := get_chainsaw(player.get_node("Weapons").get_children())
     if chainsaw == null:
         chainsaw = chainsaw_scene.instantiate()
         player.get_node("Weapons").add_child(chainsaw)

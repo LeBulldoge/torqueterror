@@ -51,12 +51,10 @@ _data = {
 }
 
 [node name="Chainsaw" type="Area2D"]
-rotation = 3.52383
+rotation = 2.80445
 collision_layer = 256
 collision_mask = 4
 script = ExtResource("1_30tyf")
-damage = 15
-spin_speed = 2.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(112.75, 0)
@@ -66,7 +64,7 @@ shape = SubResource("RectangleShape2D_tj1ut")
 position = Vector2(67, -3)
 sprite_frames = SubResource("SpriteFrames_2fi0g")
 autoplay = "default"
-frame_progress = 0.394323
+frame_progress = 0.249398
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 autoplay = "rotation"

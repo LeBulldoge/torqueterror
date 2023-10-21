@@ -3,11 +3,11 @@ extends Area2D
 
 
 @export var damage := 1.0
-@export var spin_speed := 1.0
+@export var attack_speed := 1.0
 
 
 func _ready():
-    set_speed(spin_speed)
+    set_speed(attack_speed)
 
 
 func set_sprite(sprite: Texture2D):

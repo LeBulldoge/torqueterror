@@ -21,6 +21,7 @@ func _ready():
     $HUD.set_level(GameState.level, GameState.get_level_requirement())
 
 
+
 func _on_level_up(level: int, _new_max: float):
     get_tree().paused = true
 

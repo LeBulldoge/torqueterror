@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="UpgradeTrack" load_steps=7 format=3 uid="uid://b7enw0qfggldt"]
+
+[ext_resource type="Script" path="res://resources/upgrade_track.gd" id="1_qib2a"]
+[ext_resource type="Resource" uid="uid://m3yeh64hevct" path="res://resources/upgrades/bat_upgrade_I.tres" id="2_pki1g"]
+[ext_resource type="Resource" uid="uid://y7avml1v7sej" path="res://resources/upgrades/bat_upgrade_II.tres" id="3_8dtck"]
+[ext_resource type="Resource" uid="uid://baxwjepnlukac" path="res://resources/upgrades/bat_upgrade_III.tres" id="4_yc72u"]
+[ext_resource type="Resource" uid="uid://e225oqepk6rk" path="res://resources/upgrades/bat_upgrade_IV.tres" id="5_7j5bf"]
+[ext_resource type="Resource" uid="uid://dw6n5n8tu3xsv" path="res://resources/upgrades/bat_upgrade_V.tres" id="6_wwi43"]
+
+[resource]
+script = ExtResource("1_qib2a")
+key = "bat"
+upgrades = Array[Resource("res://resources/upgrade.gd")]([ExtResource("2_pki1g"), ExtResource("3_8dtck"), ExtResource("4_yc72u"), ExtResource("5_7j5bf"), ExtResource("6_wwi43")])

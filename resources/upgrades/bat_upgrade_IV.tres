@@ -1,0 +1,20 @@
+[gd_resource type="Resource" script_class="BatUpgrade" load_steps=4 format=3 uid="uid://e225oqepk6rk"]
+
+[ext_resource type="Texture2D" uid="uid://b4t58c8uqujdk" path="res://sprites/armbat.png" id="1_cyhuf"]
+[ext_resource type="Script" path="res://resources/bat_upgrade.gd" id="2_6s6e2"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_eww7j"]
+atlas = ExtResource("1_cyhuf")
+region = Rect2(40, -28, 80, 128)
+
+[resource]
+script = ExtResource("2_6s6e2")
+damage = 20.0
+attack_speed = 3.0
+scale = 1.8
+side = 0
+position = Vector2(0, 0)
+title = "Hitchhiker with a bat IV"
+description = "Better run home"
+icon = SubResource("AtlasTexture_eww7j")
+single_use = false

@@ -1,9 +1,10 @@
-[gd_scene load_steps=4 format=3 uid="uid://bx3lxglo7vyjs"]
+[gd_scene load_steps=5 format=3 uid="uid://bx3lxglo7vyjs"]
 
 [ext_resource type="Script" path="res://scripts/game_state.gd" id="1_yl640"]
 [ext_resource type="Resource" uid="uid://ciyh3mt10mj5l" path="res://resources/car_damage_track.tres" id="2_lbgxt"]
 [ext_resource type="Resource" uid="uid://r3bamcexwayh" path="res://resources/chainsaw_upgrade_track.tres" id="3_502dt"]
+[ext_resource type="Resource" uid="uid://b7enw0qfggldt" path="res://resources/tracks/bat_upgrade_track.tres" id="4_yxqyl"]
 
 [node name="GameState" type="Node"]
 script = ExtResource("1_yl640")
-upgrade_pool = Array[Resource]([ExtResource("2_lbgxt"), ExtResource("3_502dt")])
+upgrade_pool = Array[Resource]([ExtResource("2_lbgxt"), ExtResource("3_502dt"), ExtResource("4_yxqyl")])
