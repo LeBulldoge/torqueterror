@@ -38,10 +38,10 @@ func add_score(value: int) -> void:
     score_changed.emit(score)
 
 
-@export var upgrade_pool: Array[Upgrade]
-func get_random_upgrades(count: int) -> Array[Upgrade]:
-    var results: Array[Upgrade] = []
-    while count != 0:
+@export var upgrade_pool: Array[Resource]
+func get_random_upgrades(count: int) -> Array[Resource]:
+    var results: Array[Resource] = []
+    while count != 0 and results.size() != upgrade_pool.size():
         var idx = randi_range(0, upgrade_pool.size() - 1)
         if results.has(upgrade_pool[idx]):
             continue
@@ -52,3 +52,5 @@ func get_random_upgrades(count: int) -> Array[Upgrade]:
     return results
 
 
+func choose_upgrade(upgrade: Resource):
+    upgrade_pool.remove_at(upgrade_pool.find(upgrade))

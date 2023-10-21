@@ -21,16 +21,31 @@ func _ready():
     $HUD.set_level(GameState.level, GameState.get_level_requirement())
 
 
-var icon = preload("res://icon.svg")
 func _on_level_up(level: int, _new_max: float):
     get_tree().paused = true
 
     var upgrades = GameState.get_random_upgrades(level)
+    if upgrades.is_empty():
+        return
+
     for upgrade in upgrades:
+        if upgrade is UpgradeTrack:
+            upgrade = upgrade.get_current()
         $LevelUpScreen.add_upgrade_item(upgrade.title, upgrade.icon, upgrade.description)
 
-    var upgrade = await $LevelUpScreen.choose_upgrade()
-    upgrades[upgrade].apply($Map/Player)
+    var chosen_upgrade_id = await $LevelUpScreen.choose_upgrade()
+    var chosen_upgrade = upgrades[chosen_upgrade_id]
+
+    var upgrade: Upgrade
+    if chosen_upgrade is UpgradeTrack:
+        upgrade = chosen_upgrade.get_current()
+        if chosen_upgrade.next_level():
+            GameState.choose_upgrade(chosen_upgrade)
+    else:
+        upgrade = chosen_upgrade
+        GameState.choose_upgrade(upgrade)
+
+    upgrade.apply($Map/Player)
 
     get_tree().paused = false
 
