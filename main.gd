@@ -8,8 +8,6 @@ var experience = preload("res://enemy/experience.tscn")
 
 
 func _ready():
-    start_game()
-
     $Map/Player/HealthComponent.health_changed.connect($HUD.display_health)
     $HUD.display_health($Map/Player/HealthComponent.MAX_HEALTH)
     $Map/Player/HealthComponent.death.connect(game_over)
@@ -21,6 +19,10 @@ func _ready():
     GameState.level_changed.connect(_on_level_up)
     GameState.level_changed.connect($HUD.set_level)
     $HUD.set_level(GameState.level, GameState.get_level_requirement())
+
+    GameDirector.game_timer_timeout.connect(game_over.bind(true))
+
+    start_game()
 
 
 func _on_level_up(_level: int, _new_max: float):
@@ -63,11 +65,16 @@ func start_game():
     $SpawnTimer.start()
 
 
-func game_over():
+func game_over(win: bool = false):
     GameDirector.stop_game()
     $SpawnTimer.stop()
+
+    get_tree().paused = true
+    await $HUD.game_over(win)
     get_tree().call_group("enemies", "queue_free")
     get_tree().change_scene_to_file("res://ui/main_menu.tscn")
+    get_tree().paused = false
+
     GameState.reset()
 
 

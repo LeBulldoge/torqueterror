@@ -4,7 +4,9 @@ extends CanvasLayer
 
 func _ready():
     var timeout = get_tree().create_timer(3).timeout
-    timeout.connect($MarginContainer/StartLabel.hide)
+    timeout.connect($MessageLabel.hide)
+    timeout.connect($FadePanel.hide)
+    $AnimationPlayer.play("fade_in")
 
 
 func _process(_delta):
@@ -36,6 +38,23 @@ func display_experience(experience: float):
 func set_experience_max(new_max: float):
     $MarginContainer/Experience/ProgressBar.max_value = new_max
 
-
 func set_experience_min(new_min: float):
     $MarginContainer/Experience/ProgressBar.min_value = new_min
+
+
+func game_over(win: bool) -> Signal:
+    var message: String = "[center]"
+    if win:
+        message += "You won!"
+    else:
+        message += "You lose!"
+    message += "\n\nSurvived for " + $MarginContainer/Progress/GameTimer.text
+    var label = $MessageLabel
+    label.parse_bbcode(message)
+    label.show()
+    $FadePanel.show()
+    var timeout = get_tree().create_timer(3).timeout
+    timeout.connect(label.hide)
+    timeout.connect($FadePanel.hide)
+    $AnimationPlayer.play("fade_out")
+    return timeout
