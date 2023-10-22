@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://chnlkisvev6n1"]
+[gd_scene load_steps=28 format=3 uid="uid://chnlkisvev6n1"]
 
 [ext_resource type="PackedScene" uid="uid://bqs5ceshq8c43" path="res://scenes/components/health_component.tscn" id="1_2ytxk"]
 [ext_resource type="Script" path="res://enemy/enemy.gd" id="1_tj1hn"]
@@ -14,6 +14,7 @@
 [ext_resource type="AudioStream" uid="uid://criq4jrngrfy7" path="res://audio/noise/enemy.wav" id="11_xggij"]
 [ext_resource type="AudioStream" uid="uid://6uvokxj60cit" path="res://audio/noise/enemy 2.wav" id="12_jhlue"]
 [ext_resource type="AudioStream" uid="uid://bnfgijmjtdghp" path="res://audio/noise/enemy-2.wav" id="13_u457h"]
+[ext_resource type="AnimationLibrary" uid="uid://bjhn3fgoqgyck" path="res://animations/enemies.res" id="15_d8bch"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_2080b"]
 radius = 36.3456
@@ -80,10 +81,47 @@ animations = [{
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_vuat2"]
 height = 28.0
 
-[node name="MeleeEnemy" type="CharacterBody2D"]
+[sub_resource type="Animation" id="Animation_yj8a5"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(2.08165e-12, 2.08165e-12)]
+}
+
+[sub_resource type="Animation" id="Animation_a5unx"]
+resource_name = "attack"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3, 0.6, 1),
+"transitions": PackedFloat32Array(1, 0.435275, 1, 0.233258),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(-10, -4), Vector2(-10, 2.08165e-12), Vector2(0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_lsi7f"]
+_data = {
+"RESET": SubResource("Animation_yj8a5"),
+"attack": SubResource("Animation_a5unx")
+}
+
+[node name="MeleeEnemy" type="CharacterBody2D" node_paths=PackedStringArray("animation")]
 script = ExtResource("1_tj1hn")
 speed = 100
 experience = 1.0
+animation = NodePath("AnimationPlayer")
 metadata/_edit_group_ = true
 
 [node name="AIModules" type="Node" parent="."]
@@ -104,6 +142,7 @@ sounds = {
 }
 
 [node name="WeaponComponent" parent="." instance=ExtResource("5_2viey")]
+damage = 1.0
 attack_cooldown = 0.2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="WeaponComponent"]
@@ -119,6 +158,7 @@ health_component = NodePath("../HealthComponent")
 shape = SubResource("CapsuleShape2D_d1agx")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(2.08165e-12, 2.08165e-12)
 scale = Vector2(0.6, 0.6)
 sprite_frames = SubResource("SpriteFrames_gh7ww")
 animation = &"attack"
@@ -146,4 +186,11 @@ offset_bottom = -11.0
 grow_horizontal = 2
 scale = Vector2(0.2, 0.2)
 
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_lsi7f"),
+"enemies": ExtResource("15_d8bch")
+}
+
 [connection signal="state_changed" from="." to="." method="_on_state_changed"]
+[connection signal="attacked" from="WeaponComponent" to="." method="_on_weapon_component_attacked"]

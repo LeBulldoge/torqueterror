@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://dc0wlbeang4sy"]
+[gd_scene load_steps=25 format=3 uid="uid://dc0wlbeang4sy"]
 
 [ext_resource type="Script" path="res://enemy/enemy.gd" id="1_vu4rd"]
 [ext_resource type="PackedScene" uid="uid://cxspkpo4cxc45" path="res://ai/attacker_module.tscn" id="2_cgfjm"]
@@ -14,9 +14,10 @@
 [ext_resource type="PackedScene" uid="uid://cpq8qcn88e664" path="res://scenes/components/hitbox_component.tscn" id="12_px7su"]
 [ext_resource type="Texture2D" uid="uid://dktnnf5j4v8qt" path="res://sprites/smalldemon.png" id="13_rawin"]
 [ext_resource type="Texture2D" uid="uid://dutwnxq4ojprf" path="res://sprites/enemy-blood.png" id="14_0ro0x"]
+[ext_resource type="AnimationLibrary" uid="uid://bjhn3fgoqgyck" path="res://animations/enemies.res" id="15_dmr4d"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_2080b"]
-radius = 36.3456
+radius = 26.0
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_d1agx"]
 radius = 19.0
@@ -72,10 +73,11 @@ animations = [{
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_vuat2"]
 height = 22.0
 
-[node name="SwarmEnemy" type="CharacterBody2D"]
+[node name="SwarmEnemy" type="CharacterBody2D" node_paths=PackedStringArray("animation")]
 script = ExtResource("1_vu4rd")
 speed = 150
 experience = 0.2
+animation = NodePath("AnimationPlayer")
 metadata/_edit_group_ = true
 
 [node name="AIModules" type="Node" parent="."]
@@ -140,4 +142,10 @@ offset_bottom = -11.0
 grow_horizontal = 2
 scale = Vector2(0.2, 0.2)
 
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"enemies": ExtResource("15_dmr4d")
+}
+
 [connection signal="state_changed" from="." to="." method="_on_state_changed"]
+[connection signal="attacked" from="WeaponComponent" to="." method="_on_weapon_component_attacked"]

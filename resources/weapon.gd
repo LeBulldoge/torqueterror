@@ -8,16 +8,14 @@ enum WeaponType { Melee, Ranged }
 @export var attack_cooldown := 1.0
 
 @onready var attack_timer: Timer = $AttackTimer
-
+signal attacked()
 
 func _ready():
     attack_timer.wait_time = attack_cooldown
 
 
 func start_attack(target: HitBoxComponent):
-    var target_health = target.health_component
-
-    attack_timer.timeout.connect(attack.bind(target, target_health))
+    attack_timer.timeout.connect(attack.bind(target))
     attack_timer.start()
 
 
@@ -26,12 +24,12 @@ func stop_attack():
     attack_timer.timeout.disconnect(attack)
 
 
-func attack(target: HitBoxComponent, health: HealthComponent):
+func attack(target: HitBoxComponent):
     if type == WeaponType.Ranged:
         shoot(target.global_position)
     else:
         target.positional_damage(damage, global_position)
-
+    attacked.emit()
 
 func apply_damage(health: HealthComponent):
     health.damage(damage)

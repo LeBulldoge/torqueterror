@@ -13,6 +13,8 @@ signal state_changed(new_state)
 @onready var ai_module_group = str(get_instance_id()) + "_ai_modules"
 @onready var weapon = $WeaponComponent as Weapon
 @onready var sprite = $AnimatedSprite2D as AnimatedSprite2D
+@export var animation: AnimationPlayer
+
 
 func _ready():
     assert(target, "Enemy node requires a target")
@@ -74,3 +76,11 @@ func _on_state_changed(new_state):
             sprite.play("attack")
     else:
         sprite.play("default")
+        if animation and animation.has_animation("enemies/idle"):
+            animation.play("enemies/idle")
+
+
+func _on_weapon_component_attacked():
+    if animation and animation.has_animation("enemies/attack"):
+        animation.stop()
+        animation.play("enemies/attack")
