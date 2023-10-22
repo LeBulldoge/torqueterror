@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://bshdtmm0xd7ho"]
+
+[ext_resource type="Script" path="res://scripts/game_director.gd" id="1_fvcrl"]
+
+[sub_resource type="Curve" id="Curve_etptr"]
+max_value = 10.0
+_data = [Vector2(2.08165e-12, 1), 0.0, 0.0, 0, 0, Vector2(0.144, 1.2), 0.0, 0.0, 0, 0, Vector2(0.253618, 1.55896), 0.0, 0.0, 0, 0, Vector2(0.503656, 5.9529), 0.0, 0.0, 0, 0, Vector2(1, 10), 0.0, 0.0, 0, 0]
+point_count = 5
+
+[node name="GameDirector" type="Node"]
+script = ExtResource("1_fvcrl")
+difficulty_curve = SubResource("Curve_etptr")
+game_length = 600.0
+
+[node name="GameTimer" type="Timer" parent="."]
+
+[connection signal="timeout" from="GameTimer" to="." method="_on_game_timer_timeout"]

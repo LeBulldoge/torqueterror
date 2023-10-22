@@ -20,6 +20,7 @@ func _ready():
     assert(target, "Enemy node requires a target")
 
     add_to_group("enemies")
+    apply_difficulty()
 
     $HealthBar.max_value = $HealthComponent.MAX_HEALTH
     $HealthBar.value = $HealthComponent.MAX_HEALTH
@@ -29,6 +30,12 @@ func _ready():
     for module in $AIModules.get_children():
         module.add_to_group(ai_module_group)
         module.setup(self)
+
+
+func apply_difficulty():
+    var difficulty := GameDirector.get_difficulty_value()
+    $HealthComponent.MAX_HEALTH = $HealthComponent.MAX_HEALTH * difficulty
+    $WeaponComponent.damage = $WeaponComponent.damage * difficulty
 
 
 func display_health(value):

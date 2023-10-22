@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://dlquo6hrey02w"]
+[gd_scene load_steps=6 format=3 uid="uid://dlquo6hrey02w"]
 
 [ext_resource type="Script" path="res://ui/hud.gd" id="1_exnb2"]
 [ext_resource type="Script" path="res://ui/flashing_bar.gd" id="2_bvot2"]
+[ext_resource type="FontFile" uid="uid://djbdfcxygn7e2" path="res://fonts/destroya/Destroya.ttf" id="2_r7pld"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_q2ei7"]
 bg_color = Color(0.329412, 0.917647, 0.882353, 1)
@@ -23,12 +24,39 @@ theme_override_constants/margin_top = 30
 theme_override_constants/margin_right = 30
 theme_override_constants/margin_bottom = 30
 
+[node name="StartLabel" type="RichTextLabel" parent="MarginContainer"]
+layout_mode = 2
+size_flags_vertical = 4
+theme_override_fonts/normal_font = ExtResource("2_r7pld")
+theme_override_font_sizes/normal_font_size = 30
+bbcode_enabled = true
+text = "[center][shake rate=20 level=20 connected=1]Survive..."
+fit_content = true
+
 [node name="Score" type="Label" parent="MarginContainer"]
 layout_mode = 2
 size_flags_horizontal = 8
 size_flags_vertical = 0
 theme_override_font_sizes/font_size = 30
 text = "0"
+
+[node name="Progress" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+
+[node name="GameTimer" type="Label" parent="MarginContainer/Progress"]
+layout_mode = 2
+size_flags_vertical = 0
+theme_override_fonts/font = ExtResource("2_r7pld")
+theme_override_font_sizes/font_size = 30
+horizontal_alignment = 1
+
+[node name="GameProgress" type="ProgressBar" parent="MarginContainer/Progress"]
+custom_minimum_size = Vector2(100, 10)
+layout_mode = 2
+max_value = 1.0
+show_percentage = false
 
 [node name="Experience" type="VBoxContainer" parent="MarginContainer"]
 layout_mode = 2

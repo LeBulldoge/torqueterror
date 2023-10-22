@@ -2,6 +2,17 @@ class_name HUD
 extends CanvasLayer
 
 
+func _ready():
+    var timeout = get_tree().create_timer(3).timeout
+    timeout.connect($MarginContainer/StartLabel.hide)
+
+
+func _process(_delta):
+    var elapsed = GameDirector.get_elapsed_time()
+    $MarginContainer/Progress/GameTimer.text = "%d:%02d" % [(elapsed / 60), (int(elapsed) % 60)]
+    $MarginContainer/Progress/GameProgress.value = GameDirector._get_normalized_elapsed_time()
+
+
 func display_health(health: int):
     $MarginContainer/Health/HealthBar.value = health
 

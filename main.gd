@@ -23,10 +23,10 @@ func _ready():
     $HUD.set_level(GameState.level, GameState.get_level_requirement())
 
 
-func _on_level_up(level: int, _new_max: float):
+func _on_level_up(_level: int, _new_max: float):
     get_tree().paused = true
 
-    var upgrade = await choose_upgrade(level)
+    var upgrade = await choose_upgrade(3)
     if upgrade != null:
         upgrade.apply($Map/Player)
 
@@ -59,10 +59,12 @@ func choose_upgrade(level: int) -> Upgrade:
 
 
 func start_game():
+    GameDirector.start_game()
     $SpawnTimer.start()
 
 
 func game_over():
+    GameDirector.stop_game()
     $SpawnTimer.stop()
     get_tree().call_group("enemies", "queue_free")
     get_tree().change_scene_to_file("res://ui/main_menu.tscn")
