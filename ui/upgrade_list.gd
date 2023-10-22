@@ -25,7 +25,7 @@ func _on_list_gui_input(event: InputEvent):
 
 func _on_list_item_selected(index: int):
     var desc = $List.get_item_metadata(index)
-    $Description.parse_bbcode(desc)
+    $Description.parse_bbcode("[center]" + desc)
 
 
 func _on_list_item_clicked(index: int, _at_position, _mouse_button_index):

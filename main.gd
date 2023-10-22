@@ -23,7 +23,6 @@ func _ready():
     GameDirector.game_timer_timeout.connect(game_over.bind(true))
 
     start_game()
-    await _on_level_up(0,0)
 
 
 func _on_level_up(_level: int, _new_max: float):

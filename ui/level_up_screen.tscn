@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://bf4f8s67xhjb1"]
+[gd_scene load_steps=5 format=3 uid="uid://bf4f8s67xhjb1"]
 
 [ext_resource type="Script" path="res://ui/level_up_screen.gd" id="1_t0gr2"]
 [ext_resource type="Script" path="res://ui/upgrade_list.gd" id="2_1biks"]
 [ext_resource type="Texture2D" uid="uid://t66upf80k4ys" path="res://sprites/menu.png" id="2_ufwof"]
+[ext_resource type="FontFile" uid="uid://djbdfcxygn7e2" path="res://fonts/destroya/Destroya.ttf" id="3_jbdng"]
 
 [node name="LevelUpScreen" type="CanvasLayer"]
 script = ExtResource("1_t0gr2")
@@ -61,12 +62,14 @@ theme_override_constants/margin_bottom = 60
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/Panel/MarginContainer"]
 layout_mode = 2
-theme_override_constants/separation = 60
+theme_override_constants/separation = 30
 
 [node name="Label" type="Label" parent="MarginContainer/Panel/MarginContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 0
+theme_override_fonts/font = ExtResource("3_jbdng")
+theme_override_font_sizes/font_size = 20
 text = "Level Up!"
 
 [node name="UpgradeList" type="VBoxContainer" parent="MarginContainer/Panel/MarginContainer/VBoxContainer"]
@@ -86,6 +89,7 @@ icon_mode = 0
 
 [node name="Description" type="RichTextLabel" parent="MarginContainer/Panel/MarginContainer/VBoxContainer/UpgradeList"]
 layout_mode = 2
+theme_override_font_sizes/normal_font_size = 16
 bbcode_enabled = true
 fit_content = true
 
