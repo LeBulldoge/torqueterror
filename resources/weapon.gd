@@ -26,11 +26,11 @@ func stop_attack():
     attack_timer.timeout.disconnect(attack)
 
 
-func attack(target: Node2D, health: HealthComponent):
+func attack(target: HitBoxComponent, health: HealthComponent):
     if type == WeaponType.Ranged:
         shoot(target.global_position)
     else:
-        apply_damage(health)
+        target.positional_damage(damage, global_position)
 
 
 func apply_damage(health: HealthComponent):

@@ -27,7 +27,7 @@ func _on_area_entered(area: Area2D) -> void:
         return
 
     var hitbox = area as HitBoxComponent
-    hitbox.damage(damage)
+    hitbox.positional_damage(damage, global_position)
     if pierce > 0:
         pierce -= 1
     else:

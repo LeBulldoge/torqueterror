@@ -192,5 +192,6 @@ linear_damp = 1.0
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ExperienceComponent/GravityFunnel"]
 shape = SubResource("CircleShape2D_j8qdt")
 
+[connection signal="pos_damage_taken" from="HitBoxComponent" to="." method="_on_hit_box_component_pos_damage_taken"]
 [connection signal="area_entered" from="HurtBoxComponent" to="." method="_on_hurt_box_component_area_entered"]
 [connection signal="body_entered" from="ExperienceComponent" to="." method="_on_experience_component_body_entered"]
