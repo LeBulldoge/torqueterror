@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="TurretUpgrade" load_steps=3 format=3 uid="uid://c2i7i2t00fckj"]
+
+[ext_resource type="Texture2D" uid="uid://bqs2kod2xac7k" path="res://icon.svg" id="1_6mj78"]
+[ext_resource type="Script" path="res://resources/upgrades/turret_upgrade.gd" id="2_8pi26"]
+
+[resource]
+script = ExtResource("2_8pi26")
+damage = 30.0
+attack_range = 350.0
+attack_speed = 0.6
+side = 0
+position = Vector2(0, 0)
+title = "Turret IV"
+description = "Pew pew"
+icon = ExtResource("1_6mj78")
+single_use = false

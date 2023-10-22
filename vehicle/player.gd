@@ -4,6 +4,15 @@ extends Vehicle
 
 @export var velocity_damage_modifier = 0.0
 
+signal shoot_projectile(projectile: Projectile)
+func _ready():
+    for weapon in $Weapons.get_children():
+        weapon.shoot_projectile.connect(_on_shoot_projectile)
+
+
+func _on_shoot_projectile(proj: Projectile):
+    shoot_projectile.emit(proj)
+
 
 func _input(_event):
     var new_drive_dir = Input.get_axis("decelerate", "accelerate")
@@ -21,6 +30,7 @@ func _input(_event):
 func _physics_process(delta):
     self.move_vehicle(delta)
     pitch_engine_sound()
+
 
 func switch_brake_lights(value: bool):
     $BrakeLightLeft.enabled = value

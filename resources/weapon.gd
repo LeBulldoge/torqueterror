@@ -3,7 +3,7 @@ extends Area2D
 
 enum WeaponType { Melee, Ranged }
 
-@export var damage := 0
+@export var damage := 0.0
 @export var type: WeaponType
 @export var attack_cooldown := 1.0
 

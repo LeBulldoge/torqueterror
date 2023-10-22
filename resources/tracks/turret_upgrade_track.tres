@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="UpgradeTrack" load_steps=7 format=3 uid="uid://74qrag3vj0pw"]
+
+[ext_resource type="Script" path="res://resources/upgrade_track.gd" id="1_kawt0"]
+[ext_resource type="Resource" uid="uid://tu6dauyhig8r" path="res://resources/upgrades/turret_upgrade_I.tres" id="2_eqn52"]
+[ext_resource type="Resource" uid="uid://l4ktlp7hdc3d" path="res://resources/upgrades/turret_upgrade_II.tres" id="3_2b2i0"]
+[ext_resource type="Resource" uid="uid://dmmke2bhxj2vi" path="res://resources/upgrades/turret_upgrade_III.tres" id="4_f4cx4"]
+[ext_resource type="Resource" uid="uid://c2i7i2t00fckj" path="res://resources/upgrades/turret_upgrade_IV.tres" id="5_t0npf"]
+[ext_resource type="Resource" uid="uid://c58ow17ihnhwi" path="res://resources/upgrades/turret_upgrade_V.tres" id="6_6bptt"]
+
+[resource]
+script = ExtResource("1_kawt0")
+key = "turret"
+upgrades = Array[Resource("res://resources/upgrade.gd")]([ExtResource("2_eqn52"), ExtResource("3_2b2i0"), ExtResource("4_f4cx4"), ExtResource("5_t0npf"), ExtResource("6_6bptt")])

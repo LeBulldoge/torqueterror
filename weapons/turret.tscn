@@ -1,0 +1,34 @@
+[gd_scene load_steps=4 format=3 uid="uid://2l8oobmknkil"]
+
+[ext_resource type="Script" path="res://weapons/turret.gd" id="1_k1rf1"]
+[ext_resource type="Texture2D" uid="uid://bo6fqdfoixbf2" path="res://sprites/guns.png" id="1_k7gux"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_g6qf5"]
+radius = 200.0
+
+[node name="Turret" type="Area2D"]
+collision_layer = 256
+collision_mask = 4
+script = ExtResource("1_k1rf1")
+
+[node name="Mount" type="Sprite2D" parent="."]
+position = Vector2(7, 2)
+texture = ExtResource("1_k7gux")
+region_enabled = true
+region_rect = Rect2(26, 12, 16, 30)
+
+[node name="Gun" type="Sprite2D" parent="."]
+position = Vector2(11, -1)
+texture = ExtResource("1_k7gux")
+region_enabled = true
+region_rect = Rect2(44, 14, 8, 18)
+
+[node name="AttackRadius" type="CollisionShape2D" parent="."]
+position = Vector2(12, 0)
+shape = SubResource("CircleShape2D_g6qf5")
+
+[node name="Timer" type="Timer" parent="."]
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
+[connection signal="area_exited" from="." to="." method="_on_area_exited"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

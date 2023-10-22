@@ -13,6 +13,7 @@ func _ready():
     $Map/Player/HealthComponent.health_changed.connect($HUD.display_health)
     $HUD.display_health($Map/Player/HealthComponent.MAX_HEALTH)
     $Map/Player/HealthComponent.death.connect(game_over)
+    $Map/Player.shoot_projectile.connect(_on_spawn_projectile)
 
     GameState.score_changed.connect($HUD.display_score)
     GameState.experience_changed.connect($HUD.display_experience)
@@ -87,6 +88,7 @@ func spawn_swarm():
         death.connect(GameState.add_score.bind(0.2))
         death.connect(spawn_experience.bind(enemy))
     $Map.add_child(swarm)
+
 
 func _on_spawn_timer_timeout():
     var num := randi_range(0, 5)

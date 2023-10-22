@@ -149,7 +149,6 @@ sounds = {
 [node name="HealthComponent" parent="." instance=ExtResource("3_k6xi5")]
 
 [node name="WeaponComponent" parent="." instance=ExtResource("5_4foag")]
-damage = 1
 type = 1
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="WeaponComponent"]
@@ -158,7 +157,7 @@ debug_color = Color(0.964706, 0, 0.501961, 0.419608)
 
 [node name="HitBoxComponent" parent="." node_paths=PackedStringArray("health_component") instance=ExtResource("4_gjpqc")]
 collision_layer = 4
-collision_mask = 2
+collision_mask = 34
 health_component = NodePath("../HealthComponent")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HitBoxComponent"]

@@ -1,20 +1,20 @@
-[gd_scene load_steps=4 format=3 uid="uid://bb4gsdnyngpy"]
+[gd_scene load_steps=4 format=3 uid="uid://xxq3j8p010g8"]
 
-[ext_resource type="Script" path="res://scenes/projectile.gd" id="1_s087w"]
-[ext_resource type="Texture2D" uid="uid://6qeeq0etgy13" path="res://sprites/fireball.png" id="2_vis5p"]
+[ext_resource type="Script" path="res://scenes/projectile.gd" id="1_k13rs"]
+[ext_resource type="Texture2D" uid="uid://6qeeq0etgy13" path="res://sprites/fireball.png" id="2_jtud8"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_hlucg"]
 radius = 6.0
 height = 34.0
 
 [node name="Projectile" type="Area2D"]
-collision_layer = 16
-collision_mask = 2
-script = ExtResource("1_s087w")
+collision_layer = 32
+collision_mask = 4
+script = ExtResource("1_k13rs")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 rotation = -1.5708
-texture = ExtResource("2_vis5p")
+texture = ExtResource("2_jtud8")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 rotation = -1.5708
@@ -23,13 +23,6 @@ shape = SubResource("CapsuleShape2D_hlucg")
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
 position = Vector2(-18, 0)
 scale = Vector2(0.5, 0.6)
-
-[node name="PointLight2D" type="PointLight2D" parent="."]
-position = Vector2(20, 0)
-rotation = -1.5708
-scale = Vector2(2, 1.00433)
-color = Color(0.552941, 0, 0.0980392, 0.419608)
-texture = ExtResource("2_vis5p")
 
 [connection signal="area_entered" from="." to="." method="_on_area_entered"]
 [connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]
