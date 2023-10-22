@@ -28,6 +28,7 @@ polygon = PackedVector2Array(19, 61, 15, 43, 8, -35, -1, -36, -15, 48, -21, 59, 
 script = ExtResource("1_mpdvn")
 
 [node name="HUD" parent="." instance=ExtResource("2_okvge")]
+visible = false
 
 [node name="LevelUpScreen" parent="." instance=ExtResource("3_hih0x")]
 process_mode = 3

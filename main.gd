@@ -61,6 +61,7 @@ func choose_upgrade(level: int) -> Upgrade:
 
 
 func start_game():
+    $HUD.show()
     GameDirector.start_game()
     $SpawnTimer.start()
 
