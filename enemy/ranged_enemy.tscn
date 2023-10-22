@@ -149,6 +149,7 @@ sounds = {
 [node name="HealthComponent" parent="." instance=ExtResource("3_k6xi5")]
 
 [node name="WeaponComponent" parent="." instance=ExtResource("5_4foag")]
+damage = 5.0
 type = 1
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="WeaponComponent"]
