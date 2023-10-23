@@ -10,9 +10,9 @@ region = Rect2(2.08165e-12, 2.08165e-12, 128, 128)
 
 [resource]
 script = ExtResource("1_abc58")
-damage = 10.0
+damage = 15.0
 spin_speed = 1.0
-scale = 1.0
+scale = 1.2
 title = "Chainsaw I"
 description = "[wave]Skin their souls raw[/wave]"
 icon = SubResource("AtlasTexture_uw1um")

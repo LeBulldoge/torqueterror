@@ -9,9 +9,9 @@ region = Rect2(384, 2.08165e-12, 128, 128)
 
 [resource]
 script = ExtResource("2_pd4ij")
-damage = 25.0
-spin_speed = 2.0
-scale = 1.5
+damage = 35.0
+spin_speed = 2.5
+scale = 2.5
 title = "Chainsaw IV"
 description = "Upgrade for your [wave]chainsaw"
 icon = SubResource("AtlasTexture_1t0or")

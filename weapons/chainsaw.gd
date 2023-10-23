@@ -29,3 +29,11 @@ func _on_area_entered(area: Area2D):
 
     var hb = area as HitBoxComponent
     hb.damage(damage)
+
+
+func _on_chain_area_entered(area):
+    if not area is HitBoxComponent:
+        return
+
+    var hb = area as HitBoxComponent
+    hb.damage(damage * 0.2)

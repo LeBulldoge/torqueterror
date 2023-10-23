@@ -11,8 +11,8 @@ region = Rect2(512, 2.08165e-12, 128, 128)
 [resource]
 script = ExtResource("2_n6qb6")
 damage = 50.0
-spin_speed = 3.0
-scale = 2.0
+spin_speed = 3.5
+scale = 3.0
 sprite = ExtResource("1_e0vb8")
 title = "Chainsaw V"
 description = "Upgrade for your [wave]chainsaw"

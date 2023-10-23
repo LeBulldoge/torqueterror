@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://b4ky7k5xhtqmy"]
+[gd_scene load_steps=10 format=3 uid="uid://b4ky7k5xhtqmy"]
 
 [ext_resource type="Script" path="res://weapons/chainsaw.gd" id="1_30tyf"]
 [ext_resource type="Texture2D" uid="uid://bxpe2gi8qlk0l" path="res://sprites/chainsaw.png" id="1_k305g"]
@@ -50,8 +50,10 @@ _data = {
 "rotation": SubResource("Animation_eldxj")
 }
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_tyhfj"]
+size = Vector2(85, 14)
+
 [node name="Chainsaw" type="Area2D"]
-rotation = 2.80445
 collision_layer = 256
 collision_mask = 4
 script = ExtResource("1_30tyf")
@@ -72,4 +74,11 @@ libraries = {
 "": SubResource("AnimationLibrary_fanfa")
 }
 
+[node name="Chain" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Chain"]
+position = Vector2(43.5, 0)
+shape = SubResource("RectangleShape2D_tyhfj")
+
 [connection signal="area_entered" from="." to="." method="_on_area_entered"]
+[connection signal="area_entered" from="Chain" to="." method="_on_chain_area_entered"]
