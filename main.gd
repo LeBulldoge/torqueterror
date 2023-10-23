@@ -8,10 +8,10 @@ var experience = preload("res://enemy/experience.tscn")
 
 
 func _ready():
-    $Map/Player/HealthComponent.health_changed.connect($HUD.display_health)
-    $HUD.display_health($Map/Player/HealthComponent.MAX_HEALTH)
-    $Map/Player/HealthComponent.death.connect(game_over)
-    $Map/Player.shoot_projectile.connect(_on_spawn_projectile)
+    $World/YSort/Player/HealthComponent.health_changed.connect($HUD.display_health)
+    $HUD.display_health($World/YSort/Player/HealthComponent.MAX_HEALTH)
+    $World/YSort/Player/HealthComponent.death.connect(game_over)
+    $World/YSort/Player.shoot_projectile.connect(_on_spawn_projectile)
 
     GameState.score_changed.connect($HUD.display_score)
     GameState.experience_changed.connect($HUD.display_experience)
@@ -30,7 +30,7 @@ func _on_level_up(_level: int, _new_max: float):
 
     var upgrade = await choose_upgrade(3)
     if upgrade != null:
-        upgrade.apply($Map/Player)
+        upgrade.apply($World/YSort/Player)
 
     get_tree().paused = false
 
@@ -80,7 +80,7 @@ func game_over(win: bool = false):
 
 
 func get_point_outside_viewport() -> Vector2:
-    $SpawnPath.position = $Map/Player.position
+    $SpawnPath.position = $World/YSort/Player.position
     $SpawnPath/SpawnPoint.progress_ratio = randf()
 
     return $SpawnPath/SpawnPoint.global_position
@@ -92,12 +92,12 @@ func spawn_swarm():
     swarm.global_position = spawn_point
 
     for enemy in swarm.get_children():
-        enemy.target = $Map/Player
+        enemy.target = $World/YSort/Player
 
         var death = enemy.get_node("HealthComponent").death
         death.connect(GameState.add_score.bind(0.2))
         death.connect(spawn_experience.bind(enemy))
-    $Map.add_child(swarm)
+    $World.spawn(swarm)
 
 
 func _on_spawn_timer_timeout():
@@ -108,10 +108,10 @@ func _on_spawn_timer_timeout():
 
     var enemy = ranged_enemy_scene.instantiate() if num <= 1 else melee_enemy_scene.instantiate()
 
-    enemy.target = $Map/Player
+    enemy.target = $World/YSort/Player
     enemy.global_position = get_point_outside_viewport()
 
-    $Map.add_child(enemy)
+    $World.spawn(enemy)
     enemy.weapon.shoot_projectile.connect(_on_spawn_projectile)
     var death = enemy.get_node("HealthComponent").death
     death.connect(GameState.add_score.bind(1))
@@ -119,7 +119,7 @@ func _on_spawn_timer_timeout():
 
 
 func _on_spawn_projectile(projectile: Projectile):
-    $Map.call_deferred("add_child", projectile)
+    $World.call_deferred("spawn", projectile)
 
 
 func spawn_experience(enemy: Enemy):
@@ -127,4 +127,4 @@ func spawn_experience(enemy: Enemy):
     e.position = enemy.global_position
     e.experience = enemy.experience
 
-    $Map.call_deferred("add_child", e)
+    $World.call_deferred("spawn", e)

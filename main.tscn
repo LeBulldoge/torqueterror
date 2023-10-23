@@ -1,28 +1,15 @@
-[gd_scene load_steps=12 format=3 uid="uid://mn5kouylgoij"]
+[gd_scene load_steps=6 format=3 uid="uid://mn5kouylgoij"]
 
 [ext_resource type="Script" path="res://main.gd" id="1_mpdvn"]
 [ext_resource type="PackedScene" uid="uid://dlquo6hrey02w" path="res://ui/hud.tscn" id="2_okvge"]
 [ext_resource type="PackedScene" uid="uid://bf4f8s67xhjb1" path="res://ui/level_up_screen.tscn" id="3_hih0x"]
-[ext_resource type="Texture2D" uid="uid://cby16p73b56ck" path="res://sprites/map.png" id="3_jkukl"]
-[ext_resource type="PackedScene" uid="uid://b1bqbrxqh68jc" path="res://scenes/tree.tscn" id="4_j4jkh"]
-[ext_resource type="Script" path="res://scenes/fog.gd" id="4_tbovf"]
-[ext_resource type="PackedScene" uid="uid://coe45xtjvuehr" path="res://vehicle/player.tscn" id="5_gcot7"]
+[ext_resource type="PackedScene" uid="uid://dhdhq6px4e0xp" path="res://scenes/world.tscn" id="6_fqsrl"]
 
 [sub_resource type="Curve2D" id="Curve2D_2f5cj"]
 _data = {
 "points": PackedVector2Array(0, 0, 0, 0, -576, -320, 0, 0, 0, 0, 576, -320, 0, 0, 0, 0, 576, 328, 0, 0, 0, 0, -576, 328, 0, 0, 0, 0, -576, -320)
 }
 point_count = 5
-
-[sub_resource type="FastNoiseLite" id="FastNoiseLite_0iuuf"]
-frequency = 0.0161
-
-[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_rm4ip"]
-seamless = true
-noise = SubResource("FastNoiseLite_0iuuf")
-
-[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_e753c"]
-polygon = PackedVector2Array(19, 61, 15, 43, 8, -35, -1, -36, -15, 48, -21, 59, -2, 64)
 
 [node name="Main" type="Node"]
 script = ExtResource("1_mpdvn")
@@ -34,10 +21,6 @@ visible = false
 process_mode = 3
 visible = false
 
-[node name="Floor" type="Sprite2D" parent="."]
-scale = Vector2(2, 2)
-texture = ExtResource("3_jkukl")
-
 [node name="SpawnTimer" type="Timer" parent="."]
 
 [node name="SpawnPath" type="Path2D" parent="."]
@@ -46,27 +29,6 @@ curve = SubResource("Curve2D_2f5cj")
 [node name="SpawnPoint" type="PathFollow2D" parent="SpawnPath"]
 position = Vector2(-576, -320)
 
-[node name="Map" type="Node2D" parent="."]
-y_sort_enabled = true
-
-[node name="Darkness" type="CanvasModulate" parent="Map"]
-color = Color(0, 0, 0, 1)
-
-[node name="Fog" type="PointLight2D" parent="Map"]
-position = Vector2(-22.9997, 15)
-scale = Vector2(9.52344, 6.07422)
-texture = SubResource("NoiseTexture2D_rm4ip")
-script = ExtResource("4_tbovf")
-
-[node name="LightOccluder2D" type="LightOccluder2D" parent="Map"]
-position = Vector2(355, 49)
-occluder = SubResource("OccluderPolygon2D_e753c")
-
-[node name="Tree" parent="Map" instance=ExtResource("4_j4jkh")]
-position = Vector2(355, 49)
-
-[node name="Player" parent="Map" instance=ExtResource("5_gcot7")]
-position = Vector2(339, -283)
-rotation = -3.14159
+[node name="World" parent="." instance=ExtResource("6_fqsrl")]
 
 [connection signal="timeout" from="SpawnTimer" to="." method="_on_spawn_timer_timeout"]
