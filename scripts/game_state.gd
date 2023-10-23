@@ -30,7 +30,7 @@ func add_experience(value: float) -> void:
 
 
 func get_level_requirement() -> float:
-    return pow(4.0, level) + 10.0
+    return (10 * (level - 1)) + (10 * level)
 
 
 func add_score(value: int) -> void:

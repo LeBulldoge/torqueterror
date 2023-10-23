@@ -6,7 +6,6 @@ ceiling_db = -1.0
 soft_clip_db = 0.5
 
 [resource]
-bus/0/send = &"Music"
 bus/0/effect/0/effect = SubResource("AudioEffectLimiter_vjghd")
 bus/0/effect/0/enabled = true
 bus/1/name = &"Music"

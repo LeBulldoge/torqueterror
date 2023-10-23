@@ -95,7 +95,7 @@ func spawn_swarm():
         enemy.target = $World/YSort/Player
 
         var death = enemy.get_node("HealthComponent").death
-        death.connect(GameState.add_score.bind(0.2))
+        death.connect(GameState.add_score.bind(1))
         death.connect(spawn_experience.bind(enemy))
     $World.spawn(swarm)
 
