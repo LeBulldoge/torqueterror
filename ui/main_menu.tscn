@@ -1,7 +1,8 @@
-[gd_scene load_steps=12 format=3 uid="uid://bh662wb7pp7hj"]
+[gd_scene load_steps=13 format=3 uid="uid://bh662wb7pp7hj"]
 
 [ext_resource type="Texture2D" uid="uid://7kwyat10geme" path="res://sprites/arm.png" id="1_4iuhq"]
 [ext_resource type="Script" path="res://ui/main_menu.gd" id="1_lwrlq"]
+[ext_resource type="AudioStream" uid="uid://c0wd5si0tlsdh" path="res://audio/music/main_menu.mp3" id="2_55gl3"]
 [ext_resource type="Texture2D" uid="uid://dk4pwtbpqlyf6" path="res://sprites/enemy.png" id="2_21066"]
 [ext_resource type="Texture2D" uid="uid://b1qdg23mtqa6q" path="res://sprites/building.png" id="2_gko8v"]
 [ext_resource type="Shader" path="res://ui/main_menu.gdshader" id="3_13nss"]
@@ -28,6 +29,12 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_lwrlq")
+
+[node name="MusicPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_55gl3")
+volume_db = -5.0
+autoplay = true
+bus = &"Music"
 
 [node name="ColorRect" type="ColorRect" parent="."]
 layout_mode = 1
