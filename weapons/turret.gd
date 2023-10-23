@@ -23,6 +23,13 @@ func _ready():
     $Timer.wait_time = attack_speed
 
 
+func _process(_delta: float):
+    if not current_target:
+        return
+    $Gun.look_at(current_target.global_position)
+    $Gun.rotation_degrees += 90
+
+
 func _on_area_entered(body: Area2D):
     if not body is HitBoxComponent:
         print(self, ":wrong body type detected", body)
@@ -55,11 +62,10 @@ func get_distance_to_target(target: HitBoxComponent) -> float:
 
 
 func _on_timer_timeout():
+    current_target = null
     if targets.is_empty():
         $Timer.stop()
         return
-
-    current_target = null
 
     var target: HitBoxComponent = targets[0]
     var min_distance := get_distance_to_target(targets[0])
@@ -70,8 +76,6 @@ func _on_timer_timeout():
             min_distance = new_distance
 
     current_target = target
-    $Gun.look_at(target.global_position)
-    $Gun.rotation_degrees += 90
     shoot(target.global_position)
 
 
@@ -87,5 +91,3 @@ func shoot(target: Vector2) -> void:
     proj.damage = damage
 
     shoot_projectile.emit(proj)
-    #get_parent().get_parent().get_parent().add_child(proj)
-

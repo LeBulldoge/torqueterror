@@ -1,28 +1,40 @@
-[gd_scene load_steps=4 format=3 uid="uid://xxq3j8p010g8"]
+[gd_scene load_steps=6 format=3 uid="uid://xxq3j8p010g8"]
 
 [ext_resource type="Script" path="res://scenes/projectile.gd" id="1_k13rs"]
-[ext_resource type="Texture2D" uid="uid://6qeeq0etgy13" path="res://sprites/fireball.png" id="2_jtud8"]
+[ext_resource type="Texture2D" uid="uid://bo6fqdfoixbf2" path="res://sprites/guns.png" id="2_k7iwy"]
+[ext_resource type="Texture2D" uid="uid://3nxmmy1cxsrw" path="res://sprites/point_light.webp" id="3_yarf6"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_s6wdg"]
+atlas = ExtResource("2_k7iwy")
+region = Rect2(48, 6, 3, 4)
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_hlucg"]
-radius = 6.0
-height = 34.0
+radius = 3.0
+height = 8.0
 
 [node name="Projectile" type="Area2D"]
+scale = Vector2(2, 2)
 collision_layer = 32
 collision_mask = 4
 script = ExtResource("1_k13rs")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-rotation = -1.5708
-texture = ExtResource("2_jtud8")
+rotation = 1.5708
+texture = SubResource("AtlasTexture_s6wdg")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 rotation = -1.5708
 shape = SubResource("CapsuleShape2D_hlucg")
 
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
-position = Vector2(-18, 0)
-scale = Vector2(0.5, 0.6)
+position = Vector2(-4, 3.57628e-07)
+scale = Vector2(0.4, 0.3)
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+color = Color(1, 0.12549, 0.25098, 1)
+energy = 3.0
+texture = ExtResource("3_yarf6")
+texture_scale = 0.1
 
 [connection signal="area_entered" from="." to="." method="_on_area_entered"]
 [connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]
