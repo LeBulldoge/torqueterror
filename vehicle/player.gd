@@ -26,6 +26,10 @@ func _input(_event):
     set_front_wheel_angle(self.steer_dir)
     switch_exhaust(self.drive_dir != 0)
 
+    var zoom = Input.get_axis("zoom_in", "zoom_out")
+    if zoom != 0:
+        $Camera2D.zoom = lerp($Camera2D.zoom, $Camera2D.zoom + Vector2(zoom, zoom), abs(zoom) * 0.05)
+        $Camera2D.zoom = clamp($Camera2D.zoom, Vector2(0.5, 0.5), Vector2(2, 2))
 
 func _physics_process(delta):
     self.move_vehicle(delta)
