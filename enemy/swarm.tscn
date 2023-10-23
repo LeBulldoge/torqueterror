@@ -5,54 +5,55 @@
 [node name="Swarm" type="Node2D"]
 
 [node name="SwarmEnemy" parent="." instance=ExtResource("1_nmen3")]
+position = Vector2(-8, 2)
 
 [node name="SwarmEnemy2" parent="." instance=ExtResource("1_nmen3")]
-position = Vector2(-50, 31)
+position = Vector2(-50, 28)
 
 [node name="SwarmEnemy3" parent="." instance=ExtResource("1_nmen3")]
-position = Vector2(49, 22)
+position = Vector2(55, 20)
 
 [node name="SwarmEnemy4" parent="." instance=ExtResource("1_nmen3")]
-position = Vector2(-45, -43)
+position = Vector2(-60, -42)
 
 [node name="SwarmEnemy5" parent="." instance=ExtResource("1_nmen3")]
-position = Vector2(50, -43)
+position = Vector2(41, -39)
 
 [node name="SwarmEnemy6" parent="." instance=ExtResource("1_nmen3")]
-position = Vector2(6, -47)
+position = Vector2(-12, -49)
 
 [node name="SwarmEnemy7" parent="." instance=ExtResource("1_nmen3")]
-position = Vector2(86, -6)
+position = Vector2(92, -14)
 
 [node name="SwarmEnemy8" parent="." instance=ExtResource("1_nmen3")]
 position = Vector2(11, 51)
 
 [node name="SwarmEnemy9" parent="." instance=ExtResource("1_nmen3")]
-position = Vector2(-85, -11)
+position = Vector2(-92, -4)
 
 [node name="SwarmEnemy10" parent="." instance=ExtResource("1_nmen3")]
 position = Vector2(-29, 78)
 
 [node name="SwarmEnemy11" parent="." instance=ExtResource("1_nmen3")]
-position = Vector2(96, -64)
+position = Vector2(80, -70)
 
 [node name="SwarmEnemy12" parent="." instance=ExtResource("1_nmen3")]
-position = Vector2(36, -90)
+position = Vector2(23, -95)
 
 [node name="SwarmEnemy13" parent="." instance=ExtResource("1_nmen3")]
-position = Vector2(-22, -92)
+position = Vector2(-38, -96)
 
 [node name="SwarmEnemy14" parent="." instance=ExtResource("1_nmen3")]
-position = Vector2(-82, -85)
+position = Vector2(-98, -82)
 
 [node name="SwarmEnemy15" parent="." instance=ExtResource("1_nmen3")]
-position = Vector2(-118, -51)
+position = Vector2(-144, -50)
 
 [node name="SwarmEnemy16" parent="." instance=ExtResource("1_nmen3")]
-position = Vector2(-130, 15)
+position = Vector2(-143, 14)
 
 [node name="SwarmEnemy17" parent="." instance=ExtResource("1_nmen3")]
-position = Vector2(-89, 48)
+position = Vector2(-107, 50)
 
 [node name="SwarmEnemy18" parent="." instance=ExtResource("1_nmen3")]
-position = Vector2(-89, 48)
+position = Vector2(-76, 90)

@@ -71,7 +71,8 @@ animations = [{
 }]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_vuat2"]
-height = 22.0
+radius = 16.0
+height = 42.0
 
 [node name="SwarmEnemy" type="CharacterBody2D" node_paths=PackedStringArray("animation")]
 script = ExtResource("1_vu4rd")
@@ -128,7 +129,6 @@ frame = 2
 frame_progress = 1.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, 12)
 shape = SubResource("CapsuleShape2D_vuat2")
 
 [node name="HealthBar" type="ProgressBar" parent="."]
