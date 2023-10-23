@@ -1,19 +1,62 @@
-[gd_scene load_steps=7 format=3 uid="uid://dhdhq6px4e0xp"]
+[gd_scene load_steps=14 format=3 uid="uid://dhdhq6px4e0xp"]
 
 [ext_resource type="Script" path="res://scenes/world.gd" id="1_6q72i"]
 [ext_resource type="TileSet" uid="uid://n5me115fj5vj" path="res://tileset.tres" id="1_ejq7y"]
 [ext_resource type="PackedScene" uid="uid://coe45xtjvuehr" path="res://vehicle/player.tscn" id="1_v037d"]
+[ext_resource type="Script" path="res://scenes/background.gd" id="2_imgge"]
+[ext_resource type="Shader" path="res://scenes/hellfire.gdshader" id="2_pb62t"]
 [ext_resource type="Script" path="res://scenes/fog.gd" id="3_66f7d"]
+[ext_resource type="Texture2D" uid="uid://3nxmmy1cxsrw" path="res://sprites/point_light.webp" id="3_txvtj"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_ivheu"]
+noise_type = 3
+frequency = 0.0852
+fractal_type = 3
+domain_warp_enabled = true
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_704l4"]
+generate_mipmaps = false
+seamless = true
+seamless_blend_skirt = 0.402
+noise = SubResource("FastNoiseLite_ivheu")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_022v0"]
+shader = ExtResource("2_pb62t")
+shader_parameter/speed = 0.001
+shader_parameter/noise_amount = 3.0
+shader_parameter/noise = SubResource("NoiseTexture2D_704l4")
+
+[sub_resource type="Gradient" id="Gradient_4fp01"]
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_0iuuf"]
 frequency = 0.02
 
 [sub_resource type="NoiseTexture2D" id="NoiseTexture2D_jo2xi"]
 seamless = true
+color_ramp = SubResource("Gradient_4fp01")
 noise = SubResource("FastNoiseLite_0iuuf")
 
 [node name="World" type="Node2D"]
 script = ExtResource("1_6q72i")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+layer = -1
+
+[node name="Hellfire" type="TextureRect" parent="CanvasLayer"]
+material = SubResource("ShaderMaterial_022v0")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -459.0
+offset_top = -706.0
+offset_right = 437.0
+offset_bottom = 694.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(1024, 1024)
+texture = ExtResource("3_txvtj")
+expand_mode = 3
+script = ExtResource("2_imgge")
 
 [node name="Floor" type="TileMap" parent="."]
 tile_set = ExtResource("1_ejq7y")
