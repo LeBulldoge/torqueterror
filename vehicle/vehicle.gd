@@ -11,6 +11,19 @@ extends RigidBody2D
 var drive_dir := 0.0
 var steer_dir := 0.0
 
+signal is_drifting_changed(value: bool)
+var is_drifting := false
+@export var slip_speed := 40.0
+@export var traction_slow = 4.0
+@export var traction_fast = 1.0
+
+
+func set_drifting(value: bool):
+    if is_drifting == value:
+        return
+    is_drifting = value
+    is_drifting_changed.emit(value)
+
 func move_vehicle(_delta):
     var forward = transform.y
     var right = transform.x
@@ -26,7 +39,17 @@ func move_vehicle(_delta):
 
     # Cancel out lateral force
     var lateral_velocity = right.dot(linear_velocity) * right
-    apply_central_force(-lateral_velocity * tire_grip)
+
+    # Drift
+    print(lateral_velocity.length())
+    var traction = traction_slow
+    if lateral_velocity.length() > 40.0:
+        traction = traction_fast
+        set_drifting(true)
+    else:
+        set_drifting(false)
+
+    apply_central_force(-lateral_velocity * traction * tire_grip)
 
     # Turn
     if steer_dir != 0:

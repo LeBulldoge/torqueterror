@@ -6,9 +6,7 @@ extends Vehicle
 
 signal shoot_projectile(projectile: Projectile)
 
-
 @onready var health: HealthComponent = $HealthComponent
-
 
 var proj_pierce := 0
 
@@ -103,3 +101,7 @@ func _on_hit_box_component_pos_damage_taken(damage: float, from: Vector2):
     apply_impulse(from.direction_to(global_position) * damage * 0.1, from)
     $PlayerHitSound.play()
 
+
+func _on_is_drifting_changed(value):
+    $DriftLeft.emitting = value
+    $DriftRight.emitting = value

@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://coe45xtjvuehr"]
+[gd_scene load_steps=23 format=3 uid="uid://coe45xtjvuehr"]
 
 [ext_resource type="Script" path="res://vehicle/player.gd" id="1_28sia"]
 [ext_resource type="PackedScene" uid="uid://bqs5ceshq8c43" path="res://scenes/components/health_component.tscn" id="3_66xtb"]
@@ -13,6 +13,13 @@
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_gfhdm"]
 friction = 0.0
+
+[sub_resource type="Curve" id="Curve_wbhde"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.99, 0.4), -2.8, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Gradient" id="Gradient_2sy51"]
+colors = PackedColorArray(0, 0, 0, 1, 1, 1, 1, 0.145098)
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_jyw0a"]
 noise_type = 3
@@ -64,6 +71,52 @@ stall_speed = 50
 torque = 300
 tire_grip = 2.0
 drag = 1.2
+
+[node name="DriftRight" type="CPUParticles2D" parent="."]
+position = Vector2(-35, -52)
+emitting = false
+amount = 30
+lifetime = 0.6
+explosiveness = 0.2
+randomness = 0.27
+lifetime_randomness = 0.13
+direction = Vector2(1, 1)
+spread = 180.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 4.0
+initial_velocity_max = 4.0
+damping_max = 5.0
+scale_amount_min = 15.0
+scale_amount_max = 15.0
+scale_amount_curve = SubResource("Curve_wbhde")
+split_scale = true
+scale_curve_x = SubResource("Curve_wbhde")
+scale_curve_y = SubResource("Curve_wbhde")
+color = Color(0.0980392, 0.0980392, 0.0980392, 1)
+color_ramp = SubResource("Gradient_2sy51")
+
+[node name="DriftLeft" type="CPUParticles2D" parent="."]
+position = Vector2(35, -52)
+emitting = false
+amount = 30
+lifetime = 0.6
+explosiveness = 0.2
+randomness = 0.27
+lifetime_randomness = 0.13
+direction = Vector2(1, 1)
+spread = 180.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 4.0
+initial_velocity_max = 4.0
+damping_max = 5.0
+scale_amount_min = 12.0
+scale_amount_max = 12.0
+scale_amount_curve = SubResource("Curve_wbhde")
+split_scale = true
+scale_curve_x = SubResource("Curve_wbhde")
+scale_curve_y = SubResource("Curve_wbhde")
+color = Color(0.0980392, 0.0980392, 0.0980392, 1)
+color_ramp = SubResource("Gradient_2sy51")
 
 [node name="WheelFR" type="Sprite2D" parent="."]
 position = Vector2(-34, 36)
@@ -199,6 +252,7 @@ collision_mask = 128
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ExperienceComponent/GravityFunnel"]
 shape = SubResource("CircleShape2D_j8qdt")
 
+[connection signal="is_drifting_changed" from="." to="." method="_on_is_drifting_changed"]
 [connection signal="pos_damage_taken" from="HitBoxComponent" to="." method="_on_hit_box_component_pos_damage_taken"]
 [connection signal="area_entered" from="HurtBoxComponent" to="." method="_on_hurt_box_component_area_entered"]
 [connection signal="area_entered" from="HurtBoxComponentRear" to="." method="_on_hurt_box_component_rear_area_entered"]
