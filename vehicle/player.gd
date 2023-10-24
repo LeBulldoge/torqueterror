@@ -70,7 +70,20 @@ func _on_hurt_box_component_area_entered(area: Area2D):
     if forward_velocity <= 0:
         return
 
-    var damage = forward_velocity * velocity_damage_modifier
+    var damage = forward_velocity * velocity_damage_modifier + 5
+    var hb = area as HitBoxComponent
+    hb.call_deferred("damage", damage)
+
+
+func _on_hurt_box_component_rear_area_entered(area: Area2D):
+    if not area is HitBoxComponent:
+        return
+
+    var forward_velocity = linear_velocity.dot(transform.y)
+    if forward_velocity >= 0:
+        return
+
+    var damage = forward_velocity * velocity_damage_modifier + 5
     var hb = area as HitBoxComponent
     hb.call_deferred("damage", damage)
 
