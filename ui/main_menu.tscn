@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://bh662wb7pp7hj"]
+[gd_scene load_steps=17 format=3 uid="uid://bh662wb7pp7hj"]
 
 [ext_resource type="Texture2D" uid="uid://7kwyat10geme" path="res://sprites/arm.png" id="1_4iuhq"]
 [ext_resource type="Script" path="res://ui/main_menu.gd" id="1_lwrlq"]
@@ -8,8 +8,8 @@
 [ext_resource type="Shader" path="res://ui/main_menu.gdshader" id="3_13nss"]
 [ext_resource type="Texture2D" uid="uid://dktnnf5j4v8qt" path="res://sprites/smalldemon.png" id="4_dmwny"]
 [ext_resource type="Texture2D" uid="uid://cyxs51qv1mdiu" path="res://sprites/octopus.png" id="5_vej51"]
-[ext_resource type="Texture2D" uid="uid://t66upf80k4ys" path="res://sprites/menu.png" id="8_pva40"]
-[ext_resource type="FontFile" uid="uid://djbdfcxygn7e2" path="res://fonts/destroya/Destroya.ttf" id="10_8m7pp"]
+[ext_resource type="Texture2D" uid="uid://pc5555wcmas" path="res://sprites/toqueterror_logo.png" id="11_wloyl"]
+[ext_resource type="Shader" path="res://ui/logo.gdshader" id="12_ls6cj"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_xxp55"]
 atlas = ExtResource("2_21066")
@@ -21,6 +21,31 @@ shader = ExtResource("3_13nss")
 [sub_resource type="AtlasTexture" id="AtlasTexture_r08h0"]
 atlas = ExtResource("1_4iuhq")
 region = Rect2(0, 0, 400, 232)
+
+[sub_resource type="Animation" id="Animation_xiiu3"]
+resource_name = "float"
+length = 3.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:theme_override_constants/margin_top")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1.5, 3),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [10, 0, 10]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_w34dj"]
+_data = {
+"float": SubResource("Animation_xiiu3")
+}
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_v1gy3"]
+shader = ExtResource("12_ls6cj")
 
 [node name="Main Menu" type="Control"]
 layout_mode = 3
@@ -54,12 +79,20 @@ offset_right = 201.0
 offset_bottom = 158.0
 texture = ExtResource("2_gko8v")
 
-[node name="building5" type="TextureRect" parent="buildings"]
+[node name="building" type="TextureRect" parent="buildings"]
 layout_mode = 0
-offset_left = 1051.0
-offset_top = -13.0
-offset_right = 1283.0
-offset_bottom = 370.0
+offset_left = 211.0
+offset_top = -3.0
+offset_right = 443.0
+offset_bottom = 380.0
+texture = ExtResource("2_gko8v")
+
+[node name="building2" type="TextureRect" parent="buildings"]
+layout_mode = 0
+offset_left = 424.0
+offset_top = -6.0
+offset_right = 656.0
+offset_bottom = 377.0
 texture = ExtResource("2_gko8v")
 
 [node name="building4" type="TextureRect" parent="buildings"]
@@ -78,20 +111,12 @@ offset_right = 866.0
 offset_bottom = 375.0
 texture = ExtResource("2_gko8v")
 
-[node name="building2" type="TextureRect" parent="buildings"]
+[node name="building5" type="TextureRect" parent="buildings"]
 layout_mode = 0
-offset_left = 424.0
-offset_top = -6.0
-offset_right = 656.0
-offset_bottom = 377.0
-texture = ExtResource("2_gko8v")
-
-[node name="building" type="TextureRect" parent="buildings"]
-layout_mode = 0
-offset_left = 211.0
-offset_top = -3.0
-offset_right = 443.0
-offset_bottom = 380.0
+offset_left = 1051.0
+offset_top = -13.0
+offset_right = 1283.0
+offset_bottom = 370.0
 texture = ExtResource("2_gko8v")
 
 [node name="goatDemonSmall" type="TextureRect" parent="."]
@@ -187,53 +212,58 @@ theme_override_constants/margin_top = 64
 theme_override_constants/margin_right = 64
 theme_override_constants/margin_bottom = 64
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="MarginContainer"]
+root_node = NodePath("../MarginContainer")
+autoplay = "float"
+libraries = {
+"": SubResource("AnimationLibrary_w34dj")
+}
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 30
+
+[node name="Logo" type="TextureRect" parent="MarginContainer/MarginContainer"]
+custom_minimum_size = Vector2(512, 256)
 layout_mode = 2
 size_flags_horizontal = 0
-theme_override_constants/separation = 50
+size_flags_vertical = 0
+texture = ExtResource("11_wloyl")
+expand_mode = 1
 
-[node name="CenterContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer"]
+[node name="Shadow" type="TextureRect" parent="MarginContainer/MarginContainer/Logo"]
+show_behind_parent = true
+material = SubResource("ShaderMaterial_v1gy3")
+custom_minimum_size = Vector2(512, 256)
 layout_mode = 2
+offset_left = 10.0
+offset_top = 10.0
+offset_right = 522.0
+offset_bottom = 266.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("11_wloyl")
+expand_mode = 1
 
-[node name="NinePatchRect" type="NinePatchRect" parent="MarginContainer/VBoxContainer/CenterContainer"]
+[node name="Menu" type="VBoxContainer" parent="MarginContainer"]
+custom_minimum_size = Vector2(450, 100)
 layout_mode = 2
-texture = ExtResource("8_pva40")
-patch_margin_left = 16
-patch_margin_top = 16
-patch_margin_right = 16
-patch_margin_bottom = 16
-axis_stretch_horizontal = 1
-axis_stretch_vertical = 1
-
-[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/CenterContainer"]
-layout_mode = 2
-theme_override_constants/margin_left = 40
-theme_override_constants/margin_top = 30
-theme_override_constants/margin_right = 40
-theme_override_constants/margin_bottom = 20
-
-[node name="Title" type="Label" parent="MarginContainer/VBoxContainer/CenterContainer/MarginContainer"]
-layout_mode = 2
-theme_override_fonts/font = ExtResource("10_8m7pp")
-theme_override_font_sizes/font_size = 60
-text = "Torque
-Terror"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="Menu" type="VBoxContainer" parent="MarginContainer/VBoxContainer"]
-layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 8
 theme_override_constants/separation = 30
 
-[node name="StartButton" type="Button" parent="MarginContainer/VBoxContainer/Menu"]
+[node name="StartButton" type="Button" parent="MarginContainer/Menu"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 30
 text = "Start Game"
 
-[node name="ExitButton" type="Button" parent="MarginContainer/VBoxContainer/Menu"]
+[node name="ExitButton" type="Button" parent="MarginContainer/Menu"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 30
 text = "Exit Game"
 
-[connection signal="pressed" from="MarginContainer/VBoxContainer/Menu/StartButton" to="." method="_on_start_button_pressed"]
-[connection signal="pressed" from="MarginContainer/VBoxContainer/Menu/ExitButton" to="." method="_on_exit_button_pressed"]
+[connection signal="pressed" from="MarginContainer/Menu/StartButton" to="." method="_on_start_button_pressed"]
+[connection signal="pressed" from="MarginContainer/Menu/ExitButton" to="." method="_on_exit_button_pressed"]
