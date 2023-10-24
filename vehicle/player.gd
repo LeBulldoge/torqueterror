@@ -78,5 +78,5 @@ func _on_experience_component_body_entered(body: RigidBody2D):
 
 
 func _on_hit_box_component_pos_damage_taken(damage: float, from: Vector2):
-    apply_impulse(from.direction_to(global_position) * damage, from)
+    apply_impulse(from.direction_to(global_position) * damage * 0.1, from)
     $PlayerHitSound.play()
