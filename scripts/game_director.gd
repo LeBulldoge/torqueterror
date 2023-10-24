@@ -68,7 +68,7 @@ func spawn_experience(enemy: Enemy):
     var e = experience.instantiate()
     e.position = enemy.global_position
     e.experience = enemy.experience
-    spawn_projectile(e)
+    spawn(e, false)
 
 
 func spawn_swarm():
@@ -79,18 +79,20 @@ func spawn_swarm():
         var death = enemy.get_node("HealthComponent").death
         death.connect(GameState.add_score.bind(1))
         death.connect(spawn_experience.bind(enemy))
-
     spawn(swarm)
 
+
 func _spawn_boss():
-    var enemy := melee_boss_scene.instantiate()
+    var enemy: Enemy = melee_boss_scene.instantiate()
 
     enemy.target = GameState.player
 
     spawn(enemy)
     await enemy.ready
 
-    enemy.weapon.shoot_projectile.connect(spawn_projectile)
+    if enemy.weapon.type == Weapon.WeaponType.Ranged:
+        enemy.weapon.shoot_projectile.connect(spawn_projectile)
+
     var death = enemy.get_node("HealthComponent").death
     death.connect(GameState.add_score.bind(10))
     death.connect(spawn_experience.bind(enemy))
@@ -111,15 +113,17 @@ func _on_spawn_timer_timeout():
     enemy.target = GameState.player
     spawn(enemy)
     await enemy.ready
-    enemy.weapon.shoot_projectile.connect(spawn_projectile)
+
+    if enemy.weapon.type == Weapon.WeaponType.Ranged:
+        enemy.weapon.shoot_projectile.connect(spawn_projectile)
     var death = enemy.get_node("HealthComponent").death
     death.connect(GameState.add_score.bind(1))
     death.connect(spawn_experience.bind(enemy))
 
 
 signal spawn_requested(node: Node, position_required: bool)
-func spawn(node: Node):
-    spawn_requested.emit(node, true)
+func spawn(node: Node, position_required: bool = true):
+    spawn_requested.emit(node, position_required)
 
 
 func spawn_projectile(projectile: Projectile):
