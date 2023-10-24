@@ -1,7 +1,11 @@
-[gd_resource type="Resource" script_class="StatUpgrade" load_steps=3 format=3 uid="uid://dm4ou0elgtr0q"]
+[gd_resource type="Resource" script_class="StatUpgrade" load_steps=4 format=3 uid="uid://dm4ou0elgtr0q"]
 
-[ext_resource type="Texture2D" uid="uid://bqs2kod2xac7k" path="res://icon.svg" id="1_nlcmc"]
+[ext_resource type="Texture2D" uid="uid://cch3f6pil42wu" path="res://sprites/piercing_icons.png" id="1_kr43o"]
 [ext_resource type="Script" path="res://resources/upgrades/stat_upgrade.gd" id="2_oh2t5"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tq0y7"]
+atlas = ExtResource("1_kr43o")
+region = Rect2(512, 0, 128, 128)
 
 [resource]
 script = ExtResource("2_oh2t5")
@@ -10,5 +14,5 @@ stats = {
 }
 title = "Pierce Infinite"
 description = "Your bullets are now unstoppable!"
-icon = ExtResource("1_nlcmc")
+icon = SubResource("AtlasTexture_tq0y7")
 single_use = true

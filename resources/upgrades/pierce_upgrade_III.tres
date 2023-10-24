@@ -1,7 +1,11 @@
-[gd_resource type="Resource" script_class="StatUpgrade" load_steps=3 format=3 uid="uid://b2v5t46n83iol"]
+[gd_resource type="Resource" script_class="StatUpgrade" load_steps=4 format=3 uid="uid://b2v5t46n83iol"]
 
-[ext_resource type="Texture2D" uid="uid://bqs2kod2xac7k" path="res://icon.svg" id="1_rtux5"]
+[ext_resource type="Texture2D" uid="uid://cch3f6pil42wu" path="res://sprites/piercing_icons.png" id="1_gg523"]
 [ext_resource type="Script" path="res://resources/upgrades/stat_upgrade.gd" id="2_klnkr"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_n36iv"]
+atlas = ExtResource("1_gg523")
+region = Rect2(256, 0, 128, 128)
 
 [resource]
 script = ExtResource("2_klnkr")
@@ -10,5 +14,5 @@ stats = {
 }
 title = "Pierce III"
 description = "Your bullets now pierce an extra enemy!"
-icon = ExtResource("1_rtux5")
+icon = SubResource("AtlasTexture_n36iv")
 single_use = true
