@@ -2,6 +2,8 @@ shader_type canvas_item;
 
 void fragment() {
 	COLOR = texture(TEXTURE, UV);
-    COLOR.g += 0.6;
-    COLOR.r -= 0.4;
+
+    if (all(lessThan(COLOR.rgb, vec3(0.2)))) {
+        COLOR.rgb = vec3(0.5, sin(TIME + 1.0), 0.0);
+    }
 }

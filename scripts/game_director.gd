@@ -62,6 +62,7 @@ var melee_enemy_scene = preload("res://enemy/melee_enemy.tscn")
 var swarm_enemy = preload("res://enemy/swarm.tscn")
 var experience = preload("res://enemy/experience.tscn")
 var melee_boss_scene := preload("res://enemy/melee_enemy_boss.tscn")
+var ranged_boss_scene := preload("res://enemy/boss_ranged_enemy.tscn")
 
 
 func spawn_experience(enemy: Enemy):
@@ -83,7 +84,7 @@ func spawn_swarm():
 
 
 func _spawn_boss():
-    var enemy: Enemy = melee_boss_scene.instantiate()
+    var enemy: Enemy = melee_boss_scene.instantiate() if randi_range(0, 2) < 2 else ranged_boss_scene.instantiate()
 
     enemy.target = GameState.player
 

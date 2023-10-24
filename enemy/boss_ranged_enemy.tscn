@@ -1,21 +1,24 @@
-[gd_scene load_steps=32 format=3 uid="uid://6fwkrwx8e00d"]
+[gd_scene load_steps=34 format=3 uid="uid://nmasgm52t1hd"]
 
-[ext_resource type="Script" path="res://enemy/enemy.gd" id="1_ce1f0"]
-[ext_resource type="PackedScene" uid="uid://s8fkxbacqm7m" path="res://ai/dasher_module.tscn" id="3_g6hq3"]
-[ext_resource type="PackedScene" uid="uid://bqs5ceshq8c43" path="res://scenes/components/health_component.tscn" id="3_k6xi5"]
-[ext_resource type="Script" path="res://ai/dasher.gd" id="4_d7g81"]
-[ext_resource type="PackedScene" uid="uid://cxspkpo4cxc45" path="res://ai/attacker_module.tscn" id="4_fv072"]
-[ext_resource type="PackedScene" uid="uid://cpq8qcn88e664" path="res://scenes/components/hitbox_component.tscn" id="4_gjpqc"]
-[ext_resource type="PackedScene" uid="uid://8ho5oq2a58id" path="res://resources/weapon_component.tscn" id="5_4foag"]
-[ext_resource type="AudioStream" uid="uid://b7onoxp0vqhj7" path="res://audio/noise/enemy-2 2.wav" id="6_3kmbe"]
-[ext_resource type="AudioStream" uid="uid://5le3iohgqs2y" path="res://audio/noise/enemy-3 2.wav" id="8_76o5g"]
-[ext_resource type="Script" path="res://enemy/sound_component.gd" id="9_335pr"]
-[ext_resource type="Texture2D" uid="uid://cyxs51qv1mdiu" path="res://sprites/octopus.png" id="9_iedxi"]
-[ext_resource type="Texture2D" uid="uid://dutwnxq4ojprf" path="res://sprites/enemy-blood.png" id="9_x441h"]
-[ext_resource type="AudioStream" uid="uid://biqhxhit82wc8" path="res://audio/noise/enemy-4.wav" id="9_y7flw"]
-[ext_resource type="AudioStream" uid="uid://criq4jrngrfy7" path="res://audio/noise/enemy.wav" id="11_noao7"]
-[ext_resource type="AudioStream" uid="uid://bnfgijmjtdghp" path="res://audio/noise/enemy-2.wav" id="13_q087t"]
-[ext_resource type="Shader" path="res://enemy/ranged_enemy.gdshader" id="15_8mdub"]
+[ext_resource type="Script" path="res://enemy/enemy.gd" id="1_5myq1"]
+[ext_resource type="PackedScene" uid="uid://cxspkpo4cxc45" path="res://ai/attacker_module.tscn" id="2_bcv26"]
+[ext_resource type="PackedScene" uid="uid://s8fkxbacqm7m" path="res://ai/dasher_module.tscn" id="3_syhog"]
+[ext_resource type="Script" path="res://ai/dasher.gd" id="4_20ldj"]
+[ext_resource type="Script" path="res://enemy/sound_component.gd" id="5_ocsd3"]
+[ext_resource type="AudioStream" uid="uid://b7onoxp0vqhj7" path="res://audio/noise/enemy-2 2.wav" id="6_jfmti"]
+[ext_resource type="AudioStream" uid="uid://criq4jrngrfy7" path="res://audio/noise/enemy.wav" id="7_7dkxq"]
+[ext_resource type="AudioStream" uid="uid://5le3iohgqs2y" path="res://audio/noise/enemy-3 2.wav" id="8_74w6r"]
+[ext_resource type="AudioStream" uid="uid://biqhxhit82wc8" path="res://audio/noise/enemy-4.wav" id="9_h2ukn"]
+[ext_resource type="AudioStream" uid="uid://bnfgijmjtdghp" path="res://audio/noise/enemy-2.wav" id="10_x4tak"]
+[ext_resource type="PackedScene" uid="uid://bqs5ceshq8c43" path="res://scenes/components/health_component.tscn" id="11_8qvaw"]
+[ext_resource type="PackedScene" uid="uid://8ho5oq2a58id" path="res://resources/weapon_component.tscn" id="12_dgnso"]
+[ext_resource type="PackedScene" uid="uid://cpq8qcn88e664" path="res://scenes/components/hitbox_component.tscn" id="13_lgkin"]
+[ext_resource type="Texture2D" uid="uid://cyxs51qv1mdiu" path="res://sprites/octopus.png" id="14_4tbm0"]
+[ext_resource type="Shader" path="res://enemy/ranged_enemy.gdshader" id="15_v1ci0"]
+[ext_resource type="Texture2D" uid="uid://dutwnxq4ojprf" path="res://sprites/enemy-blood.png" id="16_nak7s"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_s7kr5"]
+shader = ExtResource("15_v1ci0")
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_unedk"]
 radius = 200.0
@@ -24,12 +27,15 @@ radius = 200.0
 radius = 28.0
 height = 106.0
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_6rtt2"]
+shader = ExtResource("15_v1ci0")
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_tpalr"]
-atlas = ExtResource("9_iedxi")
+atlas = ExtResource("14_4tbm0")
 region = Rect2(0, 0, 96, 107)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_a320g"]
-atlas = ExtResource("9_iedxi")
+atlas = ExtResource("14_4tbm0")
 region = Rect2(96, 0, 96, 107)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_sycb3"]
@@ -55,14 +61,14 @@ animations = [{
 }]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_w5yns"]
-shader = ExtResource("15_8mdub")
+shader = ExtResource("15_v1ci0")
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_b1ax6"]
-atlas = ExtResource("9_x441h")
+atlas = ExtResource("16_nak7s")
 region = Rect2(0, 0, 29, 28)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_e06ol"]
-atlas = ExtResource("9_x441h")
+atlas = ExtResource("16_nak7s")
 region = Rect2(29, 0, 29, 28)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_qcgee"]
@@ -155,40 +161,43 @@ _data = {
 "idle": SubResource("Animation_i5a0b")
 }
 
-[node name="RangedEnemy" type="CharacterBody2D" node_paths=PackedStringArray("animation")]
-script = ExtResource("1_ce1f0")
-speed = 50
-experience = 1.5
+[node name="BossRangedEnemy" type="CharacterBody2D" node_paths=PackedStringArray("animation")]
+scale = Vector2(2, 2)
+script = ExtResource("1_5myq1")
+speed = 100
+experience = 50.0
 animation = NodePath("AnimationPlayer")
 
 [node name="AIModules" type="Node" parent="."]
 
-[node name="AttackerModule" parent="AIModules" instance=ExtResource("4_fv072")]
+[node name="AttackerModule" parent="AIModules" instance=ExtResource("2_bcv26")]
 
-[node name="DasherModule" parent="AIModules" instance=ExtResource("3_g6hq3")]
-script = ExtResource("4_d7g81")
+[node name="DasherModule" parent="AIModules" instance=ExtResource("3_syhog")]
+script = ExtResource("4_20ldj")
 dash_time = 1.0
 
 [node name="SoundComponent" type="AudioStreamPlayer2D" parent="."]
 process_mode = 1
 position = Vector2(-3, -53.5)
-script = ExtResource("9_335pr")
+script = ExtResource("5_ocsd3")
 sounds = {
-"damage": [ExtResource("6_3kmbe"), ExtResource("11_noao7"), ExtResource("8_76o5g")],
-"death": [ExtResource("9_y7flw"), ExtResource("13_q087t")]
+"damage": [ExtResource("6_jfmti"), ExtResource("7_7dkxq"), ExtResource("8_74w6r")],
+"death": [ExtResource("9_h2ukn"), ExtResource("10_x4tak")]
 }
 
-[node name="HealthComponent" parent="." instance=ExtResource("3_k6xi5")]
+[node name="HealthComponent" parent="." instance=ExtResource("11_8qvaw")]
 
-[node name="WeaponComponent" parent="." instance=ExtResource("5_4foag")]
-damage = 5.0
+[node name="WeaponComponent" parent="." instance=ExtResource("12_dgnso")]
+material = SubResource("ShaderMaterial_s7kr5")
+damage = 20.0
 type = 1
+attack_cooldown = 0.8
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="WeaponComponent"]
 shape = SubResource("CircleShape2D_unedk")
 debug_color = Color(0.964706, 0, 0.501961, 0.419608)
 
-[node name="HitBoxComponent" parent="." node_paths=PackedStringArray("health_component") instance=ExtResource("4_gjpqc")]
+[node name="HitBoxComponent" parent="." node_paths=PackedStringArray("health_component") instance=ExtResource("13_lgkin")]
 collision_layer = 4
 collision_mask = 34
 health_component = NodePath("../HealthComponent")
@@ -198,6 +207,7 @@ position = Vector2(0, -53)
 shape = SubResource("CapsuleShape2D_pfx5u")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+material = SubResource("ShaderMaterial_6rtt2")
 position = Vector2(-3, -53.5)
 sprite_frames = SubResource("SpriteFrames_sycb3")
 animation = &"attack"
