@@ -1,12 +1,16 @@
-[gd_resource type="Resource" script_class="CarDamageUpgrade" load_steps=3 format=3 uid="uid://bugsqrdm0l6cr"]
+[gd_resource type="Resource" script_class="CarDamageUpgrade" load_steps=4 format=3 uid="uid://bugsqrdm0l6cr"]
 
-[ext_resource type="Texture2D" uid="uid://bqs2kod2xac7k" path="res://icon.svg" id="1_js8ft"]
+[ext_resource type="Texture2D" uid="uid://d3vglee0dnjre" path="res://sprites/ram_icon.png" id="1_vujof"]
 [ext_resource type="Script" path="res://resources/car_damage_upgrade.gd" id="2_xnbrl"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jgeln"]
+atlas = ExtResource("1_vujof")
+region = Rect2(256, 2.08165e-12, 128, 128)
 
 [resource]
 script = ExtResource("2_xnbrl")
 modifier = 0.8
 title = "Ramming Speed III"
 description = "Boosts your car's ramming damage"
-icon = ExtResource("1_js8ft")
+icon = SubResource("AtlasTexture_jgeln")
 single_use = true

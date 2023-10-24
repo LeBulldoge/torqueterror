@@ -1,12 +1,13 @@
-[gd_resource type="Resource" script_class="UpgradeTrack" load_steps=6 format=3 uid="uid://ciyh3mt10mj5l"]
+[gd_resource type="Resource" script_class="UpgradeTrack" load_steps=7 format=3 uid="uid://ciyh3mt10mj5l"]
 
 [ext_resource type="Script" path="res://resources/upgrade_track.gd" id="1_8m6fr"]
 [ext_resource type="Resource" uid="uid://drx125hwm5guq" path="res://resources/car_damage_upgrade_I.tres" id="2_xvwvk"]
 [ext_resource type="Resource" uid="uid://bwotn7nfespol" path="res://resources/car_damage_upgrade_II.tres" id="3_oea32"]
 [ext_resource type="Resource" uid="uid://bugsqrdm0l6cr" path="res://resources/car_damage_upgrade_III.tres" id="4_agrwv"]
 [ext_resource type="Resource" uid="uid://ba5lifbmjrhew" path="res://resources/car_damage_upgrade_IV.tres" id="5_tnn4u"]
+[ext_resource type="Resource" uid="uid://hhkimlf7hoqe" path="res://resources/car_damage_upgrade_V.tres" id="6_d73e6"]
 
 [resource]
 script = ExtResource("1_8m6fr")
 key = "car_damage"
-upgrades = Array[Resource("res://resources/upgrade.gd")]([ExtResource("2_xvwvk"), ExtResource("3_oea32"), ExtResource("4_agrwv"), ExtResource("5_tnn4u")])
+upgrades = Array[Resource("res://resources/upgrade.gd")]([ExtResource("2_xvwvk"), ExtResource("3_oea32"), ExtResource("4_agrwv"), ExtResource("5_tnn4u"), ExtResource("6_d73e6")])

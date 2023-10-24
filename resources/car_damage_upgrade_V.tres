@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="CarDamageUpgrade" load_steps=4 format=3 uid="uid://hhkimlf7hoqe"]
+
+[ext_resource type="Texture2D" uid="uid://d3vglee0dnjre" path="res://sprites/ram_icon.png" id="1_5satb"]
+[ext_resource type="Script" path="res://resources/car_damage_upgrade.gd" id="2_178q7"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_13u7r"]
+atlas = ExtResource("1_5satb")
+region = Rect2(512, 2.08165e-12, 128, 128)
+
+[resource]
+script = ExtResource("2_178q7")
+modifier = 2.0
+title = "Ramming Speed V"
+description = "You are unstoppable"
+icon = SubResource("AtlasTexture_13u7r")
+single_use = true
