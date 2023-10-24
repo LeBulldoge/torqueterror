@@ -34,7 +34,7 @@ func _input(_event):
 
     var zoom = Input.get_axis("zoom_in", "zoom_out")
     if zoom != 0:
-        $Camera2D.zoom = lerp($Camera2D.zoom, $Camera2D.zoom + Vector2(zoom, zoom), abs(zoom) * 0.05)
+        $Camera2D.zoom = lerp($Camera2D.zoom, $Camera2D.zoom - Vector2(zoom, zoom), abs(zoom) * 0.05)
         $Camera2D.zoom = clamp($Camera2D.zoom, Vector2(0.5, 0.5), Vector2(2, 2))
 
 
@@ -104,5 +104,5 @@ func _on_hit_box_component_pos_damage_taken(damage: float, from: Vector2):
 
 
 func _on_is_drifting_changed(value):
-    $DriftLeft.emitting = value
-    $DriftRight.emitting = value
+    $WheelBL/Drift.emitting = value
+    $WheelBR/Drift.emitting = value

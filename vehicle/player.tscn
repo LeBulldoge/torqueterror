@@ -68,35 +68,23 @@ velocity_damage_modifier = 0.2
 speed = 500
 top_speed = 250
 stall_speed = 50
-torque = 300
+torque = 400
 tire_grip = 2.0
 drag = 1.2
 
-[node name="DriftRight" type="CPUParticles2D" parent="."]
-position = Vector2(-35, -52)
-emitting = false
-amount = 30
-lifetime = 0.6
-explosiveness = 0.2
-randomness = 0.27
-lifetime_randomness = 0.13
-direction = Vector2(1, 1)
-spread = 180.0
-gravity = Vector2(0, 0)
-initial_velocity_min = 4.0
-initial_velocity_max = 4.0
-damping_max = 5.0
-scale_amount_min = 15.0
-scale_amount_max = 15.0
-scale_amount_curve = SubResource("Curve_wbhde")
-split_scale = true
-scale_curve_x = SubResource("Curve_wbhde")
-scale_curve_y = SubResource("Curve_wbhde")
-color = Color(0.0980392, 0.0980392, 0.0980392, 1)
-color_ramp = SubResource("Gradient_2sy51")
+[node name="WheelFR" type="Sprite2D" parent="."]
+position = Vector2(-34, 36)
+texture = ExtResource("6_tm6h7")
 
-[node name="DriftLeft" type="CPUParticles2D" parent="."]
-position = Vector2(35, -52)
+[node name="WheelFL" type="Sprite2D" parent="."]
+position = Vector2(34, 36)
+texture = ExtResource("6_tm6h7")
+
+[node name="WheelBL" type="Sprite2D" parent="."]
+position = Vector2(34, -52)
+texture = ExtResource("6_tm6h7")
+
+[node name="Drift" type="CPUParticles2D" parent="WheelBL"]
 emitting = false
 amount = 30
 lifetime = 0.6
@@ -118,21 +106,32 @@ scale_curve_y = SubResource("Curve_wbhde")
 color = Color(0.0980392, 0.0980392, 0.0980392, 1)
 color_ramp = SubResource("Gradient_2sy51")
 
-[node name="WheelFR" type="Sprite2D" parent="."]
-position = Vector2(-34, 36)
-texture = ExtResource("6_tm6h7")
-
-[node name="WheelFL" type="Sprite2D" parent="."]
-position = Vector2(34, 36)
-texture = ExtResource("6_tm6h7")
-
-[node name="WheelBL" type="Sprite2D" parent="."]
-position = Vector2(34, -52)
-texture = ExtResource("6_tm6h7")
-
 [node name="WheelBR" type="Sprite2D" parent="."]
 position = Vector2(-34, -52)
 texture = ExtResource("6_tm6h7")
+
+[node name="Drift" type="CPUParticles2D" parent="WheelBR"]
+position = Vector2(-1, 0)
+emitting = false
+amount = 30
+lifetime = 0.6
+explosiveness = 0.2
+randomness = 0.27
+lifetime_randomness = 0.13
+direction = Vector2(1, 1)
+spread = 180.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 4.0
+initial_velocity_max = 4.0
+damping_max = 5.0
+scale_amount_min = 15.0
+scale_amount_max = 15.0
+scale_amount_curve = SubResource("Curve_wbhde")
+split_scale = true
+scale_curve_x = SubResource("Curve_wbhde")
+scale_curve_y = SubResource("Curve_wbhde")
+color = Color(0.0980392, 0.0980392, 0.0980392, 1)
+color_ramp = SubResource("Gradient_2sy51")
 
 [node name="Exhaust" type="CPUParticles2D" parent="."]
 material = SubResource("ShaderMaterial_pv5wp")
