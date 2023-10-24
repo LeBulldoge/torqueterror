@@ -95,20 +95,20 @@ offset_right = 656.0
 offset_bottom = 377.0
 texture = ExtResource("2_gko8v")
 
-[node name="building4" type="TextureRect" parent="buildings"]
-layout_mode = 0
-offset_left = 847.0
-offset_top = -10.0
-offset_right = 1079.0
-offset_bottom = 373.0
-texture = ExtResource("2_gko8v")
-
 [node name="building3" type="TextureRect" parent="buildings"]
 layout_mode = 0
 offset_left = 634.0
 offset_top = -8.0
 offset_right = 866.0
 offset_bottom = 375.0
+texture = ExtResource("2_gko8v")
+
+[node name="building4" type="TextureRect" parent="buildings"]
+layout_mode = 0
+offset_left = 847.0
+offset_top = -10.0
+offset_right = 1079.0
+offset_bottom = 373.0
 texture = ExtResource("2_gko8v")
 
 [node name="building5" type="TextureRect" parent="buildings"]
