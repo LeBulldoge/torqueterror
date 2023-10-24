@@ -37,6 +37,7 @@ func _input(_event):
         $Camera2D.zoom = lerp($Camera2D.zoom, $Camera2D.zoom + Vector2(zoom, zoom), abs(zoom) * 0.05)
         $Camera2D.zoom = clamp($Camera2D.zoom, Vector2(0.5, 0.5), Vector2(2, 2))
 
+
 func _physics_process(delta):
     self.move_vehicle(delta)
     pitch_engine_sound()

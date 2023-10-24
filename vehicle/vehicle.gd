@@ -41,9 +41,8 @@ func move_vehicle(_delta):
     var lateral_velocity = right.dot(linear_velocity) * right
 
     # Drift
-    print(lateral_velocity.length())
     var traction = traction_slow
-    if lateral_velocity.length() > 40.0:
+    if lateral_velocity.length() > slip_speed:
         traction = traction_fast
         set_drifting(true)
     else:
