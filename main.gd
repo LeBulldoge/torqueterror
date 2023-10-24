@@ -2,8 +2,11 @@ extends Node
 
 
 func _ready():
-    $World/YSort/Player/HealthComponent.health_changed.connect($HUD.display_health)
-    $HUD.display_health($World/YSort/Player/HealthComponent.MAX_HEALTH)
+    var health: HealthComponent = GameState.player.health
+    health.health_changed.connect($HUD.display_health)
+    health.max_health_changed.connect($HUD.set_health_max)
+    $HUD.display_health(health.MAX_HEALTH)
+
     $World/YSort/Player/HealthComponent.death.connect(game_over)
     $World/YSort/Player.shoot_projectile.connect(_on_spawn_requested)
 
@@ -22,15 +25,17 @@ func _ready():
 func _on_spawn_requested(node: Node2D, position_requested: bool = false):
     if position_requested:
         node.global_position = get_point_outside_viewport()
-    $World.call_deferred("spawn", node)
+    $World.spawn(node)
 
 
-func _on_level_up(_level: int, _new_max: float):
+func _on_level_up(level: int, _new_max: float):
     get_tree().paused = true
 
     var upgrade = await choose_upgrade(3)
     if upgrade != null:
-        upgrade.apply($World/YSort/Player)
+        upgrade.apply(GameState.player)
+
+    GameState.player.health.increase_health(GameState.get_health_upgrade(level))
 
     get_tree().paused = false
 

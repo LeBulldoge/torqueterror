@@ -76,7 +76,7 @@ func spawn_swarm():
 
     for enemy in swarm.get_children():
         enemy.target = GameState.player
-        var death = enemy.get_node("HealthComponent").death
+        var death: Signal = enemy.get_node("HealthComponent").death
         death.connect(GameState.add_score.bind(1))
         death.connect(spawn_experience.bind(enemy))
     spawn(swarm)
@@ -88,7 +88,6 @@ func _spawn_boss():
     enemy.target = GameState.player
 
     spawn(enemy)
-    await enemy.ready
 
     if enemy.weapon.type == Weapon.WeaponType.Ranged:
         enemy.weapon.shoot_projectile.connect(spawn_projectile)
@@ -112,7 +111,6 @@ func _on_spawn_timer_timeout():
 
     enemy.target = GameState.player
     spawn(enemy)
-    await enemy.ready
 
     if enemy.weapon.type == Weapon.WeaponType.Ranged:
         enemy.weapon.shoot_projectile.connect(spawn_projectile)

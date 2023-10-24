@@ -10,7 +10,7 @@ func _ready():
     scale *= experience
 
 
-func _process(delta):
+func _process(_delta):
     if not target:
         return
 

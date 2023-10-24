@@ -12,6 +12,7 @@ var level: int = 1
 
 var player: Player = null
 
+
 func reset():
     score = 0
     experience = 0.0
@@ -32,6 +33,10 @@ func add_experience(value: float) -> void:
 
 func get_level_requirement() -> float:
     return (10 * (level - 1)) + (10 * level)
+
+
+func get_health_upgrade(_level: int) -> float:
+    return 25.0
 
 
 func add_score(value: int) -> void:
