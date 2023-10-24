@@ -21,9 +21,24 @@ func _ready():
     $HUD.set_level(GameState.level, GameState.get_level_requirement())
 
     GameDirector.game_timer_timeout.connect(game_over.bind(true))
-
+    GameDirector.event_point_reached.connect(_spawn_boss)
     start_game()
 
+
+var melee_boss_scene := preload("res://enemy/melee_enemy_boss.tscn")
+func _spawn_boss():
+    var enemy := melee_boss_scene.instantiate()
+
+    enemy.target = $World/YSort/Player
+    enemy.global_position = get_point_outside_viewport()
+
+    $World.spawn(enemy)
+    enemy.weapon.shoot_projectile.connect(_on_spawn_projectile)
+    var death = enemy.get_node("HealthComponent").death
+    death.connect(GameState.add_score.bind(10))
+    death.connect(spawn_experience.bind(enemy))
+
+    $SpawnTimer.wait_time *= 0.8
 
 func _on_level_up(_level: int, _new_max: float):
     get_tree().paused = true
@@ -36,6 +51,9 @@ func _on_level_up(_level: int, _new_max: float):
 
 
 func choose_upgrade(level: int) -> Upgrade:
+    if $LevelUpScreen.visible:
+        await $LevelUpScreen.visibility_changed
+
     var upgrades = GameState.get_random_upgrades(level)
     if upgrades.is_empty():
         return
@@ -101,12 +119,16 @@ func spawn_swarm():
 
 
 func _on_spawn_timer_timeout():
-    var num := randi_range(0, 5)
+    var num := randi_range(0, 9)
     if num == 5:
         spawn_swarm()
         return
 
-    var enemy = ranged_enemy_scene.instantiate() if num <= 1 else melee_enemy_scene.instantiate()
+    var enemy: Enemy
+    if num <= 3:
+        enemy = ranged_enemy_scene.instantiate()
+    else:
+        enemy = melee_enemy_scene.instantiate()
 
     enemy.target = $World/YSort/Player
     enemy.global_position = get_point_outside_viewport()

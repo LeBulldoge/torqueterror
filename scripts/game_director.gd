@@ -8,13 +8,22 @@ extends Node
 @export var game_length: float = 1.0
 @onready var game_timer := $GameTimer
 
+var event_point := 1
 
 signal game_timer_timeout
-
+signal event_point_reached
 
 func _ready():
     game_timer.wait_time = game_length
-    difficulty_curve.bake()
+
+
+func _process(_delta):
+    if game_timer.is_stopped() or event_point >= difficulty_curve.point_count:
+        return
+    if _get_normalized_elapsed_time() >= difficulty_curve.get_point_position(event_point).x:
+        print("Event point reached: ", event_point)
+        event_point_reached.emit()
+        event_point += 1
 
 
 func start_game() -> void:
