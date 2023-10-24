@@ -1,10 +1,11 @@
-[gd_scene load_steps=7 format=3 uid="uid://mn5kouylgoij"]
+[gd_scene load_steps=8 format=3 uid="uid://mn5kouylgoij"]
 
 [ext_resource type="Script" path="res://main.gd" id="1_mpdvn"]
 [ext_resource type="PackedScene" uid="uid://dlquo6hrey02w" path="res://ui/hud.tscn" id="2_okvge"]
 [ext_resource type="PackedScene" uid="uid://bf4f8s67xhjb1" path="res://ui/level_up_screen.tscn" id="3_hih0x"]
 [ext_resource type="AudioStream" uid="uid://1ao84peihxhj" path="res://audio/music/the_beginning.mp3" id="5_cume0"]
 [ext_resource type="PackedScene" uid="uid://dhdhq6px4e0xp" path="res://scenes/world.tscn" id="6_fqsrl"]
+[ext_resource type="Script" path="res://scenes/music_player.gd" id="6_y5kat"]
 
 [sub_resource type="Curve2D" id="Curve2D_2f5cj"]
 _data = {
@@ -36,3 +37,6 @@ stream = ExtResource("5_cume0")
 volume_db = -1.0
 autoplay = true
 bus = &"Music"
+script = ExtResource("6_y5kat")
+
+[connection signal="finished" from="MusicPlayer" to="MusicPlayer" method="_on_finished"]

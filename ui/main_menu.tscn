@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://bh662wb7pp7hj"]
+[gd_scene load_steps=18 format=3 uid="uid://bh662wb7pp7hj"]
 
 [ext_resource type="Texture2D" uid="uid://7kwyat10geme" path="res://sprites/arm.png" id="1_4iuhq"]
 [ext_resource type="Script" path="res://ui/main_menu.gd" id="1_lwrlq"]
@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://dk4pwtbpqlyf6" path="res://sprites/enemy.png" id="2_21066"]
 [ext_resource type="Texture2D" uid="uid://b1qdg23mtqa6q" path="res://sprites/building.png" id="2_gko8v"]
 [ext_resource type="Shader" path="res://ui/main_menu.gdshader" id="3_13nss"]
+[ext_resource type="Script" path="res://scenes/music_player.gd" id="3_rt63y"]
 [ext_resource type="Texture2D" uid="uid://dktnnf5j4v8qt" path="res://sprites/smalldemon.png" id="4_dmwny"]
 [ext_resource type="Texture2D" uid="uid://cyxs51qv1mdiu" path="res://sprites/octopus.png" id="5_vej51"]
 [ext_resource type="Texture2D" uid="uid://pc5555wcmas" path="res://sprites/toqueterror_logo.png" id="11_wloyl"]
@@ -61,6 +62,7 @@ stream = ExtResource("2_55gl3")
 volume_db = -5.0
 autoplay = true
 bus = &"Music"
+script = ExtResource("3_rt63y")
 
 [node name="ColorRect" type="ColorRect" parent="."]
 layout_mode = 1
@@ -265,5 +267,6 @@ layout_mode = 2
 theme_override_font_sizes/font_size = 30
 text = "Exit Game"
 
+[connection signal="finished" from="MusicPlayer" to="MusicPlayer" method="_on_finished"]
 [connection signal="pressed" from="MarginContainer/Menu/StartButton" to="." method="_on_start_button_pressed"]
 [connection signal="pressed" from="MarginContainer/Menu/ExitButton" to="." method="_on_exit_button_pressed"]
