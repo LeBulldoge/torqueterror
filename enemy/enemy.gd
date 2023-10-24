@@ -36,7 +36,6 @@ func apply_difficulty():
     var difficulty: float = GameDirector.get_difficulty_value()
     $HealthComponent.MAX_HEALTH = $HealthComponent.MAX_HEALTH * difficulty
     $WeaponComponent.damage = $WeaponComponent.damage * difficulty
-    experience = experience * difficulty
 
 func display_health(value):
     $HealthBar.value = value

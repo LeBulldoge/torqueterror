@@ -3,14 +3,14 @@
 [ext_resource type="Script" path="res://scripts/game_director.gd" id="1_fvcrl"]
 
 [sub_resource type="Curve" id="Curve_etptr"]
-max_value = 5.0
-_data = [Vector2(2.08165e-12, 1), 0.0, 0.0, 0, 0, Vector2(0.0338219, 1.10526), 4.00151, 4.00151, 0, 0, Vector2(0.122517, 1.42105), 3.47697, 3.47697, 0, 0, Vector2(0.31457, 2.1579), 2.09141, 2.09141, 0, 0, Vector2(0.470199, 2.47368), 3.85327, 3.85327, 0, 0, Vector2(0.615894, 3), 0.0, 0.0, 0, 0, Vector2(0.705298, 3.05263), 2.78158, 2.78158, 0, 0, Vector2(0.791391, 3.26316), 0.0, 0.0, 0, 0, Vector2(0.86755, 3.73684), 1.32456, 1.32456, 0, 0, Vector2(0.92053, 4), 0.0, 0.0, 0, 0, Vector2(0.966887, 4.47368), 0.0, 0.0, 0, 0, Vector2(1, 5), 8.02601, 0.0, 0, 0]
+max_value = 10.0
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.0837989, 1.57895), 4.00151, 4.00151, 0, 0, Vector2(0.153631, 2.42105), 11.2034, 11.2034, 0, 0, Vector2(0.27933, 2.94737), 2.09141, 2.09141, 0, 0, Vector2(0.427374, 3.36842), 4.43344, 4.43344, 0, 0, Vector2(0.541899, 3.57895), 0.0, 0.0, 0, 0, Vector2(0.659218, 4.10526), 2.78158, 2.78158, 0, 0, Vector2(0.734637, 4.94737), 0.0, 0.0, 0, 0, Vector2(0.812849, 5.68421), 0.0, 0.0, 0, 0, Vector2(0.891061, 6.84211), 1.32456, 1.32456, 0, 0, Vector2(0.946927, 7.89474), 0.0, 0.0, 0, 0, Vector2(1, 10), 8.02601, 0.0, 0, 0]
 point_count = 12
 
 [node name="GameDirector" type="Node"]
 script = ExtResource("1_fvcrl")
 difficulty_curve = SubResource("Curve_etptr")
-game_length = 600.0
+game_length = 480.0
 
 [node name="GameTimer" type="Timer" parent="."]
 

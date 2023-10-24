@@ -130,4 +130,4 @@ func spawn_projectile(projectile: Projectile):
 
 func _on_event_point_reached():
     _spawn_boss()
-    $SpawnTimer.wait_time *= 0.8
+    $SpawnTimer.wait_time *= 0.55
