@@ -1,11 +1,11 @@
 [gd_resource type="Resource" script_class="BatUpgrade" load_steps=4 format=3 uid="uid://e225oqepk6rk"]
 
-[ext_resource type="Texture2D" uid="uid://b4t58c8uqujdk" path="res://sprites/armbat.png" id="1_cyhuf"]
+[ext_resource type="Texture2D" uid="uid://dqafvd3pw8d41" path="res://sprites/batbig.png" id="1_i4p1u"]
 [ext_resource type="Script" path="res://resources/bat_upgrade.gd" id="2_6s6e2"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_eww7j"]
-atlas = ExtResource("1_cyhuf")
-region = Rect2(40, -28, 80, 128)
+atlas = ExtResource("1_i4p1u")
+region = Rect2(384, 0, 128, 128)
 
 [resource]
 script = ExtResource("2_6s6e2")

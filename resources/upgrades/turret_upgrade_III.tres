@@ -1,7 +1,11 @@
-[gd_resource type="Resource" script_class="TurretUpgrade" load_steps=3 format=3 uid="uid://dmmke2bhxj2vi"]
+[gd_resource type="Resource" script_class="TurretUpgrade" load_steps=4 format=3 uid="uid://dmmke2bhxj2vi"]
 
-[ext_resource type="Texture2D" uid="uid://bqs2kod2xac7k" path="res://icon.svg" id="1_gp874"]
+[ext_resource type="Texture2D" uid="uid://bgnl0acnhvy1c" path="res://sprites/turretsbig.png" id="1_gfckc"]
 [ext_resource type="Script" path="res://resources/upgrades/turret_upgrade.gd" id="2_6ynmh"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_225n5"]
+atlas = ExtResource("1_gfckc")
+region = Rect2(256, 0, 128, 128)
 
 [resource]
 script = ExtResource("2_6ynmh")
@@ -12,5 +16,5 @@ side = 0
 position = Vector2(34, 58)
 title = "Turret III"
 description = "Pew pew"
-icon = ExtResource("1_gp874")
+icon = SubResource("AtlasTexture_225n5")
 single_use = false
