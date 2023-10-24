@@ -10,6 +10,9 @@ signal shoot_projectile(projectile: Projectile)
 @onready var health: HealthComponent = $HealthComponent
 
 
+var proj_pierce := 0
+
+
 func _ready():
     GameState.player = self
 
@@ -18,6 +21,7 @@ func _ready():
 
 
 func _on_shoot_projectile(proj: Projectile):
+    proj.pierce = proj_pierce
     shoot_projectile.emit(proj)
 
 

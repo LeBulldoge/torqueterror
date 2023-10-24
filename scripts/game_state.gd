@@ -32,7 +32,7 @@ func add_experience(value: float) -> void:
 
 
 func get_level_requirement() -> float:
-    return (10 * (level - 1)) + (10 * level)
+    return (5 * (level - 1)) + (5 * level)
 
 
 func get_health_upgrade(_level: int) -> float:

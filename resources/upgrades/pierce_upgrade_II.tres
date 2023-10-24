@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="StatUpgrade" load_steps=3 format=3 uid="uid://to676jug7f1l"]
+
+[ext_resource type="Texture2D" uid="uid://bqs2kod2xac7k" path="res://icon.svg" id="1_7axrf"]
+[ext_resource type="Script" path="res://resources/upgrades/stat_upgrade.gd" id="2_8l853"]
+
+[resource]
+script = ExtResource("2_8l853")
+stats = {
+"proj_pierce": 2
+}
+title = "Pierce II"
+description = "Your bullets now pierce an extra enemy!"
+icon = ExtResource("1_7axrf")
+single_use = true

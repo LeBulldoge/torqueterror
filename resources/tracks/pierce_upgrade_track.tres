@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="UpgradeTrack" load_steps=7 format=3 uid="uid://bs0mq3kvl0c0v"]
+
+[ext_resource type="Script" path="res://resources/upgrade_track.gd" id="1_f705d"]
+[ext_resource type="Resource" uid="uid://cyrmqw32hesi0" path="res://resources/upgrades/pierce_upgrade_I.tres" id="2_ai16l"]
+[ext_resource type="Resource" uid="uid://to676jug7f1l" path="res://resources/upgrades/pierce_upgrade_II.tres" id="3_h2jpr"]
+[ext_resource type="Resource" uid="uid://b2v5t46n83iol" path="res://resources/upgrades/pierce_upgrade_III.tres" id="4_2b8sy"]
+[ext_resource type="Resource" uid="uid://dtdshm35h1c74" path="res://resources/upgrades/pierce_upgrade_IV.tres" id="5_45n3g"]
+[ext_resource type="Resource" uid="uid://dm4ou0elgtr0q" path="res://resources/upgrades/pierce_upgrade_V.tres" id="6_e7xhs"]
+
+[resource]
+script = ExtResource("1_f705d")
+key = "pierce"
+upgrades = Array[Resource("res://resources/upgrade.gd")]([ExtResource("2_ai16l"), ExtResource("3_h2jpr"), ExtResource("4_2b8sy"), ExtResource("5_45n3g"), ExtResource("6_e7xhs")])
