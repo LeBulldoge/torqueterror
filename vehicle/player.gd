@@ -71,12 +71,18 @@ func _on_hurt_box_component_area_entered(area: Area2D):
     hb.damage(damage)
 
 
-func _on_experience_component_body_entered(body: RigidBody2D):
-    if "experience" in body:
-        GameState.add_experience(body.experience)
-        body.queue_free()
+func _on_gravity_funnel_area_entered(area: Area2D):
+    if area is Experience:
+        area.target = self
+
+
+func _on_experience_component_area_entered(area: Area2D):
+    if "experience" in area:
+        GameState.add_experience(area.experience)
+        area.queue_free()
 
 
 func _on_hit_box_component_pos_damage_taken(damage: float, from: Vector2):
     apply_impulse(from.direction_to(global_position) * damage * 0.1, from)
     $PlayerHitSound.play()
+
