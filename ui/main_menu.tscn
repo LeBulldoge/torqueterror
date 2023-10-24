@@ -216,8 +216,8 @@ theme_override_constants/margin_bottom = 20
 layout_mode = 2
 theme_override_fonts/font = ExtResource("10_8m7pp")
 theme_override_font_sizes/font_size = 60
-text = "Scream Jam
-2023"
+text = "Torque
+Terror"
 horizontal_alignment = 1
 vertical_alignment = 1
 
