@@ -30,7 +30,8 @@ func apply(player: Player):
         bat.scale = (bat.scale / abs(bat.scale)) * scale
         bat.damage = damage
         bat.set_speed(attack_speed)
-
+        if sprite != null:
+            bat.set_sprite(sprite)
 
 func get_bats(weapons: Array[Node]) -> Array[BatWeapon]:
     var bats: Array[BatWeapon] = []

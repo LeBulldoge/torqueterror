@@ -20,6 +20,7 @@ func _ready():
     GameDirector.game_timer_timeout.connect(game_over.bind(true))
     GameDirector.spawn_requested.connect(_on_spawn_requested)
     start_game()
+
     await _on_level_up(0, 0)
 
 
