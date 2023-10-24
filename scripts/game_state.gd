@@ -10,6 +10,7 @@ var experience: float = 0.0
 signal level_changed(level: int, new_max: float)
 var level: int = 1
 
+var player: Player = null
 
 func reset():
     score = 0

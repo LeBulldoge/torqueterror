@@ -5,7 +5,11 @@ extends Vehicle
 @export var velocity_damage_modifier = 0.0
 
 signal shoot_projectile(projectile: Projectile)
+
+
 func _ready():
+    GameState.player = self
+
     for weapon in $Weapons.get_children():
         weapon.shoot_projectile.connect(_on_shoot_projectile)
 

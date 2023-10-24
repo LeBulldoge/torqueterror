@@ -22,9 +22,6 @@ visible = false
 process_mode = 3
 visible = false
 
-[node name="SpawnTimer" type="Timer" parent="."]
-wait_time = 2.0
-
 [node name="SpawnPath" type="Path2D" parent="."]
 curve = SubResource("Curve2D_2f5cj")
 
@@ -39,5 +36,3 @@ stream = ExtResource("5_cume0")
 volume_db = -1.0
 autoplay = true
 bus = &"Music"
-
-[connection signal="timeout" from="SpawnTimer" to="." method="_on_spawn_timer_timeout"]

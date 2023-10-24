@@ -1,17 +1,11 @@
 extends Node
 
 
-var ranged_enemy_scene = preload("res://enemy/ranged_enemy.tscn")
-var melee_enemy_scene = preload("res://enemy/melee_enemy.tscn")
-var swarm_enemy = preload("res://enemy/swarm.tscn")
-var experience = preload("res://enemy/experience.tscn")
-
-
 func _ready():
     $World/YSort/Player/HealthComponent.health_changed.connect($HUD.display_health)
     $HUD.display_health($World/YSort/Player/HealthComponent.MAX_HEALTH)
     $World/YSort/Player/HealthComponent.death.connect(game_over)
-    $World/YSort/Player.shoot_projectile.connect(_on_spawn_projectile)
+    $World/YSort/Player.shoot_projectile.connect(_on_spawn_requested)
 
     GameState.score_changed.connect($HUD.display_score)
     GameState.experience_changed.connect($HUD.display_experience)
@@ -21,24 +15,15 @@ func _ready():
     $HUD.set_level(GameState.level, GameState.get_level_requirement())
 
     GameDirector.game_timer_timeout.connect(game_over.bind(true))
-    GameDirector.event_point_reached.connect(_spawn_boss)
+    GameDirector.spawn_requested.connect(_on_spawn_requested)
     start_game()
 
 
-var melee_boss_scene := preload("res://enemy/melee_enemy_boss.tscn")
-func _spawn_boss():
-    var enemy := melee_boss_scene.instantiate()
+func _on_spawn_requested(node: Node2D, position_requested: bool = false):
+    if position_requested:
+        node.global_position = get_point_outside_viewport()
+    $World.call_deferred("spawn", node)
 
-    enemy.target = $World/YSort/Player
-    enemy.global_position = get_point_outside_viewport()
-
-    $World.spawn(enemy)
-    enemy.weapon.shoot_projectile.connect(_on_spawn_projectile)
-    var death = enemy.get_node("HealthComponent").death
-    death.connect(GameState.add_score.bind(10))
-    death.connect(spawn_experience.bind(enemy))
-
-    $SpawnTimer.wait_time *= 0.8
 
 func _on_level_up(_level: int, _new_max: float):
     get_tree().paused = true
@@ -81,12 +66,10 @@ func choose_upgrade(level: int) -> Upgrade:
 func start_game():
     $HUD.show()
     GameDirector.start_game()
-    $SpawnTimer.start()
 
 
 func game_over(win: bool = false):
     GameDirector.stop_game()
-    $SpawnTimer.stop()
 
     get_tree().paused = true
     await $HUD.game_over(win)
@@ -102,51 +85,3 @@ func get_point_outside_viewport() -> Vector2:
     $SpawnPath/SpawnPoint.progress_ratio = randf()
 
     return $SpawnPath/SpawnPoint.global_position
-
-
-func spawn_swarm():
-    var spawn_point := get_point_outside_viewport()
-    var swarm = swarm_enemy.instantiate()
-    swarm.global_position = spawn_point
-
-    for enemy in swarm.get_children():
-        enemy.target = $World/YSort/Player
-
-        var death = enemy.get_node("HealthComponent").death
-        death.connect(GameState.add_score.bind(1))
-        death.connect(spawn_experience.bind(enemy))
-    $World.spawn(swarm)
-
-
-func _on_spawn_timer_timeout():
-    var num := randi_range(0, 9)
-    if num == 5:
-        spawn_swarm()
-        return
-
-    var enemy: Enemy
-    if num <= 3:
-        enemy = ranged_enemy_scene.instantiate()
-    else:
-        enemy = melee_enemy_scene.instantiate()
-
-    enemy.target = $World/YSort/Player
-    enemy.global_position = get_point_outside_viewport()
-
-    $World.spawn(enemy)
-    enemy.weapon.shoot_projectile.connect(_on_spawn_projectile)
-    var death = enemy.get_node("HealthComponent").death
-    death.connect(GameState.add_score.bind(1))
-    death.connect(spawn_experience.bind(enemy))
-
-
-func _on_spawn_projectile(projectile: Projectile):
-    $World.call_deferred("spawn", projectile)
-
-
-func spawn_experience(enemy: Enemy):
-    var e = experience.instantiate()
-    e.position = enemy.global_position
-    e.experience = enemy.experience
-
-    $World.call_deferred("spawn", e)
