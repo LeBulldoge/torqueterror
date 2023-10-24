@@ -68,7 +68,7 @@ func spawn_experience(enemy: Enemy):
     var e = experience.instantiate()
     e.position = enemy.global_position
     e.experience = enemy.experience
-    spawn(e)
+    spawn_projectile(e)
 
 
 func spawn_swarm():
