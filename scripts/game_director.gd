@@ -78,7 +78,7 @@ func spawn_swarm():
         enemy.target = GameState.player
         var death: Signal = enemy.get_node("HealthComponent").death
         death.connect(GameState.add_score.bind(1))
-        death.connect(spawn_experience.bind(enemy))
+        death.connect(spawn_experience.bind(enemy), CONNECT_DEFERRED)
     spawn(swarm)
 
 
@@ -94,7 +94,7 @@ func _spawn_boss():
 
     var death = enemy.get_node("HealthComponent").death
     death.connect(GameState.add_score.bind(10))
-    death.connect(spawn_experience.bind(enemy))
+    death.connect(spawn_experience.bind(enemy), CONNECT_DEFERRED)
 
 
 func _on_spawn_timer_timeout():
@@ -116,7 +116,7 @@ func _on_spawn_timer_timeout():
         enemy.weapon.shoot_projectile.connect(spawn_projectile)
     var death = enemy.get_node("HealthComponent").death
     death.connect(GameState.add_score.bind(1))
-    death.connect(spawn_experience.bind(enemy))
+    death.connect(spawn_experience.bind(enemy), CONNECT_DEFERRED)
 
 
 signal spawn_requested(node: Node, position_required: bool)

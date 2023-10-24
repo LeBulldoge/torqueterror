@@ -4,7 +4,7 @@ extends Area2D
 @export var damage := 1.0
 @export var attack_range: float :
     set(value):
-        $AttackRadius.shape.radius = value
+        $AttackRadius.shape.set_deferred("radius", value)
     get:
         return $AttackRadius.shape.radius
 
@@ -19,7 +19,7 @@ var current_target: HitBoxComponent
 
 
 func _ready():
-    $AttackRadius.shape.radius = attack_range
+    $AttackRadius.shape.set_deferred("radius", attack_range)
     $Timer.wait_time = attack_speed
 
 

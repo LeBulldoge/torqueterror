@@ -20,6 +20,7 @@ func _ready():
     GameDirector.game_timer_timeout.connect(game_over.bind(true))
     GameDirector.spawn_requested.connect(_on_spawn_requested)
     start_game()
+    await _on_level_up(0, 0)
 
 
 func _on_spawn_requested(node: Node2D, position_requested: bool = false):
@@ -35,7 +36,8 @@ func _on_level_up(level: int, _new_max: float):
     if upgrade != null:
         upgrade.apply(GameState.player)
 
-    GameState.player.health.increase_health(GameState.get_health_upgrade(level))
+    if level > 0:
+        GameState.player.health.increase_health(GameState.get_health_upgrade(level))
 
     get_tree().paused = false
 

@@ -16,9 +16,6 @@ var proj_pierce := 0
 func _ready():
     GameState.player = self
 
-    for weapon in $Weapons.get_children():
-        weapon.shoot_projectile.connect(_on_shoot_projectile)
-
 
 func _on_shoot_projectile(proj: Projectile):
     proj.pierce = proj_pierce
