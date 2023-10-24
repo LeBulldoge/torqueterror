@@ -84,7 +84,7 @@ func _on_hurt_box_component_rear_area_entered(area: Area2D):
 
     var damage = forward_velocity * velocity_damage_modifier + 5
     var hb = area as HitBoxComponent
-    hb.call_deferred("damage", damage)
+    hb.call_deferred("damage", abs(damage))
 
 
 func _on_gravity_funnel_area_entered(area: Area2D):
